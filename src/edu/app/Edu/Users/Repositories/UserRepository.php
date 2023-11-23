@@ -27,6 +27,16 @@ class UserRepository
             );
     }
 
+    public function findOneById(string $userId): ?User
+    {
+        $user = $this->getUsersQueryBuilder()->find($userId);
+        if (!$user instanceof User) {
+            return null;
+        }
+
+        return $user;
+    }
+
     private function getUsersQueryBuilder(): Builder
     {
         return User::query();

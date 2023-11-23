@@ -1,6 +1,7 @@
 <?php
 
 use App\Edu\Users\Http\Actions\CreateUserAction;
+use App\Edu\Users\Http\Actions\GetUserAction;
 use App\Edu\Users\Http\Actions\GetUsersListAction;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,9 @@ Route::middleware([])->group(function () {
     Route::prefix('/users')->group(function () {
         Route::get('', GetUsersListAction::class);
         Route::post('', CreateUserAction::class);
+
+        Route::prefix('/{userId}')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
+            Route::get('', GetUserAction::class);
+        });
     });
 });
