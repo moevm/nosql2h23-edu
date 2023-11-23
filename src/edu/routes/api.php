@@ -2,6 +2,7 @@
 
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
+use App\Edu\Users\Http\Actions\EditUserAction;
 use App\Edu\Users\Http\Actions\GetUserAction;
 use App\Edu\Users\Http\Actions\GetUsersListAction;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::middleware([])->group(function () {
         Route::prefix('/{userId}')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
             Route::get('', GetUserAction::class);
             Route::get('/delete', DeleteUserAction::class);
+            Route::post('/edit', EditUserAction::class);
         });
     });
 });

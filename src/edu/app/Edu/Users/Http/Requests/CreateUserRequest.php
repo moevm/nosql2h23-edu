@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Http\Requests;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserRequest extends FormRequest implements Arrayable
+class CreateUserRequest extends FormRequest
 {
     public function rules(): array
     {
