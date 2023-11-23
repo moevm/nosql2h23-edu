@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdab8ffd76bc02c84fcf76e5895bc024",
+    "content-hash": "906170fe4450be8f343f61b4e579c66f",
     "packages": [
         {
             "name": "brick/math",
@@ -1028,6 +1028,96 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.5"
             },
             "time": "2021-10-08T21:21:46+00:00"
+        },
+        {
+            "name": "jenssegers/mongodb",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/laravel-mongodb.git",
+                "reference": "070e9e6d3496829d38c68faea47a6afddfa39b83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/laravel-mongodb/zipball/070e9e6d3496829d38c68faea47a6afddfa39b83",
+                "reference": "070e9e6d3496829d38c68faea47a6afddfa39b83",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mongodb": "^1.15",
+                "illuminate/container": "^10.0",
+                "illuminate/database": "^10.0",
+                "illuminate/events": "^10.0",
+                "illuminate/support": "^10.0",
+                "mongodb/mongodb": "^1.15",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "12.0.x-dev",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench": "^8.0",
+                "phpunit/phpunit": "^10.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "MongoDB\\Laravel\\MongoDBServiceProvider",
+                        "MongoDB\\Laravel\\MongoDBQueueServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MongoDB\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Braun",
+                    "email": "andreas.braun@mongodb.com",
+                    "role": "Leader"
+                },
+                {
+                    "name": "Jérôme Tamarelle",
+                    "email": "jerome.tamarelle@mongodb.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com",
+                    "role": "Creator"
+                }
+            ],
+            "description": "A MongoDB based Eloquent model and Query builder for Laravel",
+            "homepage": "https://github.com/mongodb/laravel-mongodb",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "mongo",
+                "mongodb"
+            ],
+            "support": {
+                "issues": "https://www.mongodb.com/support",
+                "security": "https://www.mongodb.com/security",
+                "source": "https://github.com/mongodb/laravel-mongodb/tree/4.0.2"
+            },
+            "abandoned": "mongodb/laravel-mongodb",
+            "time": "2023-11-02T20:30:11+00:00"
         },
         {
             "name": "laravel/framework",
