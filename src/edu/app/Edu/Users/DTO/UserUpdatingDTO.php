@@ -16,6 +16,8 @@ class UserUpdatingDTO
 
     private ?\DateTime $dateBirth = null;
 
+    private ?int $gender = null;
+
     public function __construct()
     {
     }
@@ -76,6 +78,18 @@ class UserUpdatingDTO
     public function setDateBirth(\DateTime $dateBirth): self
     {
         $this->dateBirth = $dateBirth;
+
+        return $this;
+    }
+
+    public function getGender(): ?int
+    {
+        return $this->gender;
+    }
+
+    public function setGender(int $gender): self
+    {
+        $this->gender = $gender;
 
         return $this;
     }
