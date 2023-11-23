@@ -37,6 +37,14 @@ class UserRepository
         return $user;
     }
 
+    public function deleteById(string $userId): int
+    {
+        return $this
+            ->getUsersQueryBuilder()
+            ->where('_id', '=', $userId)
+            ->delete();
+    }
+
     private function getUsersQueryBuilder(): Builder
     {
         return User::query();
