@@ -1,7 +1,5 @@
 <?php
 
-use App\Edu\Users\Http\Actions\CreateUserAction;
-use App\Edu\Users\Http\Actions\GetUsersListAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::middleware([])->group(function () {
-    Route::prefix('/users')->group(function () {
-        Route::get('', GetUsersListAction::class);
-        Route::post('', CreateUserAction::class);
-    });
 });
