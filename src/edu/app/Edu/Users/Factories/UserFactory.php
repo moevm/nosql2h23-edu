@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Edu\Users\Models\Factories;
+namespace App\Edu\Users\Factories;
 
 use App\Edu\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
