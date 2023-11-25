@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Models;
 
+use App\Edu\Roles\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MongoDB\Laravel\Eloquent\Model;
 
 /**
@@ -14,6 +16,8 @@ use MongoDB\Laravel\Eloquent\Model;
  * @property string patronymic
  * @property \DateTime date_birth
  * @property int gender
+ * @property string $role_id
+ * @property Role $role
 */
 class User extends Model
 {
@@ -31,6 +35,7 @@ class User extends Model
         'patronymic',
         'date_birth',
         'gender',
+        'role_id',
     ];
 
     protected $casts = [
@@ -39,8 +44,14 @@ class User extends Model
         'name' => 'string',
         'surname' => 'string',
         'patronymic' => 'string',
+        'role_id' => 'string',
         'date_birth' => 'date',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Factories;
 
+use App\Edu\Roles\Models\Role;
 use App\Edu\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +21,16 @@ class UserFactory
         $user->patronymic = $attributes['patronymic'];
         $user->date_birth = $attributes['date_birth'];
         $user->gender = $attributes['gender'];
+
+        $role = Role::query()
+            ->where('title', $attributes['role_title'])
+            ->first();
+
+        if (!$role) {
+            throw new \RuntimeException('Could not create without role');
+        }
+
+        $user->role_id = $role->getKey();
 
         $savingResult = $user->save();
         if (!$savingResult) {
