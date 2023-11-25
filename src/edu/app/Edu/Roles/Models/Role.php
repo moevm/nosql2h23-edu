@@ -11,11 +11,13 @@ use MongoDB\Laravel\Eloquent\Model;
  */
 class Role extends Model
 {
+    public const COLLECTION_NAME = 'roles';
+
     protected $primaryKey = '_id';
 
     protected $connection = 'mongodb';
 
-    protected $collection = 'roles';
+    protected $collection = self::COLLECTION_NAME;
 
     protected $fillable = [
         'title',
