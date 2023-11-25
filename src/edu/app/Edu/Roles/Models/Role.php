@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Edu\Users\Models;
+namespace App\Edu\Roles\Models;
 
 use MongoDB\Laravel\Eloquent\Model;
 

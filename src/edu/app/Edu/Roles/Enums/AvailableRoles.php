@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Edu\Users\Enums;
+namespace App\Edu\Roles\Enums;
 
 enum AvailableRoles: string
 {
