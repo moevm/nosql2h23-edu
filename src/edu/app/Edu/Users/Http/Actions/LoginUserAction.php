@@ -8,7 +8,6 @@ use App\Edu\Users\DTO\CredentialsDTO;
 use App\Edu\Users\Http\Requests\LoginUserRequest;
 use App\Edu\Users\Services\UserAuthCheckingService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 
 class LoginUserAction
 {

@@ -53,6 +53,16 @@ class UserRepository
         return $user;
     }
 
+    public function isUserWithProvidedEmailExists(string $email): bool
+    {
+        return $this
+            ->applyFilters(
+                usersQueryBuilder: $this->getUsersQueryBuilder(),
+                usersFilterDTO: (new UsersFilterDTO())->setEmail($email)
+            )
+            ->exists();
+    }
+
     public function deleteById(string $userId): int
     {
         return $this

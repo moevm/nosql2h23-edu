@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Http\Requests;
 
-use App\Edu\Users\Http\Rules\AvailableRolesValidationRule;
 use App\Edu\Users\Http\Rules\GenderValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserRequest extends FormRequest
+class RegistrationUserRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -21,7 +20,6 @@ class CreateUserRequest extends FormRequest
             'password_confirmation' => 'required',
             'password' => 'required|confirmed',
             'gender' => GenderValidationRule::get(),
-            'role_title' => AvailableRolesValidationRule::get(),
         ];
     }
 }

@@ -6,6 +6,7 @@ use App\Edu\Users\Http\Actions\EditUserAction;
 use App\Edu\Users\Http\Actions\GetUserAction;
 use App\Edu\Users\Http\Actions\GetUsersListAction;
 use App\Edu\Users\Http\Actions\LoginUserAction;
+use App\Edu\Users\Http\Actions\RegistrationUserAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(function () {
     Route::post('/login', LoginUserAction::class);
+    Route::post('/registration', RegistrationUserAction::class);
 });
 
 Route::middleware([])->group(function () {
