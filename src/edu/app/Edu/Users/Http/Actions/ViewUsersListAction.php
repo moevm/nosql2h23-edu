@@ -31,6 +31,8 @@ class ViewUsersListAction
             )
         );
 
-        return View::make('users.list');
+        return View::make('users.list', [
+            'filteredUsersPage' => $filteredUsersPage,
+        ]);
     }
 }

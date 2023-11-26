@@ -22,25 +22,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/login')->group(function () {
-    Route::get('', ViewLoginFormAction::class);
-    Route::post('', LoginUserAction::class);
+Route::prefix('/login')->name('login')->group(function () {
+    Route::get('', ViewLoginFormAction::class)->name('view-form');
+    Route::post('', LoginUserAction::class)->name('user');
 });
 
-Route::prefix('/registration')->group(function () {
-    Route::get('', ViewRegistrationFormAction::class);
-    Route::post('', RegistrationUserAction::class);
+Route::prefix('/registration')->name('registration')->group(function () {
+    Route::get('', ViewRegistrationFormAction::class)->name('view-form');
+    Route::post('', RegistrationUserAction::class)->name('user');
 });
 
 Route::middleware([])->group(function () {
-    Route::prefix('/users')->group(function () {
-        Route::get('', ViewUsersListAction::class);
-        Route::post('', CreateUserAction::class);
+    Route::prefix('/users')->name('users')->group(function () {
+        Route::get('', ViewUsersListAction::class)->name('view-list');
+        Route::post('', CreateUserAction::class)->name('create-user');
 
-        Route::prefix('/{userId}')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
-            Route::get('', ViewUserAction::class);
-            Route::get('/delete', DeleteUserAction::class);
-            Route::post('/edit', EditUserAction::class);
+        Route::prefix('/{userId}')->name('user')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
+            Route::get('', ViewUserAction::class)->name('view-user');
+            Route::get('/delete', DeleteUserAction::class)->name('delete-user');
+            Route::post('/edit', EditUserAction::class)->name('edit-user');
         });
     });
 });
