@@ -3,8 +3,8 @@
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
 use App\Edu\Users\Http\Actions\EditUserAction;
-use App\Edu\Users\Http\Actions\GetUserAction;
-use App\Edu\Users\Http\Actions\GetUsersListAction;
+use App\Edu\Users\Http\Actions\ViewUserAction;
+use App\Edu\Users\Http\Actions\ViewUsersListAction;
 use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
 use Illuminate\Support\Facades\Route;
@@ -20,18 +20,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('')->group(function () {
+Route::prefix('/user')->group(function () {
     Route::post('/login', LoginUserAction::class);
     Route::post('/registration', RegistrationUserAction::class);
 });
 
 Route::middleware([])->group(function () {
     Route::prefix('/users')->group(function () {
-        Route::get('', GetUsersListAction::class);
+        Route::get('', ViewUsersListAction::class);
         Route::post('', CreateUserAction::class);
 
         Route::prefix('/{userId}')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
-            Route::get('', GetUserAction::class);
+            Route::get('', ViewUserAction::class);
             Route::get('/delete', DeleteUserAction::class);
             Route::post('/edit', EditUserAction::class);
         });
