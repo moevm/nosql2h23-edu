@@ -5,6 +5,7 @@ use App\Edu\Users\Http\Actions\DeleteUserAction;
 use App\Edu\Users\Http\Actions\EditUserAction;
 use App\Edu\Users\Http\Actions\GetUserAction;
 use App\Edu\Users\Http\Actions\GetUsersListAction;
+use App\Edu\Users\Http\Actions\LoginUserAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::prefix('')->group(function () {
+    Route::post('/login', LoginUserAction::class);
+});
 
 Route::middleware([])->group(function () {
     Route::prefix('/users')->group(function () {

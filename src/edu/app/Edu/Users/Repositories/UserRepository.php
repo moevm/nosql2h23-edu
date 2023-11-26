@@ -6,8 +6,8 @@ namespace App\Edu\Users\Repositories;
 
 use App\Edu\Users\DTO\UsersFilterDTO;
 use App\Edu\Users\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserRepository
 {
@@ -30,6 +30,22 @@ class UserRepository
     public function findOneById(string $userId): ?User
     {
         $user = $this->getUsersQueryBuilder()->find($userId);
+        if (!$user instanceof User) {
+            return null;
+        }
+
+        return $user;
+    }
+
+    public function findOneByEmail(string $email): ?User
+    {
+        $user = $this
+            ->applyFilters(
+                usersQueryBuilder: $this->getUsersQueryBuilder(),
+                usersFilterDTO: (new UsersFilterDTO())->setEmail($email)
+            )
+            ->first();
+
         if (!$user instanceof User) {
             return null;
         }
