@@ -7,7 +7,8 @@ namespace App\Edu\Users\Http\Actions;
 use App\Edu\Users\Assemblers\UsersFilterDTOAssembler;
 use App\Edu\Users\Http\Requests\ViewUsersListRequest;
 use App\Edu\Users\Repositories\UserRepository;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\View;
 
 class ViewUsersListAction
 {
@@ -21,7 +22,7 @@ class ViewUsersListAction
         ViewUsersListRequest $viewUsersListRequest,
         UserRepository $userRepository,
         UsersFilterDTOAssembler $usersFilterDTOAssembler
-    ): JsonResponse {
+    ): ViewResponse {
         $filteredUsersPage = $userRepository->getFilteredUsersPage(
             page: (int) $viewUsersListRequest->get('page', self::DEFAULT_PAGE),
             perPage: (int) $viewUsersListRequest->get('per-page', self::DEFAULT_PER_PAGE),
@@ -30,6 +31,6 @@ class ViewUsersListAction
             )
         );
 
-        return response()->json();
+        return View::make('users.list');
     }
 }
