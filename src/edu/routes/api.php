@@ -7,6 +7,8 @@ use App\Edu\Users\Http\Actions\ViewUserAction;
 use App\Edu\Users\Http\Actions\ViewUsersListAction;
 use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
+use App\Http\Actions\ViewLoginFormAction;
+use App\Http\Actions\ViewRegistrationFormAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +22,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/user')->group(function () {
-    Route::post('/login', LoginUserAction::class);
-    Route::post('/registration', RegistrationUserAction::class);
+Route::prefix('/login')->group(function () {
+    Route::get('', ViewLoginFormAction::class);
+    Route::post('', LoginUserAction::class);
+});
+
+Route::prefix('/registration')->group(function () {
+    Route::get('', ViewRegistrationFormAction::class);
+    Route::post('', RegistrationUserAction::class);
 });
 
 Route::middleware([])->group(function () {
