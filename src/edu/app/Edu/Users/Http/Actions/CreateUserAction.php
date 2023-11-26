@@ -13,7 +13,7 @@ class CreateUserAction
     public function __invoke(
         CreateUserRequest $createUserRequest
     ): JsonResponse {
-        UserFactory::create($createUserRequest->all());
+        UserFactory::create($createUserRequest->validated());
 
         return response()->json();
     }

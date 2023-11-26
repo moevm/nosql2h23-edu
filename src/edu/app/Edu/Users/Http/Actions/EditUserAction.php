@@ -24,7 +24,7 @@ class EditUserAction
             throw new \DomainException('User to update was not found');
         }
 
-        $userUpdatingDTO = $userUpdatingDTOAssembler->assemble($editUserRequest->all());
+        $userUpdatingDTO = $userUpdatingDTOAssembler->assemble($editUserRequest->validated());
 
         $userUpdatingService->update($user, $userUpdatingDTO);
 
