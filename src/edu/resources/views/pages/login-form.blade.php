@@ -17,8 +17,41 @@
         </form>
         <p><a href="#" class="link-registration">Регистрация</a></p>
         <p><a href="#" class="link-forget-password">Забыли пароль?</a></p>
-        <button type="button-signin" class="btn">Войти</button>
+        <button type="button" class="btn-sign-in">Войти</button>
     </div>
 </div>
 </body>
 </html>
+<style>
+    html {
+        background: #AFFAAF;
+    }
+    div.container-center {
+        background: white;
+    }
+    h1 {
+        color: #2E6243;
+    }
+    a.link-registration {
+        color: #117427;
+    }
+    a.link-forget-password {
+        color: #117427;
+    }
+    button.btn-sign-in {
+        color: #FFFFFF;
+        background: #2E6243;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+    }
+    button.btn-sign-in:hover {
+        opacity: 80%;
+        color: #FFFFFF;
+        background: #2E6243;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+    }
+
+</style>
