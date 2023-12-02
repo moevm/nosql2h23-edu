@@ -39,8 +39,8 @@
     <form>
         <div class="special-group" role="group">
             <input class="birth-enter" type="date">
-            <button type="button" class="btn male">Мужской</button>
-            <button type="button" class="btn female">Женский</button>
+            <button type="button" class="btn-male">Мужской</button>
+            <button type="button" class="btn-female">Женский</button>
         </div>
     </form>
 
@@ -58,16 +58,35 @@
         background: #AFFAAF;
     }
     div.container-center {
-        /*width: 450px;*/
-        /*height: 240px;*/
-        /*text-align: center;*/
+        width: 700px;
+        height: 400px;
         margin-top: 10px;
-        /*margin-left: 300px;*/
+        margin-left: 180px;
         background: white;
+    }
+    p {
+        margin-left: 10px;
+        margin-bottom: 1px;
+    }
+    input {
+        width: 300px;
+        height: 25px;
+        margin-left: 10px;
+    }
+    input.birth-enter {
+        margin-left: 10px;
+    }
+    button.btn-male {
+        height: 30px;
+        margin-left: 50px;
+    }
+    button.btn-female {
+        height: 30px;
+        margin-left: -6px;
     }
     h1 {
         margin-left: 300px;
-        margin-top: 100px;
+        margin-top: 50px;
         color: #2E6243;
     }
     a.red-star {
