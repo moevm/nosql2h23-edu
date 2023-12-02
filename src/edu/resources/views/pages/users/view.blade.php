@@ -29,7 +29,7 @@
         </div>
     </form>
     <p class="patr">Отчество</p>
-    <input class="patr-enter" type="text"">
+    <input class="patr-enter" type="text">
 
     <p class="note">Чтобы сохранить изменения нажмите "Сохранить".</p>
     <div class="btn-group" role="group">
@@ -43,14 +43,20 @@
     html {
         background: #AFFAAF;
     }
+    body {
+        margin-left: 450px;
+    }
     a.red-star {
         color: red;
     }
     div.container-center {
         background: white;
+        width: 1000px;
+        height: 550px;
     }
     p {
         font-size: 24px;
+        margin-left: 10px;
     }
     a {
         font-size: 24px;
@@ -75,10 +81,13 @@
         color: #2E6243;
     }
     button.btn-male {
-        margin-left: 40px;
+        margin-left: 50px;
     }
     button.btn-female {
         margin-left: -6px;
+    }
+    input.birth-enter {
+        margin-left: 50px;
     }
     button.btn-back-to-users, button.btn-save {
         font-size: 24px;
@@ -87,5 +96,24 @@
     }
     button.btn-back-to-users:hover, button.btn-save:hover {
         opacity: 80%;
+    }
+    h2 {
+        text-align: center;
+        margin-top: 10px;
+    }
+    a.name, a.sername, p.patr {
+        margin-left: 10px;
+    }
+    input.name-enter, input.sername-enter, input.patr-enter {
+        margin-left: 10px;
+    }
+    a.sex {
+        margin-left: 310px;
+    }
+    a.birthday {
+        margin-left: 370px;
+    }
+    div.btn-group {
+        text-align: right;
     }
 </style>
