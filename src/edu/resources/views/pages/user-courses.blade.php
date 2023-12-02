@@ -29,6 +29,7 @@
         <tr>
             <th class="td-id">ID</th>
             <th class="td-course-name">Название</th>
+            <th class="td-course-description">Описание</th>
             <th class="td-author">Автор</th>
             <th class="td-date">Дата создания</th>
             <th class="td-actions">Действия</th>
@@ -36,6 +37,7 @@
         <tr>
             <td class="td-id">1</td>
             <td class="td-course-name">Техника безопасности на нефтяном предприятии</td>
+            <td class="td-course-description">Система организационных мероприятий, технических средств и методов, предотвращающих воздействие на работающих опасных производственных факторов.</td>
             <td class="td-author">Костебелова Елизавета Константиновна</td>
             <td class="td-date">01.12.2023</td>
             <td class="td-actions">
@@ -45,6 +47,7 @@
         <tr>
             <td class="td-id">2</td>
             <td class="td-course-name">Основы параллельных алгоритмов</td>
+            <td class="td-course-description">Курс про алгоритмы, которые могут быть реализованы по частям на множестве различных вычислительных устройств с последующим объединением полученных результатов и получением корректного результата.</td>
             <td class="td-author">Костебелова Елизавета Константиновна</td>
             <td class="td-date">01.12.2023</td>
             <td class="td-actions">
@@ -123,7 +126,10 @@
         width: 50px;
     }
     td.td-course-name, td.td-author, td.td-date, td.td-actions {
-        width: 365px;
+        width: 270px;
+    }
+    td.td-course-description {
+        width: 380px;
     }
     button.btn-del, button.btn-edit {
         width: 200px;
@@ -153,6 +159,8 @@
     }
     button.btn-download-json, button.btn-load-json, button.btn-add-user, button.btn-add-file {
         width: 400px;
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
     p.p-first-part, p.p-second-part {
         margin-bottom: -15px;
