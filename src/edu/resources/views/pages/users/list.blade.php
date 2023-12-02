@@ -82,12 +82,28 @@
         font-size: 24px;
         color: #2E6243;
     }
+    button.btn-five, button.btn-fifteen, button.btn-ten {
+        text-align: center;
+        background: #FFFFFF;
+        color: #2E6243;
+        width: 60px;
+    }
+    button.btn-five:hover, button.btn-fifteen:hover, button.btn-ten:hover {
+        color: #FFFFFF;
+        background: #2E6243;
+    }
     button {
         font-size: 24px;
         height: 50px;
         padding: 0.5rem 1rem;
         border-radius: 10px;
         border-color: black;
+        text-align: center;
+        color: #FFFFFF;
+        background: #2E6243;
+    }
+    button:hover {
+        opacity: 80%;
     }
     input {
         font-size: 24px;
