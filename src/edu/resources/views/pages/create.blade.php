@@ -11,6 +11,8 @@
     <h1>Создание курса</h1>
     <p class="note">Введите название курса</p>
     <input class="course-name-enter" type="text">
+    <p class="note">Введите описание курса</p>
+    <input class="course-description-enter" type="text">
     <p>
         <button type="button" class="btn-create-course">Создать курс</button>
     </p>
@@ -46,7 +48,7 @@
     }
     div.container-center {
         width: 800px;
-        height: 380px;
+        height: 450px;
         text-align: center;
         margin-top: 100px;
         margin-left: 300px;
