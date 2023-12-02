@@ -14,7 +14,7 @@
         <a class="birthday">Дата рождения <a class="red-star">*</a></a>
     </p>
     <form>
-        <input class="name-enter" type="text" placeholder="Анатолий">
+        <input class="name-enter" type="text">
         <input class="birth-enter" type="date">
     </form>
     <p>
@@ -23,12 +23,13 @@
     </p>
     <form>
         <div class="special-group" role="group">
-            <input class="sername-enter" type="text" placeholder="Денежный">
+            <input class="sername-enter" type="text">
             <button type="button" class="btn-male">Мужской</button>
             <button type="button" class="btn-female">Женский</button>
         </div>
     </form>
-    <a class="patr">Отчество</a>
+    <p class="patr">Отчество</p>
+    <input class="patr-enter" type="text"">
 
     <p class="note">Чтобы сохранить изменения нажмите "Сохранить".</p>
     <div class="btn-group" role="group">
@@ -58,6 +59,7 @@
         font-size: 24px;
         width: 400px;
         height: 40px;
+        border-radius: 5px;
     }
     button {
         height: 50px;
