@@ -9,36 +9,36 @@
 <h1>Регистрация в системе</h1>
 <div class="container-center">
     <p>
-        <a>Имя</a>
-        <a>Email</a>
+        <a>Имя <a class="red-star">*</a></a>
+        <a>Email <a class="red-star">*</a></a>
     </p>
     <form>
-        <input class="login-enter" type="text" placeholder="Логин">
-        <input class="password-enter" type="password" placeholder="Пароль">
+        <input class="name-enter" type="text" placeholder="Анатолий">
+        <input class="email-enter" type="text" placeholder="coolman@gmail.com">
     </form>
     <p>
-        <a>Фамилия</a>
-        <a>Пароль</a>
+        <a>Фамилия <a class="red-star">*</a></a>
+        <a>Пароль <a class="red-star">*</a></a>
     </p>
     <form>
-        <input class="login-enter" type="text" placeholder="Логин">
+        <input class="sername-enter" type="text" placeholder="Денежный">
         <input class="password-enter" type="password" placeholder="Пароль">
     </form>
     <p>
         <a>Отчество</a>
-        <a>Повторите пароль</a>
+        <a>Повторите пароль <a class="red-star">*</a></a>
     </p>
     <form>
-        <input class="login-enter" type="text" placeholder="Логин">
-        <input class="password-enter" type="password" placeholder="Пароль">
+        <input class="patr-enter" type="text" placeholder="Антонович">
+        <input class="again-password-enter" type="password" placeholder="Повторите пароль">
     </form>
     <p>
-        <a>Дата рождения</a>
-        <a>Пол</a>
+        <a>Дата рождения <a class="red-star">*</a></a>
+        <a>Пол <a class="red-star">*</a></a>
     </p>
     <form>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <input class="login-enter" type="date" placeholder="Логин">
+        <div class="special-group" role="group">
+            <input class="birth-enter" type="date">
             <button type="button" class="btn male">Мужской</button>
             <button type="button" class="btn female">Женский</button>
         </div>
@@ -46,7 +46,10 @@
 
 
     <p class="note">Нажимая на кнопку “Регистрация”, вы даете согласие на обработку персональных данных.</p>
-    <button type="button" class="btn-sign-in">Войти</button>
+    <div class="btn-group" role="group">
+        <button type="button" class="btn-sign-in">Войти</button>
+        <button type="button" class="btn-registration">Регистрация</button>
+    </div>
 </div>
 </body>
 </html>
@@ -67,14 +70,11 @@
         margin-top: 100px;
         color: #2E6243;
     }
-
+    a.red-star {
+        color: red;
+    }
 
     button.btn-sign-in {
-        display: flex;
-        margin-left: auto;
-        margin-right: 10px;
-        margin-top: 10px;
-        text-align: right;
         color: #FFFFFF;
         background: #2E6243;
         border: none;
@@ -82,11 +82,21 @@
         border-radius: 10px;
     }
     button.btn-sign-in:hover {
-        display: flex;
-        margin-left: auto;
-        margin-right: 10px;
-        margin-top: 10px;
-        text-align: right;
+        opacity: 80%;
+        color: #FFFFFF;
+        background: #2E6243;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+    }
+    button.btn-registration {
+        color: #FFFFFF;
+        background: #2E6243;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+    }
+    button.btn-registration:hover {
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
