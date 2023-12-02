@@ -8,25 +8,25 @@
 <body>
 <h1>Список пользователей</h1>
 <div class="container-top">
-    <div class="left-group" role="group">
+    <div class="top-group" role="group">
         <input class="input-fio" type="text" placeholder="Введите ФИО или email">
-        <a>Показать по </a>
+        <a class="a-show-for">Показать по </a>
         <button type="button" class="btn-five">5</button>
         <button type="button" class="btn-ten">10</button>
         <button type="button" class="btn-fifteen">15</button>
     </div>
 
-    <div class="right-group" role="group">
+    <div class="bot-group" role="group">
         <input class="input-role" type="text" placeholder="Роль">
         <a href="#" class="link-clear-filters">Сбросить фильтры</a>
     </div>
 
     <div class="btn-group" role="group">
-        <p>
+        <p class="p-first-part">
             <button type="button" class="btn-download-json">Выгрузить в json формате</button>
             <button type="button" class="btn-add-file">Добавить файл</button>
         </p>
-        <p>
+        <p class="p-second-part">
             <button type="button" class="btn-load-json">Загрузить в json формате</button>
             <button type="button" class="btn-add-user">Добавить пользователя</button>
         </p>
@@ -107,12 +107,16 @@
     }
     input {
         font-size: 24px;
+        width: 500px;
         height: 45px;
         border-radius: 5px;
+        margin-left: 30px;
+        margin-top: 30px;
     }
     h1 {
         font-size: 46px;
         color: #2E6243;
+        margin-left: 120px;
     }
     table, th, td {
         table-layout: fixed;
@@ -138,10 +142,30 @@
     }
     div.container-top {
         background: white;
+        margin-left: 120px;
+        width: 1560px;
+        height: 310px;
     }
     div.container-bot {
         background: white;
         margin-left: 120px;
         width: 1560px;
     }
+    div.btn-group {
+        text-align: right;
+        /*margin-bottom: 200px;*/
+    }
+    a.a-show-for {
+        margin-left: 600px;
+    }
+    a.link-clear-filters {
+        margin-left: 720px;
+    }
+    button.btn-download-json, button.btn-load-json, button.btn-add-user, button.btn-add-file {
+        width: 400px;
+    }
+    p.p-first-part, p.p-second-part {
+        margin-bottom: -15px;
+    }
+
 </style>
