@@ -47,9 +47,14 @@
         </tr>
         <tr>
             <td class="td-id">1</td>
-            <td class="td-elem-type">Техника безопасности на нефтяном предприятии</td>
-            <td class="td-elem-name">Костебелова Елизавета Константиновна</td>
-            <td class="td-elem-content">01.12.2023</td>
+            <td class="td-elem-type">Текст</td>
+            <td class="td-elem-name">Condition variable</td>
+            <td class="td-elem-content">Condition variable
+                (условная переменная)
+                - это синхронизационный
+                примитив в многопоточном
+                программировании, который
+                позволяет потокам...</td>
             <td class="td-actions">
                 <button type="button" class="btn-edit-course">Редактировать</button>
                 <button type="button" class="btn-del-course">Удалить</button>
@@ -57,9 +62,14 @@
         </tr>
         <tr>
             <td class="td-id">2</td>
-            <td class="td-elem-type">Основы параллельных алгоритмов</td>
-            <td class="td-elem-name">Костебелова Елизавета Константиновна</td>
-            <td class="td-elem-content">01.12.2023</td>
+            <td class="td-elem-type">Текст</td>
+            <td class="td-elem-name">Mutex</td>
+            <td class="td-elem-content">Мьютекс (Mutex)
+                - это синхронизационный
+                примитив, используемый
+                в программировании для
+                обеспечения взаимного
+                исключения доступа...</td>
             <td class="td-actions">
                 <button type="button" class="btn-edit-course">Редактировать</button>
                 <button type="button" class="btn-del-course">Удалить</button>
