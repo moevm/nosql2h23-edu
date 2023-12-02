@@ -9,32 +9,32 @@
 <h1>Регистрация в системе</h1>
 <div class="container-center">
     <p>
-        <a>Имя <a class="red-star">*</a></a>
-        <a>Email <a class="red-star">*</a></a>
+        <a class="name">Имя <a class="red-star">*</a></a>
+        <a class="email">Email <a class="red-star">*</a></a>
     </p>
     <form>
         <input class="name-enter" type="text" placeholder="Анатолий">
         <input class="email-enter" type="text" placeholder="coolman@gmail.com">
     </form>
     <p>
-        <a>Фамилия <a class="red-star">*</a></a>
-        <a>Пароль <a class="red-star">*</a></a>
+        <a class="sername">Фамилия <a class="red-star">*</a></a>
+        <a class="password">Пароль <a class="red-star">*</a></a>
     </p>
     <form>
         <input class="sername-enter" type="text" placeholder="Денежный">
         <input class="password-enter" type="password" placeholder="Пароль">
     </form>
     <p>
-        <a>Отчество</a>
-        <a>Повторите пароль <a class="red-star">*</a></a>
+        <a class="patr">Отчество</a>
+        <a class="again-password">Повторите пароль <a class="red-star">*</a></a>
     </p>
     <form>
         <input class="patr-enter" type="text" placeholder="Антонович">
         <input class="again-password-enter" type="password" placeholder="Повторите пароль">
     </form>
     <p>
-        <a>Дата рождения <a class="red-star">*</a></a>
-        <a>Пол <a class="red-star">*</a></a>
+        <a class="birthday">Дата рождения <a class="red-star">*</a></a>
+        <a class="sex">Пол <a class="red-star">*</a></a>
     </p>
     <form>
         <div class="special-group" role="group">
@@ -78,12 +78,35 @@
     }
     button.btn-male {
         height: 30px;
-        margin-left: 50px;
+        margin-left: 45px;
     }
     button.btn-female {
         height: 30px;
         margin-left: -6px;
     }
+    input.email-enter {
+        margin-left: 45px;
+    }
+    input.password-enter {
+        margin-left: 45px;
+    }
+    input.again-password-enter {
+        margin-left: 45px;
+    }
+
+    a.email {
+        margin-left: 300px;
+    }
+    a.password {
+        margin-left: 260px;
+    }
+    a.again-password {
+        margin-left: 270px;
+    }
+    a.sex {
+        margin-left: 205px;
+    }
+
     h1 {
         margin-left: 300px;
         margin-top: 50px;
@@ -93,7 +116,15 @@
         color: red;
     }
 
+    div.btn-group {
+        margin-top: 30px;
+        display: flex;
+        margin-left: 450px;
+        height: 30px;
+    }
+
     button.btn-sign-in {
+        margin-right: 20px;
         color: #FFFFFF;
         background: #2E6243;
         border: none;
