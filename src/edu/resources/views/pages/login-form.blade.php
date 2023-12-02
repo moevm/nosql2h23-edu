@@ -6,17 +6,18 @@
     <title>Login</title>
 </head>
 <body>
+<h1>Войти в систему</h1>
 <div class="container-center">
-    <h1>Войти в систему</h1>
     <div class="container">
-        <h2>Для работы системы необходимо авторизоваться.
-            Пожалуйста, введите логин и пароль.</h2>
-        <form>
-            <input type="text" placeholder="Логин">
-            <input type="password" placeholder="Пароль">
+        <p class="note">Для работы системы необходимо авторизоваться.</p>
+        <p class="note">Пожалуйста, введите логин и пароль.</p>
+        <input class="login-enter" type="text" placeholder="Логин">
+        <p></p>
+        <input class="password-enter" type="password" placeholder="Пароль">
+        <form class="links">
+            <a href="#" class="link-registration">Регистрация</a>
+            <a href="#" class="link-forget-password">Забыли пароль?</a>
         </form>
-        <p><a href="#" class="link-registration">Регистрация</a></p>
-        <p><a href="#" class="link-forget-password">Забыли пароль?</a></p>
         <button type="button" class="btn-sign-in">Войти</button>
     </div>
 </div>
@@ -27,18 +28,56 @@
         background: #AFFAAF;
     }
     div.container-center {
+        width: 450px;
+        height: 240px;
+        text-align: center;
+        margin-top: 10px;
+        margin-left: 300px;
         background: white;
     }
     h1 {
+        margin-left: 300px;
+        margin-top: 100px;
         color: #2E6243;
+    }
+    p.note {
+        text-align: left;
+        margin-left: 10px;
+        margin-top: 10px;
+        color: black;
     }
     a.link-registration {
         color: #117427;
+        text-align: left;
     }
     a.link-forget-password {
         color: #117427;
+        margin-top: 20px;
+        margin-left: 150px;
+        text-align: right;
+    }
+    input.login-enter {
+        width: 300px;
+        height: 25px;
+        display: flex;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+    input.password-enter {
+        width: 300px;
+        height: 25px;
+        display: flex;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left: 10px;
     }
     button.btn-sign-in {
+        display: flex;
+        margin-left: auto;
+        margin-right: 10px;
+        margin-top: 10px;
+        text-align: right;
         color: #FFFFFF;
         background: #2E6243;
         border: none;
@@ -46,6 +85,11 @@
         border-radius: 10px;
     }
     button.btn-sign-in:hover {
+        display: flex;
+        margin-left: auto;
+        margin-right: 10px;
+        margin-top: 10px;
+        text-align: right;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
