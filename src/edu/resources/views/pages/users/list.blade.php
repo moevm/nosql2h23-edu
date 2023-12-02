@@ -34,7 +34,38 @@
 </div>
 
 <div class="container-bot">
-
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>ФИО</th>
+            <th>Роль</th>
+            <th>Email</th>
+            <th>Дата регистрации</th>
+            <th>Действия</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Костебелова Елизавета Константиновна</td>
+            <td>Пользователь</td>
+            <td>Lizbet227@gmail.com</td>
+            <td>01.12.2023</td>
+            <td>
+                <button type="button" class="btn-del">Удалить</button>
+                <button type="button" class="btn-edit">Редактировать</button>
+            </td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Костебелова Елизавета Константиновна</td>
+            <td>Пользователь</td>
+            <td>Lizbet227@gmail.com</td>
+            <td>01.12.2023</td>
+            <td>
+                <button type="button" class="btn-del">Удалить</button>
+                <button type="button" class="btn-edit">Редактировать</button>
+            </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
