@@ -57,6 +57,11 @@
     html {
         background: #AFFAAF;
     }
+    
+    body {
+        margin-left: 270px;
+    }
+    
     div.container-center {
         width: 900px;
         height: 600px;
@@ -81,12 +86,15 @@
     button {
         height: 50px;
         font-size: 24px;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        border-color: black;
     }
     input.birth-enter {
         margin-left: 10px;
     }
     button.btn-male {
-        margin-left: 45px;
+        margin-left: 40px;
     }
     button.btn-female {
         margin-left: -6px;
@@ -102,16 +110,16 @@
     }
 
     a.email {
-        margin-left: 300px;
+        margin-left: 370px;
     }
     a.password {
-        margin-left: 260px;
+        margin-left: 310px;
     }
     a.again-password {
-        margin-left: 270px;
+        margin-left: 325px;
     }
     a.sex {
-        margin-left: 205px;
+        margin-left: 225px;
     }
 
 
@@ -129,44 +137,32 @@
         font-size: 24px;
         margin-top: 30px;
         display: flex;
-        margin-left: 450px;
+        margin-left: 550px;
         height: 30px;
     }
 
     button.btn-sign-in {
         font-size: 24px;
-        margin-right: 20px;
+        margin-right: 40px;
         color: #FFFFFF;
         background: #2E6243;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
     }
     button.btn-sign-in:hover {
         font-size: 24px;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
     }
     button.btn-registration {
         font-size: 24px;
         color: #FFFFFF;
         background: #2E6243;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
     }
     button.btn-registration:hover {
         font-size: 24px;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
     }
 
 </style>
