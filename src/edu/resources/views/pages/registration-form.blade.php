@@ -58,30 +58,37 @@
         background: #AFFAAF;
     }
     div.container-center {
-        width: 700px;
-        height: 400px;
+        width: 900px;
+        height: 600px;
         margin-top: 10px;
         margin-left: 180px;
         background: white;
     }
     p {
+        font-size: 24px;
         margin-left: 10px;
         margin-bottom: 1px;
     }
+    a {
+        font-size: 24px;
+    }
     input {
-        width: 300px;
-        height: 25px;
+        font-size: 24px;
+        width: 400px;
+        height: 40px;
         margin-left: 10px;
+    }
+    button {
+        height: 50px;
+        font-size: 24px;
     }
     input.birth-enter {
         margin-left: 10px;
     }
     button.btn-male {
-        height: 30px;
         margin-left: 45px;
     }
     button.btn-female {
-        height: 30px;
         margin-left: -6px;
     }
     input.email-enter {
@@ -107,7 +114,9 @@
         margin-left: 205px;
     }
 
+
     h1 {
+        font-size: 46px;
         margin-left: 300px;
         margin-top: 50px;
         color: #2E6243;
@@ -117,6 +126,7 @@
     }
 
     div.btn-group {
+        font-size: 24px;
         margin-top: 30px;
         display: flex;
         margin-left: 450px;
@@ -124,6 +134,7 @@
     }
 
     button.btn-sign-in {
+        font-size: 24px;
         margin-right: 20px;
         color: #FFFFFF;
         background: #2E6243;
@@ -132,6 +143,7 @@
         border-radius: 10px;
     }
     button.btn-sign-in:hover {
+        font-size: 24px;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
@@ -140,6 +152,7 @@
         border-radius: 10px;
     }
     button.btn-registration {
+        font-size: 24px;
         color: #FFFFFF;
         background: #2E6243;
         border: none;
@@ -147,6 +160,7 @@
         border-radius: 10px;
     }
     button.btn-registration:hover {
+        font-size: 24px;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
