@@ -134,8 +134,8 @@
     td.td-course-name, td.td-author, td.td-date, td.td-actions {
         width: 365px;
     }
-    button.btn-del, button.btn-edit {
-        width: 200px;
+    button.btn-del-course, button.btn-edit-course {
+        width: 300px;
         margin-top: 5px;
         margin-bottom: 5px;
     }
@@ -143,7 +143,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 400px;
+        height: 380px;
     }
     div.container-bot {
         background: white;
