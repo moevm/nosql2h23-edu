@@ -30,7 +30,7 @@
             <th class="td-id">ID</th>
             <th class="td-course-name">Название</th>
             <th class="td-author">Автор</th>
-            <th class="td-date">Дата регистрации</th>
+            <th class="td-date">Дата создания</th>
             <th class="td-actions">Действия</th>
         </tr>
         <tr>
@@ -52,10 +52,10 @@
             </td>
         </tr>
     </table>
-    <p class="p-after-table">
+    <div class="after-table-group" role="group">
         <button type="button" class="btn-download-json">Выгрузить в json формате</button>
-        <button type="button" class="btn-load-json">Загрузитьв json формате</button>
-    </p>
+        <button type="button" class="btn-load-json">Загрузить в json формате</button>
+    </div>
 
 </div>
 </body>
@@ -122,8 +122,8 @@
     td.td-id{
         width: 50px;
     }
-    td.td-course-name, td.td-author, td.td-email, td.td-actions {
-        width: 300px;
+    td.td-course-name, td.td-author, td.td-date, td.td-actions {
+        width: 365px;
     }
     button.btn-del, button.btn-edit {
         width: 200px;
@@ -134,7 +134,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 310px;
+        height: 200px;
     }
     div.container-bot {
         background: white;
@@ -156,5 +156,10 @@
     }
     p.p-first-part, p.p-second-part {
         margin-bottom: -15px;
+    }
+    div.after-table-group {
+        text-align: right;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 </style>
