@@ -65,10 +65,6 @@
             </td>
         </tr>
     </table>
-    <div class="after-table-group" role="group">
-        <button type="button" class="btn-download-json">Выгрузить в json формате</button>
-        <button type="button" class="btn-load-json">Загрузить в json формате</button>
-    </div>
 
 </div>
 </body>
@@ -167,12 +163,8 @@
     button.btn-download-json, button.btn-load-json, button.btn-add-course, button.btn-add-file {
         width: 400px;
     }
-    p.p-first-part, p.p-second-part {
+    p.p-first-part, p.p-second-part, p.p-third-part {
         margin-bottom: -15px;
-    }
-    div.after-table-group {
-        text-align: right;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-right: 10px;
     }
 </style>
