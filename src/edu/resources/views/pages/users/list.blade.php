@@ -34,6 +34,7 @@
 </div>
 
 <div class="container-bot">
+    <p class="p-showed">Отображено 2 из 2</p>
     <table class="table-users">
         <tr>
             <th class="td-id">ID</th>
@@ -46,7 +47,7 @@
         <tr>
             <td class="td-id">1</td>
             <td class="td-fio">Костебелова Елизавета Константиновна</td>
-            <td class="td-role">Пользователь</td>
+            <td class="td-role">Администратор</td>
             <td class="td-email">Lizbet227@gmail.com</td>
             <td class="td-date">01.12.2023</td>
             <td class="td-actions">
@@ -75,9 +76,11 @@
     }
     p {
         font-size: 24px;
+        color: #2E6243;
     }
     a {
         font-size: 24px;
+        color: #2E6243;
     }
     button {
         font-size: 24px;
@@ -95,10 +98,34 @@
         font-size: 46px;
         color: #2E6243;
     }
+    table, th, td {
+        table-layout: fixed;
+        font-size: 24px;
+        border-collapse: collapse;
+        border: 3px solid grey;
+        text-align: center;
+    }
+    table {
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
+    td.td-id{
+        width: 50px;
+    }
+    td.td-fio, td.td-role, td.td-email, td.td-actions {
+        width: 300px;
+    }
+    button.btn-del, button.btn-edit {
+        width: 200px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
     div.container-top {
         background: white;
     }
     div.container-bot {
-        background: wheat;
+        background: white;
+        margin-left: 120px;
+        width: 1560px;
     }
 </style>
