@@ -8,7 +8,8 @@
 <body>
 <h1>Редактирование курса</h1>
 <div class="container-top">
-    <h2>Основы параллельных алгоритмов</h2>
+    <h2>Название курса: <a class="a-course-name">Основы параллельных алгоритмов</a></h2>
+    <h2>Описание курса: <a class="a-course-description">Курс про алгоритмы, которые могут быть реализованы по частям на множестве различных вычислительных устройств с последующим объединением полученных результатов и получением корректного результата. </a></h2>
     <div class="top-group" role="group">
         <input id="elemInput" class="input-elem-name" type="text" placeholder="Введите название элемента">
         <a class="a-show-for">Показать по </a>
@@ -131,6 +132,18 @@
         color: #2E6243;
         margin-left: 120px;
     }
+    h2 {
+        font-size: 24px;
+        color: #2E6243;
+        margin-left: 10px;
+    }
+    a.a-course-description {
+        color: black;
+        font-weight: normal;
+    }
+    a.a-course-name {
+        color: black;
+    }
     table, th, td {
         table-layout: fixed;
         font-size: 24px;
@@ -157,7 +170,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 430px;
+        height: 530px;
     }
     div.container-bot {
         background: white;
