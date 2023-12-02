@@ -9,7 +9,7 @@
 <h1>Список пользователей</h1>
 <div class="container-top">
     <div class="left-group" role="group">
-        <input class="fio" type="text" placeholder="Введите ФИО или email">
+        <input class="input-fio" type="text" placeholder="Введите ФИО или email">
         <a>Показать по </a>
         <button type="button" class="btn-five">5</button>
         <button type="button" class="btn-ten">10</button>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="right-group" role="group">
-        <input class="role" type="text" placeholder="Роль">
+        <input class="input-role" type="text" placeholder="Роль">
         <a href="#" class="link-clear-filters">Сбросить фильтры</a>
     </div>
 
@@ -34,33 +34,33 @@
 </div>
 
 <div class="container-bot">
-    <table>
+    <table class="table-users">
         <tr>
-            <th>ID</th>
-            <th>ФИО</th>
-            <th>Роль</th>
-            <th>Email</th>
-            <th>Дата регистрации</th>
-            <th>Действия</th>
+            <th class="td-id">ID</th>
+            <th class="td-fio">ФИО</th>
+            <th class="td-role">Роль</th>
+            <th class="td-email">Email</th>
+            <th class="td-date">Дата регистрации</th>
+            <th class="td-actions">Действия</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td>Костебелова Елизавета Константиновна</td>
-            <td>Пользователь</td>
-            <td>Lizbet227@gmail.com</td>
-            <td>01.12.2023</td>
-            <td>
+            <td class="td-id">1</td>
+            <td class="td-fio">Костебелова Елизавета Константиновна</td>
+            <td class="td-role">Пользователь</td>
+            <td class="td-email">Lizbet227@gmail.com</td>
+            <td class="td-date">01.12.2023</td>
+            <td class="td-actions">
                 <button type="button" class="btn-del">Удалить</button>
                 <button type="button" class="btn-edit">Редактировать</button>
             </td>
         </tr>
         <tr>
-            <td>1</td>
-            <td>Костебелова Елизавета Константиновна</td>
-            <td>Пользователь</td>
-            <td>Lizbet227@gmail.com</td>
-            <td>01.12.2023</td>
-            <td>
+            <td class="td-id">1</td>
+            <td class="td-fio">Костебелова Елизавета Константиновна</td>
+            <td class="td-role">Пользователь</td>
+            <td class="td-email">Lizbet227@gmail.com</td>
+            <td class="td-date">01.12.2023</td>
+            <td class="td-actions">
                 <button type="button" class="btn-del">Удалить</button>
                 <button type="button" class="btn-edit">Редактировать</button>
             </td>
