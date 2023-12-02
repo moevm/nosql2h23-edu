@@ -66,7 +66,10 @@
             </td>
         </tr>
     </table>
-    <button type="button" class="btn-to-courses-page">К списку курсов</button>
+    <p class="p-after-table">
+        <button type="button" class="btn-to-courses-page">К списку курсов</button>
+    </p>
+
 </div>
 </body>
 </html>
@@ -144,7 +147,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 380px;
+        height: 430px;
     }
     div.container-bot {
         background: white;
@@ -165,6 +168,10 @@
     }
     p.p-first-part, p.p-second-part, p.p-third-part {
         margin-bottom: -15px;
+        margin-right: 10px;
+    }
+    p.p-after-table {
+        text-align: right;
         margin-right: 10px;
     }
 </style>
