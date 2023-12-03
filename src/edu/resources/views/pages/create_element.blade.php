@@ -12,7 +12,12 @@
     <p class="note">Введите название элемента</p>
     <input class="element-name-enter" type="text">
     <p class="note">Выберете тип элемента</p>
-    <input class="element-type-enter" type="text">
+    <select multiple name="type_element[]">
+        <option disabled>Тип элемента</option>
+        <option value="Вопрос">Вопрос</option>
+        <option value="Задача">Задача</option>
+        <option value="Ответ">Ответ</option>
+    </select>
     <p class="note">Введите содержание элемента</p>
     <textarea class="element-content-enter" rows="10" cols="69" name="text"></textarea>
     <p>
@@ -85,5 +90,11 @@
         color: #FFFFFF;
         background: #2E6243;
         float: right;
+    }
+    select{
+        font-size: 24px;
+        width: 500px;
+        height: 90px;
+        border-radius: 5px;
     }
 </style>
