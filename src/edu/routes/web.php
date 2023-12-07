@@ -48,3 +48,16 @@ Route::middleware([])->group(function () {
         });
     });
 });
+
+Route::middleware([])->group(function () {
+    Route::prefix('/courses')->name('courses')->group(function () {
+        Route::get('', '')->name('');
+        Route::post('', '')->name('');
+
+        Route::prefix('/{courseId}')->name('user')->where(['courseId' => '[A-Za-z0-9]+'])->group(function () {
+            Route::get('', '')->name('');
+            Route::get('/delete', )->name('');
+            Route::post('/edit', '')->name('');
+        });
+    });
+});
