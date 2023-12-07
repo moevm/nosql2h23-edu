@@ -18,7 +18,7 @@ class CourseRepository
     ): LengthAwarePaginator {
         return $this
             ->applyFilters(
-                usersQueryBuilder: $this->getUsersQueryBuilder(),
+                usersQueryBuilder: $this->getCoursesQueryBuilder(),
                 coursesFilterDTO: $coursesFilterDTO
             )
             ->paginate(
@@ -27,9 +27,19 @@ class CourseRepository
             );
     }
 
-    private function getUsersQueryBuilder(): Builder
+    private function getCoursesQueryBuilder(): Builder
     {
         return Course::query();
+    }
+
+    public function findOneById(string $courseId): ?Course
+    {
+        $course = $this->getCoursesQueryBuilder()->find($courseId);
+        if (!$course instanceof Course) {
+            return null;
+        }
+
+        return $course;
     }
 
     private function applyFilters(
