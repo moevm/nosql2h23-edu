@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Edu\Courses\Http\Actions;
 
-use App\Edu\Assemblers\CoursesFilterDTOAssembler;
+use App\Edu\Courses\Assemblers\CoursesFilterDTOAssembler;
 use App\Edu\Courses\Http\Requests\ViewCoursesListRequest;
 use App\Edu\Courses\Repositories\CourseRepository;
 use Illuminate\Contracts\View\View as ViewResponse;

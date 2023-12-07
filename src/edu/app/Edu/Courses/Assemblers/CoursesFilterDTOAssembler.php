@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Edu\Assemblers;
+namespace App\Edu\Courses\Assemblers;
 
 use App\Edu\Courses\DTO\CoursesFilterDTO;
 

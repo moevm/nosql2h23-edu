@@ -42,6 +42,14 @@ class CourseRepository
         return $course;
     }
 
+    public function deleteById(string $courseId): int
+    {
+        return $this
+            ->getCoursesQueryBuilder()
+            ->where('_id', '=', $courseId)
+            ->delete();
+    }
+
     private function applyFilters(
         Builder $usersQueryBuilder,
         CoursesFilterDTO $coursesFilterDTO

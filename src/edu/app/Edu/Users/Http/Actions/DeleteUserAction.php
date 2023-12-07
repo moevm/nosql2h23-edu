@@ -12,8 +12,7 @@ class DeleteUserAction
     public function __invoke(
         string $userId,
         UserRepository $userRepository
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $userRepository->deleteById($userId);
 
         return response()->json();

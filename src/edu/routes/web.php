@@ -1,6 +1,7 @@
 <?php
 
 use App\Edu\Courses\Http\Actions\CreateCourseAction;
+use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
@@ -59,7 +60,7 @@ Route::middleware([])->group(function () {
 
         Route::prefix('/{courseId}')->name('course')->where(['courseId' => '[A-Za-z0-9]+'])->group(function () {
             Route::get('', ViewCourseAction::class)->name('');
-            Route::get('/delete', )->name('');
+            Route::get('/delete', DeleteCourseAction::class)->name('');
             Route::post('/edit', '')->name('');
         });
     });
