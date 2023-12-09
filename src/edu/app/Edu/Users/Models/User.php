@@ -6,7 +6,7 @@ namespace App\Edu\Users\Models;
 
 use App\Edu\Roles\Models\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Auth\User as MongoUser;
 
 /**
  * @property string $email
@@ -19,7 +19,7 @@ use MongoDB\Laravel\Eloquent\Model;
  * @property string $role_id
  * @property Role $role
 */
-class User extends Model
+class User extends MongoUser
 {
     protected $primaryKey = '_id';
 
