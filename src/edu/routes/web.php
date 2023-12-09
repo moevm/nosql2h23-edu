@@ -41,27 +41,27 @@ Route::group(['prefix' => 'registration', 'as' => 'registration.'], function () 
 });
 
 Route::middleware([])->group(function () {
-    Route::prefix('/users')->name('users')->group(function () {
-        Route::get('', ViewUsersListAction::class)->name('view-list');
-        Route::post('', CreateUserAction::class)->name('create-user');
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::get('', ViewUsersListAction::class)->name('list');
+        Route::post('', CreateUserAction::class)->name('create');
 
-        Route::prefix('/{userId}')->name('user')->where(['userId' => '[A-Za-z0-9]+'])->group(function () {
-            Route::get('', ViewUserAction::class)->name('view-user');
-            Route::get('/delete', DeleteUserAction::class)->name('delete-user');
-            Route::post('/edit', EditUserAction::class)->name('edit-user');
-        });
+        Route::group(['prefix' => '{userId}', 'as' => 'user.'], function () {
+            Route::get('', ViewUserAction::class)->name('view');
+            Route::get('/delete', DeleteUserAction::class)->name('delete');
+            Route::post('/edit', EditUserAction::class)->name('edit');
+        })->where(['userId' => '[A-Za-z0-9]+']);
     });
 });
 
 Route::middleware([])->group(function () {
-    Route::prefix('/courses')->name('courses')->group(function () {
-        Route::get('', ViewCoursesListAction::class)->name('');
-        Route::post('', CreateCourseAction::class)->name('');
+    Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
+        Route::get('', ViewCoursesListAction::class)->name('list');
+        Route::post('', CreateCourseAction::class)->name('create');
 
-        Route::prefix('/{courseId}')->name('course')->where(['courseId' => '[A-Za-z0-9]+'])->group(function () {
-            Route::get('', ViewCourseAction::class)->name('');
-            Route::get('/delete', DeleteCourseAction::class)->name('');
-            Route::post('/edit', '')->name('');
-        });
+        Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
+            Route::get('', ViewCourseAction::class)->name('view');
+            Route::get('/delete', DeleteCourseAction::class)->name('delete');
+            Route::post('/edit', '')->name('edit');
+        })->where(['courseId' => '[A-Za-z0-9]+']);
     });
 });
