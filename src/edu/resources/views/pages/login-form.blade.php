@@ -11,14 +11,27 @@
     <div class="container">
         <p class="note">Для работы системы необходимо авторизоваться.</p>
         <p class="note">Пожалуйста, введите логин и пароль.</p>
-        <input class="login-enter" type="text" placeholder="Логин">
-        <p></p>
-        <input class="password-enter" type="password" placeholder="Пароль">
-        <form class="links">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="POST" action="{{ route('login.user') }}" class="links">
+            @csrf
+            <label>
+                <input name="email" type="email" class="login-enter" placeholder="Логин" required>
+            </label>
+            <label>
+                <input name="password" type="password" class="password-enter" placeholder="Пароль" required>
+            </label>
             <a href="#" class="link-registration">Регистрация</a>
             <a href="#" class="link-forget-password">Забыли пароль?</a>
+            <button type="submit" class="btn-sign-in">Войти</button>
         </form>
-        <button type="button" class="btn-sign-in">Войти</button>
     </div>
 </div>
 </body>
