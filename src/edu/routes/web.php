@@ -61,7 +61,7 @@ Route::middleware([])->group(function () {
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
-            Route::post('/edit', '')->name('edit');
+//            Route::post('/edit', '')->name('edit');
         })->where(['courseId' => '[A-Za-z0-9]+']);
     });
 });
