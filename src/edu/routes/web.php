@@ -30,12 +30,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/login')->name('login')->group(function () {
+Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
     Route::get('', ViewLoginFormAction::class)->name('view-form');
     Route::post('', LoginUserAction::class)->name('user');
 });
 
-Route::prefix('/registration')->name('registration')->group(function () {
+Route::group(['prefix' => 'registration', 'as' => 'registration.'], function () {
     Route::get('', ViewRegistrationFormAction::class)->name('view-form');
     Route::post('', RegistrationUserAction::class)->name('user');
 });

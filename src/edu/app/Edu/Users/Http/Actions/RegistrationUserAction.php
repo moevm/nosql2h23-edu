@@ -7,7 +7,7 @@ namespace App\Edu\Users\Http\Actions;
 use App\Edu\Users\Assemblers\UserRegistrationDTOAssembler;
 use App\Edu\Users\Http\Requests\RegistrationUserRequest;
 use App\Edu\Users\Services\UserRegistrationService;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 class RegistrationUserAction
 {
@@ -15,16 +15,16 @@ class RegistrationUserAction
         RegistrationUserRequest $registrationUserRequest,
         UserRegistrationService $userRegistrationService,
         UserRegistrationDTOAssembler $userRegistrationDTOAssembler
-    ): JsonResponse {
+    ): RedirectResponse {
         $userRegistrationDTO = $userRegistrationDTOAssembler->assemble($registrationUserRequest->validated());
 
         $registrationErrors = $userRegistrationService->register($userRegistrationDTO)
             ->getErrorMessages();
 
         if (!empty($registrationErrors)) {
-            return response()->json($registrationErrors);
+            return back()->withErrors($registrationErrors)->withInput();
         }
 
-        return response()->json();
+        return redirect()->route('login.view-form');
     }
 }

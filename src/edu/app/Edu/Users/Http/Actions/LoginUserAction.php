@@ -4,26 +4,27 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Http\Actions;
 
-use App\Edu\Users\DTO\CredentialsDTO;
 use App\Edu\Users\Http\Requests\LoginUserRequest;
-use App\Edu\Users\Services\UserAuthCheckingService;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class LoginUserAction
 {
-    public function __invoke(
-        LoginUserRequest $loginUserRequest,
-        UserAuthCheckingService $userAuthCheckingService
-    ): JsonResponse {
-        $credentialsDTO = new CredentialsDTO(
-            email: $loginUserRequest->validated()['email'] ?? '',
-            password: $loginUserRequest->validated()['password'] ?? ''
-        );
+    public function __invoke(LoginUserRequest $loginUserRequest): RedirectResponse
+    {
+        $attempt = Auth::attempt([
+            'email' => $loginUserRequest->validated()['email'] ?? '',
+            'password' => $loginUserRequest->validated()['password'] ?? ''
+        ]);
 
-        if ($userAuthCheckingService->attemptAuthUserWithProvidedCredentials($credentialsDTO)) {
-            return response()->json();
+        if ($attempt) {
+            $loginUserRequest->session()->regenerate();
+
+            return redirect()->intended('');
         }
 
-        return response()->json(status: 403);
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }
