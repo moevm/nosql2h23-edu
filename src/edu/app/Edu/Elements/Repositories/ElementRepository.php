@@ -26,4 +26,12 @@ class ElementRepository
     {
         return Element::query();
     }
+
+    public function deleteById(string $elementId): int
+    {
+        return $this
+            ->getElementsQueryBuilder()
+            ->where('_id', '=', $elementId)
+            ->delete();
+    }
 }

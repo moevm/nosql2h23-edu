@@ -6,6 +6,7 @@ use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
 use App\Edu\Elements\Http\Actions\CreateElementAction;
+use App\Edu\Elements\Http\Actions\DeleteElementAction;
 use App\Edu\Elements\Http\Actions\ViewElementAction;
 use App\Edu\Elements\Http\Actions\ViewElementCreateFormAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
@@ -73,7 +74,7 @@ Route::middleware([])->group(function () {
                 Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
                     Route::get('', ViewElementAction::class)->name('view');
                     Route::post('/edit', '')->name('edit');
-                    Route::get('/delete', '')->name('delete');
+                    Route::get('/delete', DeleteElementAction::class)->name('delete');
                 })->where(['elementId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
             });
         })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
