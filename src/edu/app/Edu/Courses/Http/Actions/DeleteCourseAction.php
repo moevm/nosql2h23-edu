@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace App\Edu\Courses\Http\Actions;
 
 use App\Edu\Courses\Repositories\CourseRepository;
-use App\Edu\Users\Repositories\UserRepository;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 class DeleteCourseAction
 {
     public function __invoke(
         string $courseId,
         CourseRepository $courseRepository
-    ): JsonResponse {
+    ): RedirectResponse {
         $courseRepository->deleteById($courseId);
 
-        return response()->json();
+        return back();
     }
 }

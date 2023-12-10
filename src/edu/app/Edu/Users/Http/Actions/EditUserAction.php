@@ -8,7 +8,7 @@ use App\Edu\Users\Assemblers\UserUpdatingDTOAssembler;
 use App\Edu\Users\Http\Requests\EditUserRequest;
 use App\Edu\Users\Repositories\UserRepository;
 use App\Edu\Users\Services\UserUpdatingService;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 class EditUserAction
 {
@@ -18,7 +18,7 @@ class EditUserAction
         UserRepository $userRepository,
         UserUpdatingDTOAssembler $userUpdatingDTOAssembler,
         UserUpdatingService $userUpdatingService
-    ): JsonResponse {
+    ): RedirectResponse {
         $user = $userRepository->findOneById($userId);
         if (!$user) {
             throw new \DomainException('User to update was not found');
@@ -28,6 +28,6 @@ class EditUserAction
 
         $userUpdatingService->update($user, $userUpdatingDTO);
 
-        return response()->json();
+        return redirect()->route('users.user.view', ['userId' => $userId]);
     }
 }

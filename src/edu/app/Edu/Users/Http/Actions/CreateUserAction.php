@@ -6,15 +6,15 @@ namespace App\Edu\Users\Http\Actions;
 
 use App\Edu\Users\Factories\UserFactory;
 use App\Edu\Users\Http\Requests\CreateUserRequest;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 class CreateUserAction
 {
     public function __invoke(
         CreateUserRequest $createUserRequest
-    ): JsonResponse {
+    ): RedirectResponse {
         UserFactory::create($createUserRequest->validated());
 
-        return response()->json();
+        return redirect()->route('users.list');
     }
 }
