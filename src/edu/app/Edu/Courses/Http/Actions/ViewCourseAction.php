@@ -21,7 +21,7 @@ class ViewCourseAction
             throw new \RuntimeException('Provided course does not exist');
         }
 
-        return View::make('courses.course.view', [
+        return View::make('courses.view', [
             'course' => $course,
         ]);
     }

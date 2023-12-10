@@ -20,7 +20,7 @@ class ViewUserAction
             throw new \RuntimeException('Provided user does not exist');
         }
 
-        return View::make('users.user.view', [
+        return View::make('users.view', [
             'user' => $user,
         ]);
     }

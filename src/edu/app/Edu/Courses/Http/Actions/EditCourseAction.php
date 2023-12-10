@@ -28,6 +28,6 @@ class EditCourseAction
 
         $courseUpdatingService->update($course, $courseUpdatingDTO);
 
-        return redirect()->route('courses.course.view', ['courseId' => $courseId]);
+        return redirect()->route('courses.view', ['courseId' => $courseId]);
     }
 }
