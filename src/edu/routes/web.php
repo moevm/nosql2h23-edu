@@ -6,6 +6,7 @@ use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
 use App\Edu\Elements\Http\Actions\CreateElementAction;
+use App\Edu\Elements\Http\Actions\ViewElementAction;
 use App\Edu\Elements\Http\Actions\ViewElementCreateFormAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
@@ -69,7 +70,7 @@ Route::middleware([])->group(function () {
                 Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form');
 
                 Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
-                    Route::get('', '')->name('view');
+                    Route::get('', ViewElementAction::class)->name('view');
                     Route::post('/edit', '')->name('edit');
                     Route::get('/delete', '')->name('delete');
                 })->where(['elementId' => '[A-Za-z0-9]+']);
