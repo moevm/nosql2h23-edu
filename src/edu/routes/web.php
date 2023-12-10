@@ -6,6 +6,7 @@ use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
 use App\Edu\Elements\Http\Actions\CreateElementAction;
+use App\Edu\Elements\Http\Actions\ViewElementCreateFormAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
 use App\Edu\Users\Http\Actions\EditUserAction;
@@ -65,7 +66,7 @@ Route::middleware([])->group(function () {
 
             Route::group(['prefix' => 'elements', 'as' => 'elements.'], function () {
                 Route::post('', CreateElementAction::class)->name('create');
-                Route::get('/create', '')->name('view-create-form');
+                Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form');
 
                 Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
                     Route::get('', '')->name('view');
