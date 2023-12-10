@@ -17,7 +17,7 @@ class ViewCourseAction
     ): ViewResponse {
         $course = $courseRepository->findOneById($courseId);
 
-        return View::make('courses.view', [
+        return View::make('courses.course.view', [
             'course' => $course,
         ]);
     }

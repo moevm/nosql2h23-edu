@@ -16,7 +16,7 @@ class ViewUserAction
     ): ViewResponse {
         $user = $userRepository->findOneById($userId);
 
-        return View::make('users.view', [
+        return View::make('users.user.view', [
             'user' => $user,
         ]);
     }
