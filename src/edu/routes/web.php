@@ -61,6 +61,17 @@ Route::middleware([])->group(function () {
             Route::get('', ViewCourseAction::class)->name('view');
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
             Route::post('/edit', EditCourseAction::class)->name('edit');
+
+            Route::group(['prefix' => 'elements', 'as' => 'elements.'], function () {
+                Route::post('', '')->name('create');
+                Route::get('/create', '')->name('view-create-form');
+
+                Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
+                    Route::get('', '')->name('view');
+                    Route::post('/edit', '')->name('edit');
+                    Route::get('/delete', '')->name('delete');
+                })->where(['elementId' => '[A-Za-z0-9]+']);
+            });
         })->where(['courseId' => '[A-Za-z0-9]+']);
     });
 });
