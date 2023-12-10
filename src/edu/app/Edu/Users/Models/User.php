@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Models;
 
+use App\Edu\Courses\Models\Course;
 use App\Edu\Roles\Models\Role;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use MongoDB\Laravel\Auth\User as MongoUser;
 
 /**
@@ -18,6 +21,7 @@ use MongoDB\Laravel\Auth\User as MongoUser;
  * @property int gender
  * @property string $role_id
  * @property Role $role
+ * @property Collection<Course> $courses
 */
 class User extends MongoUser
 {
@@ -53,5 +57,10 @@ class User extends MongoUser
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function courses(): HasMany
+    {
+        return $this->HasMany(Course::class);
     }
 }

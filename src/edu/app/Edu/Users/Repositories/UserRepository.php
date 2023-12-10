@@ -37,22 +37,6 @@ class UserRepository
         return $user;
     }
 
-    public function findOneByEmail(string $email): ?User
-    {
-        $user = $this
-            ->applyFilters(
-                usersQueryBuilder: $this->getUsersQueryBuilder(),
-                usersFilterDTO: (new UsersFilterDTO())->setEmail($email)
-            )
-            ->first();
-
-        if (!$user instanceof User) {
-            return null;
-        }
-
-        return $user;
-    }
-
     public function isUserWithProvidedEmailExists(string $email): bool
     {
         return $this

@@ -9,10 +9,6 @@ use App\Edu\Users\Models\User;
 
 class UserUpdatingService
 {
-    public function __construct()
-    {
-    }
-
     public function update(User $user, UserUpdatingDTO $userUpdatingDTO): bool
     {
         $email = $userUpdatingDTO->getEmail();
