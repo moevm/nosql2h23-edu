@@ -51,9 +51,7 @@ Route::middleware([])->group(function () {
             Route::post('/edit', EditUserAction::class)->name('edit');
         })->where(['userId' => '[A-Za-z0-9]+']);
     });
-});
 
-Route::middleware([])->group(function () {
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
         Route::get('', ViewCoursesListAction::class)->name('list');
         Route::post('', CreateCourseAction::class)->name('create');
@@ -61,7 +59,7 @@ Route::middleware([])->group(function () {
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
-//            Route::post('/edit', '')->name('edit');
+            Route::post('/edit', '')->name('edit');
         })->where(['courseId' => '[A-Za-z0-9]+']);
     });
 });
