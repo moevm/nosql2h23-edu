@@ -5,6 +5,11 @@ use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
+use App\Edu\Elements\Http\Actions\CreateElementAction;
+use App\Edu\Elements\Http\Actions\DeleteElementAction;
+use App\Edu\Elements\Http\Actions\EditElementAction;
+use App\Edu\Elements\Http\Actions\ViewElementAction;
+use App\Edu\Elements\Http\Actions\ViewElementCreateFormAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
 use App\Edu\Users\Http\Actions\EditUserAction;
@@ -14,6 +19,7 @@ use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
 use App\Http\Actions\ViewLoginFormAction;
 use App\Http\Actions\ViewRegistrationFormAction;
+use App\Http\Enums\RouteRegularExpressions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,7 +56,7 @@ Route::middleware([])->group(function () {
             Route::get('', ViewUserAction::class)->name('view');
             Route::get('/delete', DeleteUserAction::class)->name('delete');
             Route::post('/edit', EditUserAction::class)->name('edit');
-        })->where(['userId' => '[A-Za-z0-9]+']);
+        })->where(['userId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
 
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
@@ -61,6 +67,17 @@ Route::middleware([])->group(function () {
             Route::get('', ViewCourseAction::class)->name('view');
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
             Route::post('/edit', EditCourseAction::class)->name('edit');
-        })->where(['courseId' => '[A-Za-z0-9]+']);
+
+            Route::group(['prefix' => 'elements', 'as' => 'elements.'], function () {
+                Route::post('', CreateElementAction::class)->name('create');
+                Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form');
+
+                Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
+                    Route::get('', ViewElementAction::class)->name('view');
+                    Route::post('/edit', EditElementAction::class)->name('edit');
+                    Route::get('/delete', DeleteElementAction::class)->name('delete');
+                })->where(['elementId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
+            });
+        })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
 });

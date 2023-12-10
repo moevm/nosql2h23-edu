@@ -10,10 +10,6 @@ class CourseUpdatingDTO
 
     private ?string $description = null;
 
-    public function __construct()
-    {
-    }
-
     public function getTitle(): ?string
     {
         return $this->title;

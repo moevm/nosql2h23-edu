@@ -28,6 +28,6 @@ class EditUserAction
 
         $userUpdatingService->update($user, $userUpdatingDTO);
 
-        return redirect()->route('users.user.view', ['userId' => $userId]);
+        return redirect()->route('users.view', ['userId' => $userId]);
     }
 }

@@ -12,7 +12,7 @@ class UsersFilterDTO
     {
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
