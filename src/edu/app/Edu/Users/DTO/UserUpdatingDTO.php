@@ -17,17 +17,13 @@ class UserUpdatingDTO
     private ?\DateTime $dateBirth = null;
 
     private ?int $gender = null;
-
-    public function __construct()
-    {
-    }
-
+    
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -39,7 +35,7 @@ class UserUpdatingDTO
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -51,7 +47,7 @@ class UserUpdatingDTO
         return $this->surname;
     }
 
-    public function setSurname(string $surname): self
+    public function setSurname(?string $surname): self
     {
         $this->surname = $surname;
 
@@ -63,7 +59,7 @@ class UserUpdatingDTO
         return $this->patronymic;
     }
 
-    public function setPatronymic(string $patronymic): self
+    public function setPatronymic(?string $patronymic): self
     {
         $this->patronymic = $patronymic;
 
@@ -75,7 +71,7 @@ class UserUpdatingDTO
         return $this->dateBirth;
     }
 
-    public function setDateBirth(\DateTime $dateBirth): self
+    public function setDateBirth(?\DateTime $dateBirth): self
     {
         $this->dateBirth = $dateBirth;
 
@@ -87,7 +83,7 @@ class UserUpdatingDTO
         return $this->gender;
     }
 
-    public function setGender(int $gender): self
+    public function setGender(?int $gender): self
     {
         $this->gender = $gender;
 

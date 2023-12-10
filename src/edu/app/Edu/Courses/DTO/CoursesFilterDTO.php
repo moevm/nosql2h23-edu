@@ -10,10 +10,6 @@ class CoursesFilterDTO
 
     private ?string $authorName = null;
 
-    public function __construct()
-    {
-    }
-
     public function setTitle(string $title): self
     {
         $this->title = $title;
