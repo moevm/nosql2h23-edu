@@ -17,6 +17,7 @@ use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
 use App\Http\Actions\ViewLoginFormAction;
 use App\Http\Actions\ViewRegistrationFormAction;
+use App\Http\Enums\RouteRegularExpressions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,7 +54,7 @@ Route::middleware([])->group(function () {
             Route::get('', ViewUserAction::class)->name('view');
             Route::get('/delete', DeleteUserAction::class)->name('delete');
             Route::post('/edit', EditUserAction::class)->name('edit');
-        })->where(['userId' => '[A-Za-z0-9]+']);
+        })->where(['userId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
 
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
@@ -73,8 +74,8 @@ Route::middleware([])->group(function () {
                     Route::get('', ViewElementAction::class)->name('view');
                     Route::post('/edit', '')->name('edit');
                     Route::get('/delete', '')->name('delete');
-                })->where(['elementId' => '[A-Za-z0-9]+']);
+                })->where(['elementId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
             });
-        })->where(['courseId' => '[A-Za-z0-9]+']);
+        })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
 });
