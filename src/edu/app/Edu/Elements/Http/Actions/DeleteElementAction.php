@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 class DeleteElementAction
 {
     public function __invoke(
+        string $courseId,
         string $elementId,
         ElementRepository $elementRepository
     ): RedirectResponse {

@@ -21,6 +21,6 @@ class CreateElementAction
 
         ElementFactory::create($courseElementAttributes);
 
-        return redirect()->route('courses.course.view', ['courseId' => $courseId]);
+        return redirect()->route('courses.view', ['courseId' => $courseId]);
     }
 }

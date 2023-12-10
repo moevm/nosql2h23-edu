@@ -21,7 +21,7 @@ class ViewElementAction
             throw new \DomainException('Provided element was not found');
         }
 
-        return View::make('courses.course.element.view', [
+        return View::make('elements.view', [
             'element' => $element,
         ]);
     }
