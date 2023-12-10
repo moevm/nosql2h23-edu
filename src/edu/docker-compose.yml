@@ -1,0 +1,40 @@
+networks:
+    network2:
+        name: network2
+
+services:
+    nginx2:
+        container_name: nginx2
+        image: nginx
+        ports:
+            - 80:80
+        volumes:
+            - ./vhost.conf:/etc/nginx/conf.d/default.conf
+            - ./edu:/var/edu/resources/views/pages
+        networks:
+            - network2
+        depends_on:
+            - php2
+            - mongodb2
+    php2:
+        container_name: php2
+        build: ./edu
+        volumes:
+            - ./edu:/var/edu/resources/views/pages
+        networks:
+            - network2
+        depends_on:
+            - mongodb2
+    mongodb2:
+        image: mongo:latest
+        container_name: mongodb
+        ports:
+            - 3306:3306
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD:
+        volumes:
+            -
+        networks:
+            - network2
+
