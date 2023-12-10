@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Edu\Users\Http\Rules;
 
 use App\Edu\Roles\Enums\AvailableRoles;
+use App\Http\Rules\ValidationRuleInterface;
 use Illuminate\Validation\Rule;
 
 class AvailableRolesValidationRule implements ValidationRuleInterface

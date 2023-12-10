@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Edu\Users\Http\Rules;
+namespace App\Http\Rules;
 
 interface ValidationRuleInterface
 {
