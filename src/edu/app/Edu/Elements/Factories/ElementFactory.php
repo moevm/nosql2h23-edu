@@ -25,7 +25,7 @@ class ElementFactory
 
         $element->course_id = $course->getKey();
 
-        $savingResult = $course->save();
+        $savingResult = $element->save();
         if (!$savingResult) {
             throw new \RuntimeException('Could not create course element');
         }
