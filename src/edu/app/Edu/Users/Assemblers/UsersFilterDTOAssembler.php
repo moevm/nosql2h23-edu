@@ -11,6 +11,8 @@ class UsersFilterDTOAssembler
     public function assemble(array $filters): UsersFilterDTO
     {
         return (new UsersFilterDTO())
-            ->setEmail($filters['email'] ?? null);
+            ->setEmail($filters['email'] ?? null)
+            ->setSurname($filters['surname'] ?? null)
+            ->setRoleTitle($filters['role_title'] ?? null);
     }
 }

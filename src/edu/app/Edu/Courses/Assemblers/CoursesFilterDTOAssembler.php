@@ -10,18 +10,8 @@ class CoursesFilterDTOAssembler
 {
     public function assemble(array $filters): CoursesFilterDTO
     {
-        $coursesFilterDTO = new CoursesFilterDTO();
-
-        $title = $filters['title'] ?? null;
-        if ($title) {
-            $coursesFilterDTO->setTitle($title);
-        }
-
-        $authorName = $filters['author_name'] ?? null;
-        if ($authorName) {
-            $coursesFilterDTO->setAuthorName($authorName);
-        }
-
-        return $coursesFilterDTO;
+        return (new CoursesFilterDTO())
+            ->setTitle($filters['title'] ?? null)
+            ->setAuthorName($filters['author_name'] ?? null);
     }
 }

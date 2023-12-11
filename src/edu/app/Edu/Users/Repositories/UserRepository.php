@@ -69,6 +69,16 @@ class UserRepository
             $usersQueryBuilder->where('email', '=', $email);
         }
 
+        $surname = $usersFilterDTO->getSurname();
+        if ($surname) {
+            $usersQueryBuilder->where('surname', '=', $surname);
+        }
+
+        $roleTitle = $usersFilterDTO->getRoleTitle();
+        if ($roleTitle) {
+            $usersQueryBuilder->where('role.title', '=', $roleTitle);
+        }
+
         return $usersQueryBuilder;
     }
 }

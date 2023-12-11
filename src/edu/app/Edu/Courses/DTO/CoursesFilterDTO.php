@@ -10,7 +10,7 @@ class CoursesFilterDTO
 
     private ?string $authorName = null;
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
@@ -22,7 +22,7 @@ class CoursesFilterDTO
         return $this->title;
     }
 
-    public function setAuthorName(string $authorName): self
+    public function setAuthorName(?string $authorName): self
     {
         $this->authorName = $authorName;
 
