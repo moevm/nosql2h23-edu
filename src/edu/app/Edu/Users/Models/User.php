@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Models;
 
+use App\Edu\Assignments\Models\Assignment;
 use App\Edu\Courses\Models\Course;
 use App\Edu\Roles\Models\Role;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,7 +23,8 @@ use MongoDB\Laravel\Auth\User as MongoUser;
  * @property string $role_id
  * @property Role $role
  * @property Collection<Course> $courses
-*/
+ * @property Collection<Assignment> $assignments
+ */
 class User extends MongoUser
 {
     protected $primaryKey = '_id';
@@ -62,5 +64,10 @@ class User extends MongoUser
     public function courses(): HasMany
     {
         return $this->HasMany(Course::class);
+    }
+
+    public function assignments(): HasMany
+    {
+        return $this->HasMany(Assignment::class);
     }
 }
