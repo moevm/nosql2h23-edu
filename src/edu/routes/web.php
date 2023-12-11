@@ -1,5 +1,6 @@
 <?php
 
+use App\Edu\Assignments\Http\Actions\CreateAssignmentAction;
 use App\Edu\Courses\Http\Actions\CreateCourseAction;
 use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\EditCourseAction;
@@ -77,6 +78,10 @@ Route::middleware([])->group(function () {
                     Route::post('/edit', EditElementAction::class)->name('edit');
                     Route::get('/delete', DeleteElementAction::class)->name('delete');
                 })->where(['elementId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
+            });
+
+            Route::group(['prefix' => 'assignments', 'as' => 'assignments.'], function () {
+                Route::get('/create', CreateAssignmentAction::class)->name('create');
             });
         })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
