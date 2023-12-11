@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Edu\Courses\Models;
 
+use App\Edu\Assignments\Models\Assignment;
 use App\Edu\Elements\Models\Element;
 use App\Edu\Users\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,6 +18,7 @@ use MongoDB\Laravel\Eloquent\Model;
  * @property string $user_id
  * @property User $user
  * @property Collection<Element> $elements
+ * @property Collection<Assignment> $assignments
  */
 class Course extends Model
 {
@@ -47,5 +49,9 @@ class Course extends Model
     {
         return $this->HasMany(Element::class);
     }
-}
 
+    public function assignments(): HasMany
+    {
+        return $this->HasMany(Assignment::class);
+    }
+}
