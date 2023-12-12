@@ -18,7 +18,7 @@ class ElementsFilteringService
         return $elements->filter(function (Element $element) use ($isNeedToFilterByType, $isNeedToFilterByTitle, $elementsFilterDTO) {
             $result = true;
 
-            if ($this->isNeedToUseAllFilteringCriteria($isNeedToFilterByTitle, $isNeedToFilterByType)) {
+            if (isNeedToUseAllFilteringCriteria($isNeedToFilterByTitle, $isNeedToFilterByType)) {
                 return $element->type === $elementsFilterDTO->getElementType()
                     && $element->title === $elementsFilterDTO->getElementTitle();
             }
@@ -33,16 +33,5 @@ class ElementsFilteringService
 
             return $result;
         });
-    }
-
-    public function isNeedToUseAllFilteringCriteria(...$filteringCriteria): bool
-    {
-        $result = true;
-
-        foreach ($filteringCriteria as $filteringCriterion) {
-            $result = $result && $filteringCriterion;
-        }
-
-        return $result;
     }
 }

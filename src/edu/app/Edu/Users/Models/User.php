@@ -7,6 +7,7 @@ namespace App\Edu\Users\Models;
 use App\Edu\Assignments\Models\Assignment;
 use App\Edu\Courses\Models\Course;
 use App\Edu\Roles\Models\Role;
+use App\Edu\UserElementStatistic\Models\UserElementStatistic;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,7 @@ use MongoDB\Laravel\Auth\User as MongoUser;
  * @property Role $role
  * @property Collection<Course> $courses
  * @property Collection<Assignment> $assignments
+ * @property Collection<UserElementStatistic> $statistics
  */
 class User extends MongoUser
 {
@@ -69,5 +71,10 @@ class User extends MongoUser
     public function assignments(): HasMany
     {
         return $this->HasMany(Assignment::class);
+    }
+
+    public function statistics(): HasMany
+    {
+        return $this->HasMany(UserElementStatistic::class);
     }
 }
