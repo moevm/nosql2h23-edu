@@ -10,3 +10,16 @@ if (!function_exists('getEnumValues')) {
         return array_column($selectedCases, 'value');
     }
 }
+
+if (!function_exists('isNeedToUseAllFilteringCriteria')) {
+    function isNeedToUseAllFilteringCriteria(...$filteringCriteria): bool
+    {
+        $result = true;
+
+        foreach ($filteringCriteria as $filteringCriterion) {
+            $result = $result && $filteringCriterion;
+        }
+
+        return $result;
+    }
+}
