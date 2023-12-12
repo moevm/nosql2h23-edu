@@ -6,13 +6,14 @@ namespace App\Edu\Courses\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCourseRequest extends FormRequest
+class ViewCourseRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'description' => 'required|string',
+            'page' => 'integer',
+            'per-page' => 'integer',
+            'filters' => 'array',
         ];
     }
 }

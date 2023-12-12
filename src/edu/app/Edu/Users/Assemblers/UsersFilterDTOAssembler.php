@@ -10,13 +10,9 @@ class UsersFilterDTOAssembler
 {
     public function assemble(array $filters): UsersFilterDTO
     {
-        $userFilterDTO = new UsersFilterDTO();
-
-        $email = $filters['email'] ?? null;
-        if ($email) {
-            $userFilterDTO->setEmail($email);
-        }
-
-        return $userFilterDTO;
+        return (new UsersFilterDTO())
+            ->setEmail($filters['email'] ?? null)
+            ->setSurname($filters['surname'] ?? null)
+            ->setRoleTitle($filters['role_title'] ?? null);
     }
 }
