@@ -8,6 +8,7 @@ use App\Edu\Courses\Http\Actions\ExportCoursesAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseCreateFormAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
+use App\Edu\Courses\Http\Actions\ViewCoursesStatisticsListAction;
 use App\Edu\Elements\Http\Actions\CreateElementAction;
 use App\Edu\Elements\Http\Actions\DeleteElementAction;
 use App\Edu\Elements\Http\Actions\EditElementAction;
@@ -71,6 +72,7 @@ Route::middleware([])->group(function () {
         Route::post('', CreateCourseAction::class)->name('create');
         Route::get('/create', ViewCourseCreateFormAction::class)->name('view-create-form');
         Route::get('/export', ExportCoursesAction::class)->name('export');
+        Route::get('/statistics', ViewCoursesStatisticsListAction::class)->name('statistics');
 
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
