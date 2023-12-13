@@ -15,7 +15,7 @@ class UserUpdatingDTOAssembler
             ->setName($attributes['name'] ?? null)
             ->setSurname($attributes['surname'] ?? null)
             ->setPatronymic($attributes['patronymic'] ?? null)
-            ->setDateBirth($attributes['date_birth'] ?? null)
-            ->setGender($attributes['gender'] ?? null);
+            ->setDateBirth(new \DateTime($attributes['date_birth']) ?? null)
+            ->setGender((int) $attributes['gender'] ?? null);
     }
 }
