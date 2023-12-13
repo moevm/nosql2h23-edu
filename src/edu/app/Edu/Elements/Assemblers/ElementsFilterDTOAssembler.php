@@ -10,7 +10,7 @@ class ElementsFilterDTOAssembler
 {
     public function assemble(array $filters): ElementsFilterDTO
     {
-        return $elementsFilterDTO = (new ElementsFilterDTO())
+        return (new ElementsFilterDTO())
             ->setElementType($filters['type'] ?? null)
             ->setElementTitle($filters['title'] ?? null);
     }

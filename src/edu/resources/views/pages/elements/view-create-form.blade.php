@@ -3,30 +3,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create element</title>
+    <title>Создание элемента</title>
 </head>
 <body>
-
 <div class="container-center">
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1>Создание элемента</h1>
-    <p class="note">Введите название элемента</p>
-    <input class="element-name-enter" type="text">
-    <p class="note">Выберете тип элемента</p>
-    <select multiple name="type_element[]">
-        <option disabled>Тип элемента</option>
-        <option value="Вопрос">Вопрос</option>
-        <option value="Задача">Задача</option>
-        <option value="Ответ">Ответ</option>
-    </select>
-    <p class="note">Введите содержание элемента</p>
-    <textarea class="element-content-enter" rows="10" cols="69" name="text"></textarea>
-    <p>
-        <button type="button" class="btn-add-content-course">Добавить содержание</button>
-    </p>
-    <p>
-        <button type="button" class="btn-create-element">Cоздать элемент</button>
-    </p>
-
+    <form method="POST" action="{{ route('courses.course.elements.create', ['courseId' => $courseId]) }}">
+        @csrf
+        <label>
+            <input name="title" class="element-name-enter" type="text" placeholder="Введите название элемента">
+        </label>
+        <label>
+            <input name="type" class="element-name-enter" type="text" placeholder="Введите тип элемента">
+        </label>
+        <label>
+            <input name="content" class="element-name-enter" type="text" placeholder="Введите наполнение элемента">
+        </label>
+        <label>
+            <input name="weight" class="element-name-enter" placeholder="Введите вес элемента" type="text">
+        </label>
+        <button type="submit">Создать элемент</button>
+    </form>
 </div>
 </body>
 </html>

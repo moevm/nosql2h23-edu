@@ -18,6 +18,6 @@ class ViewElementCreateFormAction
             throw new \RuntimeException('Provided course does not exist');
         }
 
-        return View::make('elements.view-create-form');
+        return View::make('elements.view-create-form', ['courseId' => $courseId]);
     }
 }

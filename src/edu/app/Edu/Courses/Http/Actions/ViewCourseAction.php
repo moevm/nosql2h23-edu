@@ -30,11 +30,15 @@ class ViewCourseAction
             throw new \RuntimeException('Provided course does not exist');
         }
 
+        $page = $viewCourseRequest->validated()['page'] ?? self::DEFAULT_PAGE;
+        $perPage = $viewCourseRequest->validated()['per-page'] ?? self::DEFAULT_PER_PAGE;
+
         $course = $courseViewPreparingService->prepareCourse(
             course: $course,
-            page: $viewCourseRequest->validated()['page'] ?? self::DEFAULT_PAGE,
-            perPage: $viewCourseRequest->validated()['per-page'] ?? self::DEFAULT_PER_PAGE,
-            filters: $viewCourseRequest->validated()['per-page'] ?? self::DEFAULT_FILTERS
+            page: (int) $page,
+            perPage: (int) $perPage,
+            filters: $viewCourseRequest->validated()['filters'] ?? self::DEFAULT_FILTERS,
+            options: ['path' => $courseId]
         );
 
         return View::make('courses.view', [

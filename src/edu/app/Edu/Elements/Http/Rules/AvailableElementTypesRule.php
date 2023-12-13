@@ -14,7 +14,7 @@ class AvailableElementTypesRule implements ValidationRuleInterface
     {
         return [
             'required',
-            'integer',
+            'string',
             Rule::in(getEnumValues(AvailableElementTypes::class))
         ];
     }
