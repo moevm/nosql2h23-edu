@@ -18,9 +18,9 @@ class ElementsPaginationService
 
     public function paginate(
         Collection $elements,
-                   $perPage = self::DEFAULT_PER_PAGE,
-                   $page = null,
-                   $options = self::DEFAULT_OPTIONS
+        $perPage = self::DEFAULT_PER_PAGE,
+        $page = null,
+        $options = self::DEFAULT_OPTIONS
     ): LengthAwarePaginator {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: self::DEFAULT_PAGE);
 

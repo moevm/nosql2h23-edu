@@ -60,7 +60,6 @@
             @empty
                 Элементы отсутствуют
             @endforelse
-            {{ $course->elements->links() }}
         </tbody>
     </table>
     <p class="p-after-table">
@@ -68,6 +67,7 @@
             href="{{ route('courses.list') }}">
             К списку курсов
         </a>
+        {{ $course->elements->withQueryString()->links('pagination::bootstrap-5') }}
     </p>
 </div>
 </body>

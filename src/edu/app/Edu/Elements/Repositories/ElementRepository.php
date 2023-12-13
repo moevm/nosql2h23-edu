@@ -13,7 +13,8 @@ class ElementRepository
     {
         $element = $this->getElementsQueryBuilder()
             ->where('_id', '=', $elementId)
-            ->where('course_id', '=', $courseId);
+            ->where('course_id', '=', $courseId)
+            ->first();
 
         if (!$element instanceof Element) {
             return null;
