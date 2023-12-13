@@ -26,7 +26,7 @@ class UserElementStatistic extends Model
 
     protected $fillable = [
         'user_id',
-        'course_id',
+        'element_id',
         'points',
     ];
 

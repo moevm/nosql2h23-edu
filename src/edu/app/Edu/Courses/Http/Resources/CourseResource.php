@@ -24,7 +24,7 @@ class CourseResource extends JsonResource
             'description' => $this->resource->description,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
-            'author' => UserResource::make($this->resource->user),
+            'user' => UserResource::make($this->resource->user),
             'elements' => ElementResource::collection($this->resource->elements),
             'assignments' => AssignmentResource::collection($this->resource->assignments),
         ];
