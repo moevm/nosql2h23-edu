@@ -34,7 +34,7 @@ class ViewCourseAction
             course: $course,
             page: $viewCourseRequest->validated()['page'] ?? self::DEFAULT_PAGE,
             perPage: $viewCourseRequest->validated()['per-page'] ?? self::DEFAULT_PER_PAGE,
-            filters: $viewCourseRequest->validated()['per-page'] ?? self::DEFAULT_FILTERS
+            filters: $viewCourseRequest->validated()['filters'] ?? self::DEFAULT_FILTERS
         );
 
         return View::make('courses.view', [
