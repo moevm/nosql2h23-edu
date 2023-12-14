@@ -28,8 +28,9 @@
             <label>
                 <input name="password" type="password" class="password-enter" placeholder="Пароль" required>
             </label>
-            <a href="#" class="link-registration">Регистрация</a>
-            <a href="#" class="link-forget-password">Забыли пароль?</a>
+            <p>
+                <a class="link-registration" href="{{ route('registration.view-form') }}">Регистрация</a>
+            </p>
             <button type="submit" class="btn-sign-in">Войти</button>
         </form>
     </div>
@@ -105,20 +106,10 @@
         margin-left: 10px;
     }
     button.btn-sign-in {
-        display: flex;
-        margin-left: auto;
-        margin-right: 30px;
-        margin-top: 20px;
-        text-align: center;
         color: #FFFFFF;
         background: #2E6243;
     }
     button.btn-sign-in:hover {
-        display: flex;
-        margin-left: auto;
-        margin-right: 10px;
-        margin-top: 10px;
-        text-align: right;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;

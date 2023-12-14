@@ -50,7 +50,7 @@
             <input name="gender" type="radio" class="gender-enter" value="0" required>
         </label>
         <p>
-            <a class="link-login" href="{{ route('login.view-form') }}">Вход</a>
+            <a class="link-login" href="{{ route('login.view-form') }}">Авторизация</a>
         </p>
         <p class="note">Нажимая на кнопку “Регистрация”, вы даете согласие на обработку персональных данных.</p>
         <button type="submit" class="btn-registration">Регистрация</button>
