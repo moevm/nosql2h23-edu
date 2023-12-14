@@ -45,10 +45,16 @@
         <p class="note">Чтобы сохранить изменения нажмите "Сохранить".</p>
         <button type="submit" class="btn-save">Сохранить</button>
     </form>
+    <a class="tu-ul" href="{{ route('users.list') }}">К списку пользователей</a>
 </div>
 </body>
 </html>
 <style>
+    a.tu-ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #2E6243;
+    }
     html {
         background: #AFFAAF;
     }
