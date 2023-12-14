@@ -12,24 +12,17 @@
     <form method="POST" action="{{ route('courses.create') }}" class="links">
         @csrf
         <label>
-            <p class="note">Введите название курса</p>
-            <input name="title" type="text" class="login-enter" placeholder="Логин" required>
+            <p class="note">Введите название курса<a class="red-star">*</a></p>
+            <input name="title" type="text" class="title-enter" placeholder="Название курса" required>
         </label>
         <label>
-            <p class="note">Введите описание курса</p>
-            <input name="description" type="text" class="password-enter" placeholder="Пароль" required>
+            <p class="note">Введите описание курса<a class="red-star">*</a></p>
+            <textarea name="description" type="text" class="description-enter" placeholder="Описание курса" required> </textarea>
         </label>
-        <a href="#" class="link-registration">Регистрация</a>
-        <a href="#" class="link-forget-password">Забыли пароль?</a>
-        <button type="submit" class="btn-sign-in">Войти</button>
+        <p>
+            <button type="submit" class="btn-create-course">Создать курс</button>
+        </p>
     </form>
-    <p class="note">Введите название курса</p>
-    <input class="course-name-enter" type="text">
-    <p class="note">Введите описание курса</p>
-    <input class="course-description-enter" type="text">
-    <p>
-        <button type="button" class="btn-create-course">Создать курс</button>
-    </p>
 
 </div>
 </body>
@@ -60,9 +53,16 @@
         height: 45px;
         border-radius: 5px;
     }
+    textarea {
+        font-size: 24px;
+        width: 500px;
+        height: 150px;
+        border-radius: 5px;
+        resize: none;
+    }
     div.container-center {
         width: 800px;
-        height: 450px;
+        height: 550px;
         text-align: center;
         margin-top: 100px;
         margin-left: 300px;
@@ -83,5 +83,8 @@
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
+    }
+    a.red-star {
+        color: red;
     }
 </style>
