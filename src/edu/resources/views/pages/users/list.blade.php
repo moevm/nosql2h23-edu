@@ -24,16 +24,13 @@
     <form method="GET" action="{{ route('users.list') }}">
         <input name="filters[email]" class="input-name" type="text" placeholder="Введите email">
         <input name="filters[surname]" class="input-surname" type="text" placeholder="Введите фамилию">
-        <input name="filters[role_title]" class="input-role" type="text" placeholder="Введите роль">
         <label> <p class="label-role"> Выберите роль</p></label>
         <label class="admin-or-user">
             <a> Пользователь</a>
-            <input name="role" type="radio" class="role-enter" value="Пользователь">
-            <p></p>
+            <input name="filters[role_title]" type="radio" class="role-enter" value="Пользователь">
             <a> Администратор</a>
-            <input name="role" type="radio" class="role-enter" value="Администратор">
+            <input name="filters[role_title]" type="radio" class="role-enter" value="Администратор">
         </label>
-        <p></p>
         <button type="submit" class="btn-search">Поиск</button>
     </form>
 
@@ -92,6 +89,9 @@
         font-size: 24px;
         color: #2E6243;
     }
+    button.btn-search {
+        margin-left: 100px;
+    }
     p.label-role {
         color: #2E6243;
         font-size: 24px;
@@ -119,6 +119,9 @@
         width: 500px;
         height: 45px;
         border-radius: 5px;
+        margin-left: 30px;
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
     h1 {
         font-size: 46px;
@@ -142,6 +145,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
+        height: 480px;
     }
     div.container-bot {
         text-align: center;
