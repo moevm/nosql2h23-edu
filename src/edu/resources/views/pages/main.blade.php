@@ -19,12 +19,11 @@
     body {
         margin-left: 230px;
     }
-    button {
-        font-size: 24px;
-        height: 50px;
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
-        border-color: black;
+    div.container-center {
+        margin-left: 200px;
+        width: 1000px;
+        height: 500px;
+        background: white;
     }
     h1 {
         font-size: 46px;
