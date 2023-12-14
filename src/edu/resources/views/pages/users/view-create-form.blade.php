@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registration</title>
+    <title>Создание пользователя</title>
 </head>
 <body>
-<h1>Регистрация в системе</h1>
+<h1>Создание пользователя</h1>
 <div class="container-center">
     @if ($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -17,7 +17,7 @@
             </ul>
         </div>
     @endif
-    <form method="POST" action="{{ route('registration.user') }}" class="links">
+    <form method="POST" action="{{ route('users.create') }}" class="links">
         @csrf
         <label>
             <p> Email</p>
@@ -58,12 +58,21 @@
             <p> Женский</p>
             <input name="gender" type="radio" class="gender-enter" value="0" required>
         </label>
-        <p>
-            <a class="link-login" href="{{ route('login.view-form') }}">Авторизация</a>
-        </p>
-        <p class="note">Нажимая на кнопку “Регистрация”, вы даете согласие на обработку персональных данных.</p>
-        <button type="submit" class="btn-registration">Регистрация</button>
+        <label>
+            <p> Выберите роль<a class="red-star">*</a></p>
+        </label>
+        <label>
+            <p> Пользователь</p>
+            <input name="role_title" type="radio" class="gender-enter" value="Пользователь" required>
+        </label>
+        <label>
+            <p> Администратор</p>
+            <input name="role_title" type="radio" class="gender-enter" value="Администратор" required>
+        </label>
+        <p></p>
+        <button type="submit" class="btn-registration">Создать</button>
     </form>
+    <a class="tu-ul" href="{{ route('users.list') }}">К списку пользователей</a>
 </div>
 </body>
 </html>
@@ -71,7 +80,11 @@
     html {
         background: #AFFAAF;
     }
-
+    a.tu-ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #2E6243;
+    }
     body {
         margin-left: 270px;
     }
