@@ -8,8 +8,18 @@
 <body>
 <h1>Редактирование курса</h1>
 <div class="container-top">
-    <h2>Название курса: <a class="a-course-name">{{ $course->title }}</a></h2>
-    <h2>Описание курса: <a class="a-course-description">{{ $course->description }}</a></h2>
+    <form method="POST" action="{{ route('courses.course.edit', ['courseId' => $course->getKey()]) }}" class="links">
+        @csrf
+        <label>
+            <h2>Название курса: <input name="title" type="text" class="title-enter" value="{{$course->title}}"></h2>
+        </label>
+        <label>
+            <h2>Описание курса: <textarea name="description" type="text" class="description-enter">{{$course->description}}</textarea></h2>
+        </label>
+        <p>
+            <button type="submit" class="btn-create-course">Сохранить</button>
+        </p>
+    </form>
     <h2>
         Показать по:
         <a href="{{ route('courses.course.view', ['courseId' => $course->getKey(), 'per-page' => 5]) }}">5</a>
@@ -27,6 +37,11 @@
         <input name="filters[title]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите название элемента">
         <input name="filters[type]" class="input-course-content" type="text" placeholder="Введите тип элемента">
         <button type="submit" class="btn-load-json">Поиск</button>
+    </form>
+    <form method="GET" action="{{ route("courses.list") }}" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <button type="submit">Загрузить в json формате</button>
     </form>
 
 </div>
@@ -115,6 +130,15 @@
         margin-left: 30px;
         margin-top: 30px;
     }
+    textarea {
+        font-size: 24px;
+        width: 500px;
+        height: 100px;
+        border-radius: 5px;
+        margin-left: 30px;
+        margin-top: 30px;
+        resize : none;
+    }
     h1 {
         font-size: 46px;
         color: #2E6243;
@@ -158,7 +182,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 530px;
+        height: 680px;
     }
     div.container-bot {
         background: white;
