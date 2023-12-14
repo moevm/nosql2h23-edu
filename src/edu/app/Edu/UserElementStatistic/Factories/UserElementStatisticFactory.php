@@ -28,6 +28,7 @@ class UserElementStatisticFactory
 
         $stat->user_id = $user->getKey();
         $stat->element_id = $element->getKey();
+        $stat->points = $attributes['points'];
 
         $savingResult = $stat->save();
         if (!$savingResult) {
