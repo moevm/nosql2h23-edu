@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Сourses</title>
+    <title>Список курсов</title>
 </head>
 <body>
 <h1>Список курсов</h1>
