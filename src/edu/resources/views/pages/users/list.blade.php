@@ -8,66 +8,118 @@
 <body>
 <h1>Список пользователей</h1>
 <div class="container-top">
-    <div class="top-group" role="group">
-        <input class="input-fio" type="text" placeholder="Введите ФИО или email">
-        <a class="a-show-for">Показать по </a>
-        <button type="button" class="btn-five">5</button>
-        <button type="button" class="btn-ten">10</button>
-        <button type="button" class="btn-fifteen">15</button>
-    </div>
+    <h2>
+        Показать по:
+        <a href="{{ route('users.list', ['per-page' => 5]) }}">5</a>
+        <a href="{{ route('users.list', ['per-page' => 10]) }}">10</a>
+        <a href="{{ route('users.list', ['per-page' => 15]) }}">15</a>
+    </h2>
+    <h2>
+        <a href="{{ route('users.list') }}">Сбросить фильтры</a>
+    </h2>
+    <h2>
+        <a href="{{ route('users.view-create-form')}}">Добавить пользователя</a>
+    </h2>
 
-    <div class="bot-group" role="group">
-        <input class="input-role" type="text" placeholder="Роль">
-        <a href="#" class="link-clear-filters">Сбросить фильтры</a>
-    </div>
-
-    <div class="btn-group" role="group">
-        <p class="p-first-part">
-            <button type="button" class="btn-download-json">Выгрузить в json формате</button>
-            <button type="button" class="btn-add-file">Добавить файл</button>
-        </p>
-        <p class="p-second-part">
-            <button type="button" class="btn-load-json">Загрузить в json формате</button>
-            <button type="button" class="btn-add-user">Добавить пользователя</button>
-        </p>
-    </div>
+    <form method="GET" action="{{ route('users.list') }}">
+        <input name="filters[email]" class="input-name" type="text" placeholder="Введите email">
+        <input name="filters[surname]" class="input-surname" type="text" placeholder="Введите фамилию">
+        <input name="filters[role_title]" class="input-role" type="text" placeholder="Введите роль">
+        <label>Выберите роль</label>
+        <label>
+            <p> Пользователь</p>
+            <input name="gender" type="radio" class="gender-enter" value="Пользователь">
+        </label>
+        <label>
+            <p> Администратор</p>
+            <input name="gender" type="radio" class="gender-enter" value="Администратор">
+        </label>
+        <button type="submit" class="btn-search">Поиск</button>
+    </form>
+{{--    <div class="btn-group" role="group">--}}
+{{--        <p class="p-first-part">--}}
+{{--            <button type="button" class="btn-download-json">Выгрузить в json формате</button>--}}
+{{--            <button type="button" class="btn-add-file">Добавить файл</button>--}}
+{{--        </p>--}}
+{{--        <p class="p-second-part">--}}
+{{--            <button type="button" class="btn-load-json">Загрузить в json формате</button>--}}
+{{--            <button type="button" class="btn-add-user">Добавить пользователя</button>--}}
+{{--        </p>--}}
+{{--    </div>--}}
 </div>
 
 <div class="container-bot">
-    <p class="p-showed">Отображено 2 из 2</p>
     <table class="table-users">
-        <tr>
-            <th class="td-id">ID</th>
-            <th class="td-fio">ФИО</th>
-            <th class="td-role">Роль</th>
-            <th class="td-email">Email</th>
-            <th class="td-date">Дата регистрации</th>
-            <th class="td-actions">Действия</th>
-        </tr>
-        <tr>
-            <td class="td-id">1</td>
-            <td class="td-fio">Костебелова Елизавета Константиновна</td>
-            <td class="td-role">Администратор</td>
-            <td class="td-email">Lizbet227@gmail.com</td>
-            <td class="td-date">01.12.2023</td>
-            <td class="td-actions">
-                <button type="button" class="btn-del">Удалить</button>
-                <button type="button" class="btn-edit">Редактировать</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="td-id">1</td>
-            <td class="td-fio">Костебелова Елизавета Константиновна</td>
-            <td class="td-role">Пользователь</td>
-            <td class="td-email">Lizbet227@gmail.com</td>
-            <td class="td-date">01.12.2023</td>
-            <td class="td-actions">
-                <button type="button" class="btn-del">Удалить</button>
-                <button type="button" class="btn-edit">Редактировать</button>
-            </td>
-        </tr>
+        <thead>
+        <th class="td-id">ID</th>
+        <th class="td-fio">ФИО</th>
+        <th class="td-role">Роль</th>
+        <th class="td-email">Email</th>
+        <th class="td-date">Дата регистрации</th>
+        <th class="td-actions">Действия</th>
+        </thead>
+        <tbody>
+        @forelse($filteredUsersPage->items() as $user)
+            <tr>
+                <td class="td-id">{{ $user->getKey() }}</td>
+                <td class="td-fio">{{sprintf("%s %s %s", $user->name , $user->surname , $user->patronymic)  }}</td>
+                <td class="td-role">{{ $user->role->title }}</td>
+                <td class="td-email">{{ $user->email }}</td>
+                <td class="td-date">{{ $user->created_at }}</td>
+                <td class="td-actions">
+                    <a
+                        href="{{ route('users.user.view', ['userId' => $user->getKey()]) }}">Редактировать
+                    </a>
+                    <a
+                        href="{{ route('users.user.delete', ['userId' => $user->getKey()]) }}">Удалить
+                    </a>
+                </td>
+            </tr>
+        @empty
+            Пользователи отсутствуют
+        @endforelse
+        </tbody>
     </table>
+    <p class="p-after-table">
+        {{ $filteredUsersPage->withQueryString()->links('pagination::bootstrap-5') }}
+    </p>
 </div>
+
+
+{{--<div class="container-bot">--}}
+{{--    <table class="table-users">--}}
+{{--        <tr>--}}
+{{--            <th class="td-id">ID</th>--}}
+{{--            <th class="td-fio">ФИО</th>--}}
+{{--            <th class="td-role">Роль</th>--}}
+{{--            <th class="td-email">Email</th>--}}
+{{--            <th class="td-date">Дата регистрации</th>--}}
+{{--            <th class="td-actions">Действия</th>--}}
+{{--        </tr>--}}
+{{--        <tr>--}}
+{{--            <td class="td-id">1</td>--}}
+{{--            <td class="td-fio">Костебелова Елизавета Константиновна</td>--}}
+{{--            <td class="td-role">Администратор</td>--}}
+{{--            <td class="td-email">Lizbet227@gmail.com</td>--}}
+{{--            <td class="td-date">01.12.2023</td>--}}
+{{--            <td class="td-actions">--}}
+{{--                <button type="button" class="btn-del">Удалить</button>--}}
+{{--                <button type="button" class="btn-edit">Редактировать</button>--}}
+{{--            </td>--}}
+{{--        </tr>--}}
+{{--        <tr>--}}
+{{--            <td class="td-id">1</td>--}}
+{{--            <td class="td-fio">Костебелова Елизавета Константиновна</td>--}}
+{{--            <td class="td-role">Пользователь</td>--}}
+{{--            <td class="td-email">Lizbet227@gmail.com</td>--}}
+{{--            <td class="td-date">01.12.2023</td>--}}
+{{--            <td class="td-actions">--}}
+{{--                <button type="button" class="btn-del">Удалить</button>--}}
+{{--                <button type="button" class="btn-edit">Редактировать</button>--}}
+{{--            </td>--}}
+{{--        </tr>--}}
+{{--    </table>--}}
+{{--</div>--}}
 </body>
 </html>
 <style>
@@ -110,62 +162,23 @@
         width: 500px;
         height: 45px;
         border-radius: 5px;
-        margin-left: 30px;
-        margin-top: 30px;
     }
     h1 {
         font-size: 46px;
         color: #2E6243;
         margin-left: 120px;
     }
-    table, th, td {
-        table-layout: fixed;
-        font-size: 24px;
-        border-collapse: collapse;
-        border: 3px solid grey;
-        text-align: center;
-    }
-    table {
-        margin-left: 10px;
-        margin-bottom: 5px;
-    }
-    td.td-id{
-        width: 50px;
-    }
-    td.td-fio, td.td-role, td.td-email, td.td-actions {
-        width: 300px;
-    }
-    button.btn-del, button.btn-edit {
-        width: 200px;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
+
+
     div.container-top {
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 310px;
     }
     div.container-bot {
         background: white;
         margin-left: 120px;
         width: 1560px;
-    }
-    div.btn-group {
-        text-align: right;
-        /*margin-bottom: 200px;*/
-    }
-    a.a-show-for {
-        margin-left: 600px;
-    }
-    a.link-clear-filters {
-        margin-left: 720px;
-    }
-    button.btn-download-json, button.btn-load-json, button.btn-add-user, button.btn-add-file {
-        width: 400px;
-    }
-    p.p-first-part, p.p-second-part {
-        margin-bottom: -15px;
     }
 
 </style>
