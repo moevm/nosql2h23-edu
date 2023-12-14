@@ -8,48 +8,53 @@
 <body>
 <h1>Регистрация в системе</h1>
 <div class="container-center">
-    <p>
-        <a class="name">Имя <a class="red-star">*</a></a>
-        <a class="email">Email <a class="red-star">*</a></a>
-    </p>
-    <form>
-        <input class="name-enter" type="text" placeholder="Анатолий">
-        <input class="email-enter" type="text" placeholder="coolman@gmail.com">
+    <form method="POST" action="{{ route('registration.user') }}" class="links">
+        @csrf
+        <label>
+            <p> Email</p>
+            <input name="email" type="email" class="login-enter" placeholder="Email" required>
+        </label>
+        <label>
+            <p> Имя<a class="red-star">*</a></p>
+            <input name="name" type="text" class="name-enter" placeholder="Имя" required>
+        </label>
+        <label>
+            <p> Фамилия<a class="red-star">*</a></p>
+            <input name="surname" type="text" class="surname-enter" placeholder="Фамилия" required>
+        </label>
+        <label>
+            <p> Отчество</p>
+            <input name="patronymic" type="text" class="patronymic-enter" placeholder="Отчество" required>
+        </label>
+        <label>
+            <p> Дата рождения<a class="red-star">*</a></p>
+            <input name="date_birth" type="date" class="birth-enter" required>
+        </label>
+        <label>
+            <p> Пароль<a class="red-star">*</a></p>
+            <input name="password" type="password" class="password-enter" placeholder="Пароль" required>
+        </label>
+        <label>
+            <p> Повторите пароль<a class="red-star">*</a></p>
+            <input name="password_confirmation" type="password" class="password-confirm--enter" placeholder="Повторите пароль" required>
+        </label>
+        <label>
+            <p> Выберите пол<a class="red-star">*</a></p>
+        </label>
+        <label>
+            <p> Мужской</p>
+            <input name="gender" type="radio" class="gender-enter" value="1" required>
+        </label>
+        <label>
+            <p> Женский</p>
+            <input name="gender" type="radio" class="gender-enter" value="0" required>
+        </label>
+        <p>
+            <a class="link-login" href="{{ route('login.view-form') }}">Авторизация</a>
+        </p>
+        <p class="note">Нажимая на кнопку “Регистрация”, вы даете согласие на обработку персональных данных.</p>
+        <button type="submit" class="btn-registration">Регистрация</button>
     </form>
-    <p>
-        <a class="sername">Фамилия <a class="red-star">*</a></a>
-        <a class="password">Пароль <a class="red-star">*</a></a>
-    </p>
-    <form>
-        <input class="sername-enter" type="text" placeholder="Денежный">
-        <input class="password-enter" type="password" placeholder="Пароль">
-    </form>
-    <p>
-        <a class="patr">Отчество</a>
-        <a class="again-password">Повторите пароль <a class="red-star">*</a></a>
-    </p>
-    <form>
-        <input class="patr-enter" type="text" placeholder="Антонович">
-        <input class="again-password-enter" type="password" placeholder="Повторите пароль">
-    </form>
-    <p>
-        <a class="birthday">Дата рождения <a class="red-star">*</a></a>
-        <a class="sex">Пол <a class="red-star">*</a></a>
-    </p>
-    <form>
-        <div class="special-group" role="group">
-            <input class="birth-enter" type="date">
-            <button type="button" class="btn-male">Мужской</button>
-            <button type="button" class="btn-female">Женский</button>
-        </div>
-    </form>
-
-
-    <p class="note">Нажимая на кнопку “Регистрация”, вы даете согласие на обработку персональных данных.</p>
-    <div class="btn-group" role="group">
-        <button type="button" class="btn-sign-in">Войти</button>
-        <button type="button" class="btn-registration">Регистрация</button>
-    </div>
 </div>
 </body>
 </html>
@@ -57,14 +62,14 @@
     html {
         background: #AFFAAF;
     }
-    
+
     body {
         margin-left: 270px;
     }
-    
+
     div.container-center {
+        text-align: center;
         width: 900px;
-        height: 600px;
         margin-top: 10px;
         margin-left: 180px;
         background: white;
@@ -90,37 +95,6 @@
         border-radius: 10px;
         border-color: black;
     }
-    input.birth-enter {
-        margin-left: 10px;
-    }
-    button.btn-male {
-        margin-left: 40px;
-    }
-    button.btn-female {
-        margin-left: -6px;
-    }
-    input.email-enter {
-        margin-left: 45px;
-    }
-    input.password-enter {
-        margin-left: 45px;
-    }
-    input.again-password-enter {
-        margin-left: 45px;
-    }
-
-    a.email {
-        margin-left: 370px;
-    }
-    a.password {
-        margin-left: 310px;
-    }
-    a.again-password {
-        margin-left: 325px;
-    }
-    a.sex {
-        margin-left: 225px;
-    }
 
 
     h1 {
@@ -132,37 +106,24 @@
     a.red-star {
         color: red;
     }
-
-    div.btn-group {
-        font-size: 24px;
-        margin-top: 30px;
-        display: flex;
-        margin-left: 550px;
-        height: 30px;
+    a.link-login {
+        color: #2E6243;
     }
 
-    button.btn-sign-in {
-        font-size: 24px;
-        margin-right: 40px;
-        color: #FFFFFF;
-        background: #2E6243;
-    }
-    button.btn-sign-in:hover {
-        font-size: 24px;
-        opacity: 80%;
-        color: #FFFFFF;
-        background: #2E6243;
-    }
     button.btn-registration {
         font-size: 24px;
         color: #FFFFFF;
         background: #2E6243;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     button.btn-registration:hover {
         font-size: 24px;
         opacity: 80%;
         color: #FFFFFF;
         background: #2E6243;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
 </style>
