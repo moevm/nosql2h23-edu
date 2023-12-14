@@ -39,8 +39,15 @@
             <input name="password_confirmation" type="password" class="password-confirm--enter" placeholder="Повторите пароль" required>
         </label>
         <label>
-            <p> Пол<a class="red-star">*</a></p>
-            <input name="gender" type="text" class="gender-enter" placeholder="0 или 1" required>
+            <p> Выберите пол<a class="red-star">*</a></p>
+        </label>
+        <label>
+            <p> Мужской</p>
+            <input name="gender" type="radio" class="gender-enter" value="1" required>
+        </label>
+        <label>
+            <p> Женский</p>
+            <input name="gender" type="radio" class="gender-enter" value="0" required>
         </label>
         <p>
             <a class="link-login" href="{{ route('login.view-form') }}">Вход</a>
