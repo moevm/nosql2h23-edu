@@ -1,11 +1,13 @@
 <?php
 
 use App\Edu\Assignments\Http\Actions\CreateAssignmentAction;
+use App\Edu\Assignments\Http\Actions\ImportAssignmentsAction;
 use App\Edu\Courses\Http\Actions\CreateCourseAction;
 use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ExportCoursesAction;
 use App\Edu\Courses\Http\Actions\ExportCourseStatisticsAction;
+use App\Edu\Courses\Http\Actions\ImportCoursesAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseCreateFormAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
@@ -15,11 +17,14 @@ use App\Edu\Elements\Http\Actions\DeleteElementAction;
 use App\Edu\Elements\Http\Actions\EditElementAction;
 use App\Edu\Elements\Http\Actions\ViewElementAction;
 use App\Edu\Elements\Http\Actions\ViewElementCreateFormAction;
+use App\Edu\Elements\Http\ImportCourseElementsAction;
 use App\Edu\UserElementStatistic\Http\Actions\CreateUserElementStatistic;
+use App\Edu\UserElementStatistic\Http\Actions\ImportUserElementStatisticsAction;
 use App\Edu\Users\Http\Actions\CreateUserAction;
 use App\Edu\Users\Http\Actions\DeleteUserAction;
 use App\Edu\Users\Http\Actions\EditUserAction;
 use App\Edu\Users\Http\Actions\ExportUsersAction;
+use App\Edu\Users\Http\Actions\ImportUsersAction;
 use App\Edu\Users\Http\Actions\ViewUserAction;
 use App\Edu\Users\Http\Actions\ViewUserCreateFormAction;
 use App\Edu\Users\Http\Actions\ViewUsersListAction;
@@ -60,6 +65,7 @@ Route::middleware([])->group(function () {
         Route::post('', CreateUserAction::class)->name('create');
         Route::get('/create', ViewUserCreateFormAction::class)->name('view-create-form');
         Route::get('/export', ExportUsersAction::class)->name('export');
+        Route::post('/import', ImportUsersAction::class)->name('import');
 
         Route::group(['prefix' => '{userId}', 'as' => 'user.'], function () {
             Route::get('', ViewUserAction::class)->name('view');
@@ -75,6 +81,7 @@ Route::middleware([])->group(function () {
         Route::get('/export', ExportCoursesAction::class)->name('export');
         Route::get('/statistics', ViewCoursesStatisticsListAction::class)->name('statistics');
         Route::get('/export-statistics', ExportCourseStatisticsAction::class)->name('export-statistics');
+        Route::post('/import', ImportCoursesAction::class)->name('import');
 
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
@@ -84,6 +91,7 @@ Route::middleware([])->group(function () {
             Route::group(['prefix' => 'elements', 'as' => 'elements.'], function () {
                 Route::post('', CreateElementAction::class)->name('create');
                 Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form');
+                Route::post('/import', ImportCourseElementsAction::class)->name('import');
 
                 Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
                     Route::get('', ViewElementAction::class)->name('view');
@@ -94,10 +102,12 @@ Route::middleware([])->group(function () {
 
             Route::group(['prefix' => 'assignments', 'as' => 'assignments.'], function () {
                 Route::get('/create', CreateAssignmentAction::class)->name('create');
+                Route::post('/import', ImportAssignmentsAction::class)->name('import');
             });
 
             Route::group(['prefix' => 'statistic', 'as' => 'statistic.'], function () {
                 Route::get('/create', CreateUserElementStatistic::class)->name('create');
+                Route::post('/import', ImportUserElementStatisticsAction::class)->name('import');
             });
         })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
