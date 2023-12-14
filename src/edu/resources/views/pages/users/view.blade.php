@@ -29,18 +29,18 @@
         </label>
         <label>
             <p> Дата рождения<a class="red-star">*</a></p>
-            <input name="date_birth" type="date" class="birth-enter" value="{{ $user->date_birth }}" required>
+            <input name="date_birth" type="date" class="birth-enter" value="{{ date('Y-m-d',strtotime($user->date_birth))}}" required>
         </label>
         <label>
             <p> Выберите пол<a class="red-star">*</a></p>
         </label>
         <label>
             <p> Мужской</p>
-            <input name="gender" type="radio" class="gender-enter" value="1" required>
+            <input name="gender" {{ ($user->gender=="1")? "checked" : "" }} type="radio" class="gender-enter" value="1" required>
         </label>
         <label>
             <p> Женский</p>
-            <input name="gender" type="radio" class="gender-enter" value="0" required>
+            <input name="gender" {{ ($user->gender=="0")? "checked" : "" }} type="radio" class="gender-enter" value="0" required>
         </label>
         <p class="note">Чтобы сохранить изменения нажмите "Сохранить".</p>
         <button type="submit" class="btn-save">Сохранить</button>
