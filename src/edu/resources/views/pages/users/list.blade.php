@@ -25,27 +25,25 @@
         <input name="filters[email]" class="input-name" type="text" placeholder="Введите email">
         <input name="filters[surname]" class="input-surname" type="text" placeholder="Введите фамилию">
         <input name="filters[role_title]" class="input-role" type="text" placeholder="Введите роль">
-        <label>Выберите роль</label>
-        <label>
-            <p> Пользователь</p>
-            <input name="gender" type="radio" class="gender-enter" value="Пользователь">
+        <label> <p class="label-role"> Выберите роль</p></label>
+        <label class="admin-or-user">
+            <a> Пользователь</a>
+            <input name="role" type="radio" class="role-enter" value="Пользователь">
+            <p></p>
+            <a> Администратор</a>
+            <input name="role" type="radio" class="role-enter" value="Администратор">
         </label>
-        <label>
-            <p> Администратор</p>
-            <input name="gender" type="radio" class="gender-enter" value="Администратор">
-        </label>
+        <p></p>
         <button type="submit" class="btn-search">Поиск</button>
     </form>
-{{--    <div class="btn-group" role="group">--}}
-{{--        <p class="p-first-part">--}}
-{{--            <button type="button" class="btn-download-json">Выгрузить в json формате</button>--}}
-{{--            <button type="button" class="btn-add-file">Добавить файл</button>--}}
-{{--        </p>--}}
-{{--        <p class="p-second-part">--}}
-{{--            <button type="button" class="btn-load-json">Загрузить в json формате</button>--}}
-{{--            <button type="button" class="btn-add-user">Добавить пользователя</button>--}}
-{{--        </p>--}}
-{{--    </div>--}}
+
+    <a href="{{ route("users.export") }}" class="a-download-json">Выгрузить в json формате</a>
+    <form method="GET" action="{{ route("users.list") }}" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file">
+        <button type="submit">Загрузить в json формате</button>
+    </form>
+
 </div>
 
 <div class="container-bot">
@@ -84,42 +82,6 @@
         {{ $filteredUsersPage->withQueryString()->links('pagination::bootstrap-5') }}
     </p>
 </div>
-
-
-{{--<div class="container-bot">--}}
-{{--    <table class="table-users">--}}
-{{--        <tr>--}}
-{{--            <th class="td-id">ID</th>--}}
-{{--            <th class="td-fio">ФИО</th>--}}
-{{--            <th class="td-role">Роль</th>--}}
-{{--            <th class="td-email">Email</th>--}}
-{{--            <th class="td-date">Дата регистрации</th>--}}
-{{--            <th class="td-actions">Действия</th>--}}
-{{--        </tr>--}}
-{{--        <tr>--}}
-{{--            <td class="td-id">1</td>--}}
-{{--            <td class="td-fio">Костебелова Елизавета Константиновна</td>--}}
-{{--            <td class="td-role">Администратор</td>--}}
-{{--            <td class="td-email">Lizbet227@gmail.com</td>--}}
-{{--            <td class="td-date">01.12.2023</td>--}}
-{{--            <td class="td-actions">--}}
-{{--                <button type="button" class="btn-del">Удалить</button>--}}
-{{--                <button type="button" class="btn-edit">Редактировать</button>--}}
-{{--            </td>--}}
-{{--        </tr>--}}
-{{--        <tr>--}}
-{{--            <td class="td-id">1</td>--}}
-{{--            <td class="td-fio">Костебелова Елизавета Константиновна</td>--}}
-{{--            <td class="td-role">Пользователь</td>--}}
-{{--            <td class="td-email">Lizbet227@gmail.com</td>--}}
-{{--            <td class="td-date">01.12.2023</td>--}}
-{{--            <td class="td-actions">--}}
-{{--                <button type="button" class="btn-del">Удалить</button>--}}
-{{--                <button type="button" class="btn-edit">Редактировать</button>--}}
-{{--            </td>--}}
-{{--        </tr>--}}
-{{--    </table>--}}
-{{--</div>--}}
 </body>
 </html>
 <style>
@@ -130,29 +92,24 @@
         font-size: 24px;
         color: #2E6243;
     }
+    p.label-role {
+        color: #2E6243;
+        font-size: 24px;
+        font-weight: bold;
+    }
     a {
         font-size: 24px;
         color: #2E6243;
     }
-    button.btn-five, button.btn-fifteen, button.btn-ten {
-        text-align: center;
-        background: #FFFFFF;
-        color: #2E6243;
-        width: 60px;
-    }
-    button.btn-five:hover, button.btn-fifteen:hover, button.btn-ten:hover {
-        color: #FFFFFF;
-        background: #2E6243;
-    }
     button {
         font-size: 24px;
-        height: 50px;
         padding: 0.5rem 1rem;
         border-radius: 10px;
         border-color: black;
         text-align: center;
         color: #FFFFFF;
         background: #2E6243;
+        height: 45px;
     }
     button:hover {
         opacity: 80%;
@@ -169,13 +126,25 @@
         margin-left: 120px;
     }
 
+    input.role-enter {
+        height: 20px;
+        width: 40px;
+    }
 
+    table, th, td {
+        table-layout: fixed;
+        font-size: 24px;
+        border-collapse: collapse;
+        border: 3px solid grey;
+        text-align: center;
+    }
     div.container-top {
         background: white;
         margin-left: 120px;
         width: 1560px;
     }
     div.container-bot {
+        text-align: center;
         background: white;
         margin-left: 120px;
         width: 1560px;
