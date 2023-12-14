@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit profile</title>
+    <title>Редактировать профиль</title>
 </head>
 <body>
 <h1>Редактировать профиль</h1>
