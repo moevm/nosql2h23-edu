@@ -31,6 +31,7 @@ use App\Edu\Users\Http\Actions\ViewUsersListAction;
 use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
 use App\Http\Actions\ViewLoginFormAction;
+use App\Http\Actions\ViewMainPageAction;
 use App\Http\Actions\ViewRegistrationFormAction;
 use App\Http\Enums\RouteRegularExpressions;
 use Illuminate\Support\Facades\Route;
@@ -45,10 +46,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['prefix' => 'login', 'as' => 'login.'], function () {
     Route::get('', ViewLoginFormAction::class)->name('view-form');
     Route::post('', LoginUserAction::class)->name('user');
@@ -60,6 +57,8 @@ Route::group(['prefix' => 'registration', 'as' => 'registration.'], function () 
 });
 
 Route::middleware([])->group(function () {
+    Route::get('/', ViewMainPageAction::class);
+
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('', ViewUsersListAction::class)->name('list');
         Route::post('', CreateUserAction::class)->name('create');
