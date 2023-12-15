@@ -14,8 +14,12 @@ services:
       dockerfile: php.Dockerfile
     volumes:
       - ./src/edu:/var/www/edu
+    depends_on:
+      - nginx
   mongodb:
     image: mongo:6-jammy
+    depends_on:
+      - nginx
   composer:
     build:
       context: dockerfiles
@@ -35,3 +39,4 @@ services:
     depends_on:
       - php
       - mongodb
+      - composer
