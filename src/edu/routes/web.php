@@ -82,27 +82,27 @@ Route::middleware([UserAuthMiddleware::class])->group(function () {
 
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
         Route::get('', ViewCoursesListAction::class)->name('list');
-        Route::get('/assigned', ViewUserAssignedCoursesAction::class)->name('assigned-courses');
+        Route::get('/assigned', ViewUserAssignedCoursesAction::class)->name('assigned-courses'); //Страница моих курсов
         Route::post('', CreateCourseAction::class)->name('create');
         Route::get('/create', ViewCourseCreateFormAction::class)->name('view-create-form');
         Route::get('/export', ExportCoursesAction::class)->name('export');
-        Route::get('/statistics', ViewCoursesStatisticsListAction::class)->name('statistics');
+        Route::get('/statistics', ViewCoursesStatisticsListAction::class)->name('statistics'); //Страница статистики
         Route::get('/export-statistics', ExportCourseStatisticsAction::class)->name('export-statistics');
         Route::post('/import', ImportCoursesAction::class)->name('import');
 
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
-            Route::get('/play', PlayCourseAction::class)->name('play');
+            Route::get('/play', PlayCourseAction::class)->name('play'); //Страница просмотра курса от лица пользователя
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
             Route::post('/edit', EditCourseAction::class)->name('edit');
 
             Route::group(['prefix' => 'elements', 'as' => 'elements.'], function () {
                 Route::post('', CreateElementAction::class)->name('create');
-                Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form');
+                Route::get('/create', ViewElementCreateFormAction::class)->name('view-create-form'); //Страница создания элемента
                 Route::post('/import', ImportCourseElementsAction::class)->name('import');
 
                 Route::group(['prefix' => '{elementId}', 'as' => 'element.'], function () {
-                    Route::get('', ViewElementAction::class)->name('view');
+                    Route::get('', ViewElementAction::class)->name('view'); //Страница просмотра (редактирования) элемента
                     Route::post('/edit', EditElementAction::class)->name('edit');
                     Route::get('/delete', DeleteElementAction::class)->name('delete');
                 })->where(['elementId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
