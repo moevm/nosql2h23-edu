@@ -1,4 +1,4 @@
-FROM composer:latest
+FROM composer:2.6
 
 WORKDIR /var/www/edu
 

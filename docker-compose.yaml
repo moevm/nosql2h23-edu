@@ -4,7 +4,7 @@ services:
   nginx:
     image: "nginx:stable-alpine"
     ports:
-      - "8000:80"
+      - "127.0.0.1:8000:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./src/edu:/var/www/edu
@@ -16,8 +16,6 @@ services:
       - ./src/edu:/var/www/edu
   mongodb:
     image: mongo:6-jammy
-    ports:
-      - '27017:27017'
   composer:
     build:
       context: dockerfiles
