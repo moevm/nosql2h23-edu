@@ -10,6 +10,20 @@ class CoursesFilterDTO
 
     private ?string $authorName = null;
 
+    private array $coursesIds = [];
+
+    public function getCoursesIds(): array
+    {
+        return $this->coursesIds;
+    }
+
+    public function setCoursesIds(array $coursesIds): self
+    {
+        $this->coursesIds = $coursesIds;
+
+        return $this;
+    }
+
     public function setTitle(?string $title): self
     {
         $this->title = $title;

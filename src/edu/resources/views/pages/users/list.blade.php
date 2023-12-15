@@ -35,7 +35,7 @@
     </form>
 
     <a href="{{ route("users.export") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="GET" action="{{ route("users.list") }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route("users.import") }}" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <button type="submit">Загрузить в json формате</button>

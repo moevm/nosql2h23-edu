@@ -3,32 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Список курсов</title>
+    <title>Список назначений</title>
 </head>
 <body>
-<h1>Список курсов</h1>
+<h1>Список назначений</h1>
 <div class="container-top">
     <h2>
-        Показать по:
-        <a href="{{ route('courses.list', ['per-page' => 5]) }}">5</a>
-        <a href="{{ route('courses.list', ['per-page' => 10]) }}">10</a>
-        <a href="{{ route('courses.list', ['per-page' => 15]) }}">15</a>
-    </h2>
-    <h2>
-        <a href="{{ route('courses.list') }}">Сбросить фильтры</a>
-    </h2>
-    <h2>
-        <a href="{{ route('courses.view-create-form')}}">Добавить курс</a>
+        Назначения на курс: {{ $course->title }}
     </h2>
 
-    <form method="GET" action="{{ route('courses.list') }}">
-        <input name="filters[title]" class="input-name" type="text" placeholder="Введите название курса">
-        <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
-        <button type="submit" class="btn-search">Поиск</button>
-    </form>
-
-    <a href="{{ route("courses.export") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("courses.import") }}" enctype="multipart/form-data">
+    <form method="GET" action="{{ route("courses.list") }}" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <button type="submit">Загрузить в json формате</button>
@@ -37,39 +21,60 @@
 </div>
 
 <div class="container-bot">
+    <h2>Список пользователей, уже назначенных на курс:</h2>
     <table class="table-users">
         <thead>
         <th class="td-id">ID</th>
-        <th class="td-title">Название</th>
-        <th class="td-description">Описание</th>
-        <th class="td-author">Автор</th>
-        <th class="td-date">Дата создания</th>
+        <th class="td-title">ФИО</th>
+        <th class="td-date">Дата назначения</th>
         <th class="td-actions">Действия</th>
         </thead>
         <tbody>
-        @forelse($filteredCoursesPage->items() as $course)
+        @forelse($assignedUsers as $assignedUser)
             <tr>
-                <td class="td-id">{{ $course->getKey() }}</td>
-                <td class="td-title">{{$course->title}}</td>
-                <td class="td-description">{{ $course->description }}</td>
-                <td class="td-author">{{sprintf("%s %s %s", $course->user->name , $course->user->surname , $course->user->patronymic) }}</td>
-                <td class="td-date">{{ $course->created_at }}</td>
+                <td class="td-id">{{ $assignedUser->getKey() }}</td>
+                <td class="td-author">{{sprintf("%s %s %s", $assignedUser->name, $assignedUser->surname, $assignedUser->patronymic) }}</td>
+                <td class="td-date">{{ $assignedUser->created_at }}</td>
                 <td class="td-actions">
                     <a
-                        href="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">Редактировать
-                    </a>
-                    <a
-                        href="{{ route('courses.course.delete', ['courseId' => $course->getKey()]) }}">Удалить
+                        href="{{ route('courses.course.assignments.delete', ['courseId' => $course->getKey(), 'user_id' => $assignedUser->getKey()]) }}">Удалить
                     </a>
                 </td>
             </tr>
         @empty
-            Курсы отсутствуют
+            Назначения на курс отсутствуют
+        @endforelse
+        </tbody>
+    </table>
+    <br>
+    <h2>Список пользователей, которых можно назначить на курс:</h2>
+    <table class="table-users">
+        <thead>
+        <th class="td-id">ID</th>
+        <th class="td-title">ФИО</th>
+        <th class="td-actions">Действия</th>
+        </thead>
+        <tbody>
+        @forelse($notAssignedUsers as $notAssignedUser)
+            <tr>
+                <td class="td-id">{{ $notAssignedUser->getKey() }}</td>
+                <td class="td-author">{{sprintf("%s %s %s", $notAssignedUser->name, $notAssignedUser->surname, $notAssignedUser->patronymic) }}</td>
+                <td class="td-actions">
+                    <a
+                        href="{{ route('courses.course.assignments.create', ['courseId' => $course->getKey(), 'user_id' => $notAssignedUser->getKey()]) }}">Назначить
+                    </a>
+                </td>
+            </tr>
+        @empty
+            Нет не назначенных на курс пользователей
         @endforelse
         </tbody>
     </table>
     <p class="p-after-table">
-        {{ $filteredCoursesPage->withQueryString()->links('pagination::bootstrap-5') }}
+        <a
+            href="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">
+            Назад к курсу
+        </a>
     </p>
 </div>
 </body>

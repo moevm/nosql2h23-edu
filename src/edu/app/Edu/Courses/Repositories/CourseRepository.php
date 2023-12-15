@@ -18,7 +18,7 @@ class CourseRepository
     ): LengthAwarePaginator {
         return $this
             ->applyFilters(
-                usersQueryBuilder: $this->getCoursesQueryBuilder(),
+                coursesQueryBuilder: $this->getCoursesQueryBuilder(),
                 coursesFilterDTO: $coursesFilterDTO
             )
             ->paginate(
@@ -32,9 +32,14 @@ class CourseRepository
         return Course::query();
     }
 
-    public function findOneById(string $courseId): ?Course
+    public function findOneById(string $courseId, $withElements = false): ?Course
     {
-        $course = $this->getCoursesQueryBuilder()->find($courseId);
+        $builder = $this->getCoursesQueryBuilder();
+        if ($withElements) {
+            $builder->with(['elements']);
+        }
+
+        $course = $builder->find($courseId);
         if (!$course instanceof Course) {
             return null;
         }
@@ -51,14 +56,26 @@ class CourseRepository
     }
 
     private function applyFilters(
-        Builder $usersQueryBuilder,
+        Builder $coursesQueryBuilder,
         CoursesFilterDTO $coursesFilterDTO
     ): Builder {
         $title = $coursesFilterDTO->getTitle();
         if ($title) {
-            $usersQueryBuilder->where('title', '=', $title);
+            $coursesQueryBuilder->where('title', '=', $title);
         }
 
-        return $usersQueryBuilder;
+        $courseIds = $coursesFilterDTO->getCoursesIds();
+        if (!empty($courseIds)) {
+            $coursesQueryBuilder->whereIn('_id', $courseIds);
+        }
+
+        $authorName = $coursesFilterDTO->getAuthorName();
+        if ($authorName) {
+            $coursesQueryBuilder->whereHas('user', function ($query) use ($authorName) {
+                $query->where('surname', '=', $authorName);
+            });
+        }
+
+        return $coursesQueryBuilder;
     }
 }

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Edu\Courses\Services;
 
+use App\Edu\Courses\DTO\CoursesFilterDTO;
 use App\Edu\Courses\DTO\StatisticsPageDTO;
 use App\Edu\Courses\Models\Course;
+use App\Edu\Courses\Repositories\CourseRepository;
 use App\Edu\UserElementStatistic\DTO\StatisticsFilterDTO;
 use App\Edu\UserElementStatistic\Repositories\UserElementStatisticRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -14,6 +16,7 @@ use Illuminate\Support\Collection;
 class CoursesPageStatisticsPreparingService
 {
     public function __construct(
+        private readonly CourseRepository $courseRepository,
         private readonly UserElementStatisticRepository $userElementStatisticRepository
     ) {
     }
@@ -23,10 +26,7 @@ class CoursesPageStatisticsPreparingService
         int $perPage,
         StatisticsFilterDTO $filtersDTO
     ): LengthAwarePaginator {
-        $courses = Course::query()
-            ->skip($page * $perPage)
-            ->take($perPage)
-            ->get();
+        $courses = $this->courseRepository->getFilteredCoursesPage($page, $perPage, new CoursesFilterDTO());
 
         $statsPageDTOs = new Collection();
 
@@ -48,7 +48,7 @@ class CoursesPageStatisticsPreparingService
                     userId: $assignment->user_id
                 );
 
-                if ($statsCount === count($courseElementIds)) {
+                if ($statsCount >= count($courseElementIds)) {
                     $passedCount += 1;
                 }
             }

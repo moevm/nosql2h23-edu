@@ -1,17 +1,21 @@
 <?php
 
 use App\Edu\Assignments\Http\Actions\CreateAssignmentAction;
+use App\Edu\Assignments\Http\Actions\DeleteAssignmentAction;
 use App\Edu\Assignments\Http\Actions\ImportAssignmentsAction;
+use App\Edu\Assignments\Http\Actions\ViewAssignmentsListAction;
 use App\Edu\Courses\Http\Actions\CreateCourseAction;
 use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\EditCourseAction;
 use App\Edu\Courses\Http\Actions\ExportCoursesAction;
 use App\Edu\Courses\Http\Actions\ExportCourseStatisticsAction;
 use App\Edu\Courses\Http\Actions\ImportCoursesAction;
+use App\Edu\Courses\Http\Actions\PlayCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseAction;
 use App\Edu\Courses\Http\Actions\ViewCourseCreateFormAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesListAction;
 use App\Edu\Courses\Http\Actions\ViewCoursesStatisticsListAction;
+use App\Edu\Courses\Http\Actions\ViewUserAssignedCoursesAction;
 use App\Edu\Elements\Http\Actions\CreateElementAction;
 use App\Edu\Elements\Http\Actions\DeleteElementAction;
 use App\Edu\Elements\Http\Actions\EditElementAction;
@@ -30,10 +34,12 @@ use App\Edu\Users\Http\Actions\ViewUserCreateFormAction;
 use App\Edu\Users\Http\Actions\ViewUsersListAction;
 use App\Edu\Users\Http\Actions\LoginUserAction;
 use App\Edu\Users\Http\Actions\RegistrationUserAction;
+use App\Http\Actions\LogoutAction;
 use App\Http\Actions\ViewLoginFormAction;
 use App\Http\Actions\ViewMainPageAction;
 use App\Http\Actions\ViewRegistrationFormAction;
 use App\Http\Enums\RouteRegularExpressions;
+use App\Http\Middleware\UserAuthMiddleware;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +62,9 @@ Route::group(['prefix' => 'registration', 'as' => 'registration.'], function () 
     Route::post('', RegistrationUserAction::class)->name('user');
 });
 
-Route::middleware([])->group(function () {
-    Route::get('/', ViewMainPageAction::class);
+Route::middleware([UserAuthMiddleware::class])->group(function () {
+    Route::get('/', ViewMainPageAction::class)->name('main');
+    Route::get('logout', LogoutAction::class)->name('logout');
 
     Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('', ViewUsersListAction::class)->name('list');
@@ -75,6 +82,7 @@ Route::middleware([])->group(function () {
 
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function () {
         Route::get('', ViewCoursesListAction::class)->name('list');
+        Route::get('/assigned', ViewUserAssignedCoursesAction::class)->name('assigned-courses');
         Route::post('', CreateCourseAction::class)->name('create');
         Route::get('/create', ViewCourseCreateFormAction::class)->name('view-create-form');
         Route::get('/export', ExportCoursesAction::class)->name('export');
@@ -84,6 +92,7 @@ Route::middleware([])->group(function () {
 
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
+            Route::get('/play', PlayCourseAction::class)->name('play');
             Route::get('/delete', DeleteCourseAction::class)->name('delete');
             Route::post('/edit', EditCourseAction::class)->name('edit');
 
@@ -100,7 +109,9 @@ Route::middleware([])->group(function () {
             });
 
             Route::group(['prefix' => 'assignments', 'as' => 'assignments.'], function () {
+                Route::get('', ViewAssignmentsListAction::class)->name('list');
                 Route::get('/create', CreateAssignmentAction::class)->name('create');
+                Route::get('/delete', DeleteAssignmentAction::class)->name('delete');
                 Route::post('/import', ImportAssignmentsAction::class)->name('import');
             });
 

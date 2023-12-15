@@ -14,7 +14,7 @@ class ViewCoursesStatisticsListAction
 {
     private const DEFAULT_PAGE = 1;
 
-    private const DEFAULT_PER_PAGE = 25;
+    private const DEFAULT_PER_PAGE = 5;
 
     private const DEFAULT_FILTERS = [];
 
@@ -26,15 +26,18 @@ class ViewCoursesStatisticsListAction
         $perPage = (int) $viewCoursesStatisticsListRequest->get('per-page', self::DEFAULT_PER_PAGE);
         $filters = $viewCoursesStatisticsListRequest->get('filters', self::DEFAULT_FILTERS);
 
+
         $filtersDTO = (new StatisticsFilterDTO())
-            ->setPassedCount((int) $filters['passed_count'] ?? null)
-            ->setAssignmentsCount((int) $filters['assignments_count'] ?? null);
+            ->setPassedCount(isset($filters['passed_count']) ? (int)$filters['passed_count'] : null)
+            ->setAssignmentsCount(isset($filters['assignments_count']) ? (int)$filters['assignments_count'] : null);
 
         $coursesStatisticsPage = $coursesPageStatisticsPreparingService->prepareCoursesPage(
             page: $page,
             perPage: $perPage,
             filtersDTO: $filtersDTO
         );
+
+        dd($coursesStatisticsPage);
 
         return View::make('courses.list', [
             'coursesStatisticsPage' => $coursesStatisticsPage,

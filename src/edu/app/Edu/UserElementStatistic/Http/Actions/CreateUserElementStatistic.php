@@ -16,10 +16,12 @@ class CreateUserElementStatistic
     ): RedirectResponse {
         $userId = $request->input('user_id', '');
         $elementId = $request->input('element_id', '');
+        $points = $request->input('points', 100);
 
         UserElementStatisticFactory::create([
             'element_id' => $elementId,
             'user_id' => $userId,
+            'points' => $points,
         ]);
 
         return back();

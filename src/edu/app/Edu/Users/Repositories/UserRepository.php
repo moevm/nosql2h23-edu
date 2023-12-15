@@ -8,6 +8,8 @@ use App\Edu\Users\DTO\UsersFilterDTO;
 use App\Edu\Users\Models\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use MongoDB\Laravel\Relations\BelongsTo;
 
 class UserRepository
 {
@@ -35,6 +37,14 @@ class UserRepository
         }
 
         return $user;
+    }
+
+    public function findByIds(array $userIds, bool $not = false): Collection
+    {
+        return $this
+            ->getUsersQueryBuilder()
+            ->whereIn('_id', $userIds, not: $not)
+            ->get();
     }
 
     public function isUserWithProvidedEmailExists(string $email): bool
@@ -76,7 +86,9 @@ class UserRepository
 
         $roleTitle = $usersFilterDTO->getRoleTitle();
         if ($roleTitle) {
-            $usersQueryBuilder->where('role.title', '=', $roleTitle);
+            $usersQueryBuilder->whereHas('role', function ($query) use ($roleTitle) {
+                $query->where('title', '=', $roleTitle);
+            });
         }
 
         return $usersQueryBuilder;
