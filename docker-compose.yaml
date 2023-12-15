@@ -22,6 +22,9 @@ services:
       dockerfile: composer.Dockerfile
     volumes:
       - ./src/edu:/var/www/edu
+    depends_on:
+      - php
+      - mongodb
   artisan:
     build:
       context: dockerfiles
@@ -29,3 +32,6 @@ services:
     volumes:
       - ./src/edu:/var/www/edu
     command: php artisan migrate
+    depends_on:
+      - php
+      - mongodb
