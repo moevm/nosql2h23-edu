@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 class ImportUserElementStatisticsAction
 {
     public function __invoke(
-        string $courseId,
         Request $request,
         UserRepository $userRepository,
         ElementRepository $elementRepository
@@ -30,7 +29,7 @@ class ImportUserElementStatisticsAction
 
         foreach ($statisticsAttributes as $stat) {
             $user = $userRepository->findOneById($stat['user_id']);
-            $element = $elementRepository->findOneByCourseId($courseId, $stat['element_id']);
+            $element = $elementRepository->findById($stat['element_id']);
 
             if ($element && $user) {
                 UserElementStatisticFactory::create([

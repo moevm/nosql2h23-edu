@@ -23,7 +23,7 @@
         Назначения на курс: {{ $course->title }}
     </h2>
 
-    <form method="GET" action="{{ route("courses.list") }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route("courses.course.assignments.import", ['courseId' => $course->getKey()]) }}" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <button type="submit">Загрузить в json формате</button>

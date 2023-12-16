@@ -31,7 +31,7 @@
     </form>
 
     <a href="{{ route("courses.export-statistics") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("courses.import") }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route("courses.import-statistics") }}" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
         <button type="submit">Загрузить в json формате</button>
@@ -48,7 +48,6 @@
         </thead>
         <tbody>
         @forelse($coursesStatisticsPage->items() as $item)
-{{--            {{dd($course)}}--}}
             <tr>
                 <td class="td-title">{{$item->getCourse()->title}}</td>
                 <td class="td-description">{{ $item->getAssignmentsCount() }}</td>

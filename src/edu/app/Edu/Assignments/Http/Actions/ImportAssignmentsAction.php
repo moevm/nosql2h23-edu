@@ -27,7 +27,6 @@ class ImportAssignmentsAction
         $assignmentsAttributes = array_shift($decodedJson);
 
         foreach ($assignmentsAttributes as $assignment) {
-            $element =
             $user = $userRepository->findOneById($assignment['user_id']);
 
             if ($courseId && $user) {

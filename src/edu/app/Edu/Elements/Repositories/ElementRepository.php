@@ -35,4 +35,17 @@ class ElementRepository
             ->where('_id', '=', $elementId)
             ->delete();
     }
+
+    public function findById(string $elementId): ?Element
+    {
+        $element = $this->getElementsQueryBuilder()
+            ->where('_id', '=', $elementId)
+            ->first();
+
+        if (!$element instanceof Element) {
+            return null;
+        }
+
+        return $element;
+    }
 }

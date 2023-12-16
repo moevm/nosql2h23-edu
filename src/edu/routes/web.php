@@ -89,6 +89,8 @@ Route::middleware([UserAuthMiddleware::class])->group(function () {
         Route::get('/statistics', ViewCoursesStatisticsListAction::class)->name('statistics'); //Страница статистики
         Route::get('/export-statistics', ExportCourseStatisticsAction::class)->name('export-statistics');
         Route::post('/import', ImportCoursesAction::class)->name('import');
+        Route::post('/import-statistics', ImportUserElementStatisticsAction::class)->name('import-statistics');
+
 
         Route::group(['prefix' => '{courseId}', 'as' => 'course.'], function () {
             Route::get('', ViewCourseAction::class)->name('view');
@@ -117,7 +119,6 @@ Route::middleware([UserAuthMiddleware::class])->group(function () {
 
             Route::group(['prefix' => 'statistic', 'as' => 'statistic.'], function () {
                 Route::get('/create', CreateUserElementStatistic::class)->name('create');
-                Route::post('/import', ImportUserElementStatisticsAction::class)->name('import');
             });
         })->where(['courseId' => RouteRegularExpressions::MONGO_DB_IDENTIFIER->value]);
     });
