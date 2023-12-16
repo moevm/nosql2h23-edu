@@ -1,9 +1,10 @@
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Список курсов</title>
+    <title>Статистика по курсам</title>
 </head>
 <body>
 <ul id="navbar">
@@ -13,28 +14,19 @@
     <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
     <li><a href="{{ route('logout')}}">Выход</a></li>
 </ul>
-<h1>Список курсов</h1>
+<h1>Статистика по курсам</h1>
 <div class="container-top">
     <h2>
-        Показать по:
-        <a href="{{ route('courses.list', ['per-page' => 5]) }}">5</a>
-        <a href="{{ route('courses.list', ['per-page' => 10]) }}">10</a>
-        <a href="{{ route('courses.list', ['per-page' => 15]) }}">15</a>
-    </h2>
-    <h2>
-        <a href="{{ route('courses.list') }}">Сбросить фильтры</a>
-    </h2>
-    <h2>
-        <a href="{{ route('courses.view-create-form')}}">Добавить курс</a>
+        <a href="{{ route('courses.statistics') }}">Сбросить фильтры</a>
     </h2>
 
-    <form method="GET" action="{{ route('courses.list') }}">
-        <input name="filters[title]" class="input-name" type="text" placeholder="Введите название курса">
-        <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
+    <form method="GET" action="{{ route('courses.statistics') }}">
+        <input name="filters[assignments_count]" class="input-name" type="text" placeholder="Количество обучающихся более">
+        <input name="filters[passed_count]" class="input-surname" type="text" placeholder="Количество прошедших курс более">
         <button type="submit" class="btn-search">Поиск</button>
     </form>
 
-    <a href="{{ route("courses.export") }}" class="a-download-json">Выгрузить в json формате</a>
+    <a href="{{ route("courses.export-statistics") }}" class="a-download-json">Выгрузить в json формате</a>
     <form method="POST" action="{{ route("courses.import") }}" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file">
@@ -46,29 +38,17 @@
 <div class="container-bot">
     <table class="table-users">
         <thead>
-        <th class="td-id">ID</th>
         <th class="td-title">Название</th>
-        <th class="td-description">Описание</th>
-        <th class="td-author">Автор</th>
-        <th class="td-date">Дата создания</th>
-        <th class="td-actions">Действия</th>
+        <th class="td-assignments">Количество обучающихся</th>
+        <th class="td-passed">Количество прошедших курс</th>
         </thead>
         <tbody>
-        @forelse($filteredCoursesPage->items() as $course)
+        @forelse($coursesStatisticsPage->items() as $item)
+{{--            {{dd($course)}}--}}
             <tr>
-                <td class="td-id">{{ $course->getKey() }}</td>
-                <td class="td-title">{{$course->title}}</td>
-                <td class="td-description">{{ $course->description }}</td>
-                <td class="td-author">{{sprintf("%s %s %s", $course->user->name , $course->user->surname , $course->user->patronymic) }}</td>
-                <td class="td-date">{{ $course->created_at }}</td>
-                <td class="td-actions">
-                    <a
-                        href="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">Редактировать
-                    </a>
-                    <a
-                        href="{{ route('courses.course.delete', ['courseId' => $course->getKey()]) }}">Удалить
-                    </a>
-                </td>
+                <td class="td-title">{{$item->getCourse()->title}}</td>
+                <td class="td-description">{{ $item->getAssignmentsCount() }}</td>
+                <td class="td-author">{{$item->getPassedCount()}}</td>
             </tr>
         @empty
             Курсы отсутствуют
@@ -76,8 +56,9 @@
         </tbody>
     </table>
     <p class="p-after-table">
-        {{ $filteredCoursesPage->withQueryString()->links('pagination::bootstrap-5') }}
+        {{ $coursesStatisticsPage->withQueryString()->links('pagination::bootstrap-5') }}
     </p>
+    <a class="tu-ul" href="{{ route('courses.list') }}">К списку курсов</a>
 </div>
 </body>
 </html>
@@ -92,6 +73,12 @@
     a {
         font-size: 24px;
         color: #2E6243;
+    }
+    a.tu-ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #2E6243;
+        margin-left: 1200px;
     }
     button {
         font-size: 24px;

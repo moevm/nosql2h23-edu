@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Создание элемента</title>
+    <title>Редактирование элемента</title>
 </head>
 <body>
-<h1>Создание элемента</h1>
+<h1>Редактирование элемента</h1>
 <div class="container-center">
     @if ($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -17,19 +17,19 @@
             </ul>
         </div>
     @endif
-    <form method="POST" action="{{ route('courses.course.elements.create', ['courseId' => $courseId]) }}" class="links">
+    <form method="POST" action="{{ route('courses.course.elements.element.edit', ['courseId' => $courseId, 'elementId' => $element->getKey()]) }}" class="links">
         @csrf
         <label>
             <p> Название элемента</p>
-            <input name="title" type="text" class="title-enter" placeholder="Название" required>
+            <input name="title" type="text" class="title-enter" value="{{$element->title}}"  required>
         </label>
         <label>
             <p> Содержание элемента</p>
-            <input name="content" type="text" class="content-enter" placeholder="Содержание" required>
+            <input name="content" type="text" class="content-enter" value="{{$element->content}}" required>
         </label>
         <label>
             <p> Вес элемента</p>
-            <input name="weight" type="text" class="weight-enter" placeholder="Вес" required>
+            <input name="weight" type="text" class="weight-enter" value="{{$element->weight}}" required>
         </label>
         <label>
             <p> Текст</p>
@@ -40,7 +40,7 @@
             <input name="type" type="radio" class="type-enter" value="Cсылка" required>
         </label>
         <p> </p>
-        <button type="submit" class="btn-registration">Создать элемент</button>
+        <button type="submit" class="btn-registration">Сохранить</button>
     </form>
     <a class="tu-ul" href="{{ route('courses.list') }}">К списку курсов</a>
 </div>

@@ -1,34 +1,30 @@
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Список курсов</title>
+    <title>Мои курсы</title>
 </head>
 <body>
 <ul id="navbar">
-    <li><a href="{{ route('users.list') }}">Список пользователей</a></li>
-    <li><a href="{{ route('courses.list') }}">Список курсов</a></li>
-    <li><a href="{{ route('courses.statistics') }}">Статистика курсов</a></li>
+    <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
     <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
     <li><a href="{{ route('logout')}}">Выход</a></li>
 </ul>
-<h1>Список курсов</h1>
+<h1>Мои курсы</h1>
 <div class="container-top">
     <h2>
         Показать по:
-        <a href="{{ route('courses.list', ['per-page' => 5]) }}">5</a>
-        <a href="{{ route('courses.list', ['per-page' => 10]) }}">10</a>
-        <a href="{{ route('courses.list', ['per-page' => 15]) }}">15</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 5]) }}">5</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 10]) }}">10</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 15]) }}">15</a>
     </h2>
     <h2>
-        <a href="{{ route('courses.list') }}">Сбросить фильтры</a>
-    </h2>
-    <h2>
-        <a href="{{ route('courses.view-create-form')}}">Добавить курс</a>
+        <a href="{{ route('courses.assigned-courses') }}">Сбросить фильтры</a>
     </h2>
 
-    <form method="GET" action="{{ route('courses.list') }}">
+    <form method="GET" action="{{ route('courses.assigned-courses') }}">
         <input name="filters[title]" class="input-name" type="text" placeholder="Введите название курса">
         <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
         <button type="submit" class="btn-search">Поиск</button>
@@ -63,10 +59,7 @@
                 <td class="td-date">{{ $course->created_at }}</td>
                 <td class="td-actions">
                     <a
-                        href="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">Редактировать
-                    </a>
-                    <a
-                        href="{{ route('courses.course.delete', ['courseId' => $course->getKey()]) }}">Удалить
+                        href="{{ route('courses.course.play', ['courseId' => $course->getKey()]) }}">Просмотр курса
                     </a>
                 </td>
             </tr>

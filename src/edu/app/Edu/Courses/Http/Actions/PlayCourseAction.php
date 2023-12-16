@@ -6,6 +6,7 @@ namespace App\Edu\Courses\Http\Actions;
 
 use App\Edu\Courses\Repositories\CourseRepository;
 use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class PlayCourseAction
@@ -21,6 +22,7 @@ class PlayCourseAction
 
         return View::make('courses.play', [
             'course' => $course,
+            'user' => Auth::user()
         ]);
     }
 }
