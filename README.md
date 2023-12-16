@@ -1,5 +1,13 @@
 # nosql_template
-
+Отладочные пользователи:
+1. Админ: tolya@mail.ru , 123456
+2. Пользователь: liza@mail.ru , 123456
+<br>
+Сборка через docker-compose:
+<br>
+1. docker-compose build --no-cache
+<br>
+3. docker-compose up -d
 
 ## Предварительная проверка заданий
 
