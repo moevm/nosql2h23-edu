@@ -37,9 +37,7 @@ class ViewCoursesStatisticsListAction
             filtersDTO: $filtersDTO
         );
 
-        dd($coursesStatisticsPage);
-
-        return View::make('courses.list', [
+        return View::make('courses.statistics', [
             'coursesStatisticsPage' => $coursesStatisticsPage,
         ]);
     }

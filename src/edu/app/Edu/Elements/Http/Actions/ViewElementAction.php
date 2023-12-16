@@ -22,7 +22,8 @@ class ViewElementAction
         }
 
         return View::make('elements.view', [
-            'element' => $element,
+            'courseId' => $courseId,
+            'element' => $element
         ]);
     }
 }
