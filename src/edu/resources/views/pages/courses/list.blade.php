@@ -6,6 +6,13 @@
     <title>Список курсов</title>
 </head>
 <body>
+<ul id="navbar">
+    <li><a href="{{ route('users.list') }}">Список пользователей</a></li>
+    <li><a href="{{ route('courses.list') }}">Список курсов</a></li>
+    <li><a href="{{ route('courses.statistics') }}">Статистика курсов</a></li>
+    <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
+    <li><a href="{{ route('logout')}}">Выход</a></li>
+</ul>
 <h1>Список курсов</h1>
 <div class="container-top">
     <h2>
@@ -152,5 +159,27 @@
     p.p-first-part, p.p-second-part, p.p-third-part {
         margin-bottom: -15px;
         margin-right: 10px;
+    }
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #2E6243;
+        border-radius: 20px 5px;
+        text-align: center;
+        background-color: #2E6243;
+    }
+    #navbar li { display: inline; }
+    #navbar a {
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 300px;
+    }
+    #navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #2E6243;
     }
 </style>

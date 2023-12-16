@@ -7,19 +7,24 @@
     <title>Мои курсы</title>
 </head>
 <body>
+<ul id="navbar">
+    <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
+    <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
+    <li><a href="{{ route('logout')}}">Выход</a></li>
+</ul>
 <h1>Мои курсы</h1>
 <div class="container-top">
     <h2>
         Показать по:
-        <a href="{{ route('courses.list', ['per-page' => 5]) }}">5</a>
-        <a href="{{ route('courses.list', ['per-page' => 10]) }}">10</a>
-        <a href="{{ route('courses.list', ['per-page' => 15]) }}">15</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 5]) }}">5</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 10]) }}">10</a>
+        <a href="{{ route('courses.assigned-courses', ['per-page' => 15]) }}">15</a>
     </h2>
     <h2>
-        <a href="{{ route('courses.list') }}">Сбросить фильтры</a>
+        <a href="{{ route('courses.assigned-courses') }}">Сбросить фильтры</a>
     </h2>
 
-    <form method="GET" action="{{ route('courses.list') }}">
+    <form method="GET" action="{{ route('courses.assigned-courses') }}">
         <input name="filters[title]" class="input-name" type="text" placeholder="Введите название курса">
         <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
         <button type="submit" class="btn-search">Поиск</button>
@@ -147,5 +152,27 @@
     p.p-first-part, p.p-second-part, p.p-third-part {
         margin-bottom: -15px;
         margin-right: 10px;
+    }
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #2E6243;
+        border-radius: 20px 5px;
+        text-align: center;
+        background-color: #2E6243;
+    }
+    #navbar li { display: inline; }
+    #navbar a {
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 300px;
+    }
+    #navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #2E6243;
     }
 </style>

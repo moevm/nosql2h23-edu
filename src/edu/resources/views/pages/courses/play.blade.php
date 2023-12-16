@@ -8,18 +8,26 @@
     <title>Просмотр курса</title>
 </head>
 <body>
+<ul id="navbar">
+    <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
+    <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
+    <li><a href="{{ route('logout')}}">Выход</a></li>
+</ul>
 <h1>Просмотр курса</h1>
 <div class="container-top">
     <h2>{{$course->title}}</h2>
-    <div class="rama">
-        @forelse($course->elements as $element)
-                <h3>Элемент № </h3>
+        @forelse($course->elements as $key=>$element)
+        <div class="rama">
+                <h3>Элемент № {{$key+1}}</h3>
                 <h4>{{$element->title}}</h4>
                 <p>{{$element->content}}</p>
+                <br>
+                <a href="{{ route('courses.course.statistic.create', ['element_id'=>$element->getKey(), 'user_id'=>$user->getKey(), 'courseId'=>$course->getKey(), 'points'=>100]) }}">Отметить пройденным</a>
+        </div>
+
         @empty
             Элементы отсутствуют
         @endforelse
-    </div>
     <a class="tu-ul" href="{{ route('courses.list') }}">К списку курсов</a>
 </div>
 </body>
@@ -48,7 +56,7 @@
     div.rama {
         margin-left: 220px;
         width: 1200px;
-        height: 700px;
+        height: 300px;
         outline: 2px solid #000;
         text-align: center;
     }
@@ -84,5 +92,27 @@
         color: #2E6243;
         margin-left: 1210px;
 
+    }
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #2E6243;
+        border-radius: 20px 5px;
+        text-align: center;
+        background-color: #2E6243;
+    }
+    #navbar li { display: inline; }
+    #navbar a {
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 300px;
+    }
+    #navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #2E6243;
     }
 </style>
