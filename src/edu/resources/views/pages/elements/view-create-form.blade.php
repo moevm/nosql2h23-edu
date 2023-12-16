@@ -6,6 +6,7 @@
     <title>Создание элемента</title>
 </head>
 <body>
+<h1>Создание элемента</h1>
 <div class="container-center">
     @if ($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -16,91 +17,100 @@
             </ul>
         </div>
     @endif
-    <h1>Создание элемента</h1>
-    <form method="POST" action="{{ route('courses.course.elements.create', ['courseId' => $courseId]) }}">
+    <form method="POST" action="{{ route('courses.course.elements.create', ['courseId' => $courseId]) }}" class="links">
         @csrf
         <label>
-            <input name="title" class="element-name-enter" type="text" placeholder="Введите название элемента">
+            <p> Название элемента</p>
+            <input name="title" type="text" class="title-enter" placeholder="Название" required>
         </label>
         <label>
-            <input name="type" class="element-name-enter" type="text" placeholder="Введите тип элемента">
+            <p> Содержание элемента</p>
+            <input name="content" type="text" class="content-enter" placeholder="Содержание" required>
         </label>
         <label>
-            <input name="content" class="element-name-enter" type="text" placeholder="Введите наполнение элемента">
+            <p> Вес элемента</p>
+            <input name="weight" type="text" class="weight-enter" placeholder="Вес" required>
         </label>
         <label>
-            <input name="weight" class="element-name-enter" placeholder="Введите вес элемента" type="text">
+            <p> Текст</p>
+            <input name="type" type="radio" class="type-enter" value="Текст" required>
         </label>
-        <button type="submit">Создать элемент</button>
+        <label>
+            <p> Cсылка</p>
+            <input name="type" type="radio" class="type-enter" value="Cсылка" required>
+        </label>
+        <p> </p>
+        <button type="submit" class="btn-registration">Создать элемент</button>
     </form>
+    <a class="tu-ul" href="{{ route('courses.list') }}">К списку курсов</a>
 </div>
 </body>
 </html>
 <style>
     html {
-        background: white;
+        background: #AFFAAF;
+    }
+    a.tu-ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: #2E6243;
+        margin-left: 650px;
     }
     body {
-        margin-left: 230px;
+        margin-left: 270px;
+    }
+
+    div.container-center {
+        text-align: center;
+        width: 900px;
+        margin-top: 10px;
+        margin-left: 180px;
+        background: white;
     }
     p {
         font-size: 24px;
+        margin-left: 10px;
+        margin-bottom: 1px;
     }
     a {
         font-size: 24px;
     }
-    button {
+    input {
         font-size: 24px;
+        width: 400px;
+        height: 40px;
+        margin-left: 10px;
+    }
+    button {
         height: 50px;
+        font-size: 24px;
         padding: 0.5rem 1rem;
         border-radius: 10px;
         border-color: black;
     }
-    input {
-        font-size: 24px;
-        width: 500px;
-        height: 45px;
-        border-radius: 5px;
-    }
-    div.container-center {
-        width: 800px;
-        height: 450px;
-        text-align: left;
-        margin-top: 100px;
-        margin-left: 300px;
-        background: white;
-    }
+
+
     h1 {
-        text-align: center;
         font-size: 46px;
-        margin-left: 10px;
-        margin-top: 100px;
-        color: black;
+        margin-left: 300px;
+        margin-top: 50px;
+        color: #2E6243;
     }
-    button.btn-add-content-course {
-        color: #FFFFFF;
-        background: #2E6243;
-    }
-    button.btn-add-content-course:hover {
-        opacity: 80%;
-        color: #FFFFFF;
-        background: #2E6243;
-    }
-    button.btn-create-element {
-        color: #FFFFFF;
-        background: #2E6243;
-        float: right;
-    }
-    button.btn-create-element:hover {
-        opacity: 80%;
-        color: #FFFFFF;
-        background: #2E6243;
-        float: right;
-    }
-    select{
+
+    button.btn-registration {
         font-size: 24px;
-        width: 500px;
-        height: 90px;
-        border-radius: 5px;
+        color: #FFFFFF;
+        background: #2E6243;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
+    button.btn-registration:hover {
+        font-size: 24px;
+        opacity: 80%;
+        color: #FFFFFF;
+        background: #2E6243;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
 </style>
