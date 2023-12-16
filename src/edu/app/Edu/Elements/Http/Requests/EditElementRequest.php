@@ -14,7 +14,7 @@ class EditElementRequest extends FormRequest
         return [
             'title' => 'string',
             'content' => 'string',
-            'weight' => 'decimal:1',
+            'weight' => 'string',
             'type' => AvailableElementTypesRule::get(),
         ];
     }

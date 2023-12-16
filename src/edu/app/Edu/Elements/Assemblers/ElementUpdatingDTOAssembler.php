@@ -11,9 +11,9 @@ class ElementUpdatingDTOAssembler
     public function assemble(array $attributes): ElementUpdatingDTO
     {
         return (new ElementUpdatingDTO())
-            ->setType($attributes['title'] ?? null)
-            ->setTitle($attributes['content'] ?? null)
-            ->setContent($attributes['weight'] ?? null)
-            ->setWeight($attributes['type'] ?? null);
+            ->setType($attributes['type'] ?? null)
+            ->setTitle($attributes['title'] ?? null)
+            ->setContent($attributes['content'] ?? null)
+            ->setWeight((float)$attributes['weight'] ?? null);
     }
 }

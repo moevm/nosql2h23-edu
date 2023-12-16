@@ -31,7 +31,7 @@ class EditElementAction
         $elementUpdatingService->update($element, $elementUpdatingDTO);
 
         return redirect()->route(
-            'elements.view',
+            'courses.course.elements.element.view',
             [
                 'courseId' => $courseId,
                 'elementId' => $elementId,

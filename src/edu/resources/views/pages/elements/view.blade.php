@@ -44,11 +44,11 @@
         </label>
         <label>
             <p> Текст</p>
-            <input name="type" type="radio" {{ ($element->type==\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_TEXT->value)? "checked" : "" }} class="type-enter" value="Текст" required>
+            <input name="type" type="radio" {{ ($element->type==\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_TEXT->value)? "checked" : "" }} class="type-enter" value="{{\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_TEXT->value}}" required>
         </label>
         <label>
             <p> Cсылка</p>
-            <input name="type" type="radio" {{ ($element->type==\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_LINK->value)? "checked" : "" }} class="type-enter" value="Cсылка" required>
+            <input name="type" type="radio" {{ ($element->type==\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_LINK->value)? "checked" : "" }} class="type-enter" value="{{\App\Edu\Elements\Enums\AvailableElementTypes::TYPE_LINK->value}}" required>
         </label>
         <p> </p>
         <button type="submit" class="btn-registration">Сохранить</button>
