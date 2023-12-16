@@ -8,9 +8,15 @@
 </head>
 <body>
 <ul id="navbar">
-    <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
-    <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
-    <li><a href="{{ route('logout')}}">Выход</a></li>
+    @if ($isAdmin)
+        <li><a href="{{ route('courses.list')}}">Список курсов</a></li>
+        <li><a href="{{ route('courses.statistics')}}">Статистика по курсам</a></li>
+        <li><a href="{{ route('users.list')}}">Список пользователей</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @else
+        <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @endif
 </ul>
 <h1>Мои курсы</h1>
 <div class="container-top">
@@ -29,20 +35,11 @@
         <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
         <button type="submit" class="btn-search">Поиск</button>
     </form>
-
-    <a href="{{ route("courses.export") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("courses.import") }}" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Загрузить в json формате</button>
-    </form>
-
 </div>
 
 <div class="container-bot">
     <table class="table-users">
         <thead>
-        <th class="td-id">ID</th>
         <th class="td-title">Название</th>
         <th class="td-description">Описание</th>
         <th class="td-author">Автор</th>
@@ -52,7 +49,6 @@
         <tbody>
         @forelse($filteredCoursesPage->items() as $course)
             <tr>
-                <td class="td-id">{{ $course->getKey() }}</td>
                 <td class="td-title">{{$course->title}}</td>
                 <td class="td-description">{{ $course->description }}</td>
                 <td class="td-author">{{sprintf("%s %s %s", $course->user->name , $course->user->surname , $course->user->patronymic) }}</td>

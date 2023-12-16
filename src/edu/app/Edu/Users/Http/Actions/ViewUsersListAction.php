@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Edu\Users\Http\Actions;
 
+use App\Edu\Roles\Specifications\IsUserHasAdminAccess;
 use App\Edu\Users\Assemblers\UsersFilterDTOAssembler;
 use App\Edu\Users\Http\Requests\ViewUsersListRequest;
 use App\Edu\Users\Repositories\UserRepository;
 use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ViewUsersListAction
@@ -21,7 +23,8 @@ class ViewUsersListAction
     public function __invoke(
         ViewUsersListRequest $viewUsersListRequest,
         UserRepository $userRepository,
-        UsersFilterDTOAssembler $usersFilterDTOAssembler
+        UsersFilterDTOAssembler $usersFilterDTOAssembler,
+        IsUserHasAdminAccess $isUserHasAdminAccess
     ): ViewResponse {
         $filteredUsersPage = $userRepository->getFilteredUsersPage(
             page: (int) $viewUsersListRequest->get('page', self::DEFAULT_PAGE),
@@ -33,6 +36,7 @@ class ViewUsersListAction
 
         return View::make('users.list', [
             'filteredUsersPage' => $filteredUsersPage,
+            'isAdmin' => $isUserHasAdminAccess->isSatisfiedBy(Auth::user()),
         ]);
     }
 }

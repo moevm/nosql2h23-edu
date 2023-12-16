@@ -8,7 +8,9 @@ use App\Edu\Courses\Http\Requests\ViewCourseRequest;
 use App\Edu\Courses\Models\Course;
 use App\Edu\Courses\Repositories\CourseRepository;
 use App\Edu\Courses\Services\CourseViewPreparingService;
+use App\Edu\Roles\Specifications\IsUserHasAdminAccess;
 use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ViewCourseAction
@@ -23,7 +25,8 @@ class ViewCourseAction
         string $courseId,
         ViewCourseRequest $viewCourseRequest,
         CourseRepository $courseRepository,
-        CourseViewPreparingService $courseViewPreparingService
+        CourseViewPreparingService $courseViewPreparingService,
+        IsUserHasAdminAccess $isUserHasAdminAccess
     ): ViewResponse {
         $course = $courseRepository->findOneById($courseId);
         if (!$course instanceof Course) {
@@ -43,6 +46,7 @@ class ViewCourseAction
 
         return View::make('courses.view', [
             'course' => $course,
+            'isAdmin' => $isUserHasAdminAccess->isSatisfiedBy(Auth::user()),
         ]);
     }
 }

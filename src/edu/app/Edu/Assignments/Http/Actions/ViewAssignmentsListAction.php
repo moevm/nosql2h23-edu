@@ -6,8 +6,10 @@ namespace App\Edu\Assignments\Http\Actions;
 
 use App\Edu\Assignments\Models\Assignment;
 use App\Edu\Courses\Repositories\CourseRepository;
+use App\Edu\Roles\Specifications\IsUserHasAdminAccess;
 use App\Edu\Users\Repositories\UserRepository;
 use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ViewAssignmentsListAction
@@ -16,6 +18,7 @@ class ViewAssignmentsListAction
         string $courseId,
         CourseRepository $courseRepository,
         UserRepository $userRepository,
+        IsUserHasAdminAccess $isUserHasAdminAccess
     ): ViewResponse {
         $course = $courseRepository->findOneById($courseId);
         if (!$course) {
@@ -34,6 +37,7 @@ class ViewAssignmentsListAction
             'course' => $course,
             'assignedUsers' => $assignedUsers,
             'notAssignedUsers' => $notAssignedUsers,
+            'isAdmin' => $isUserHasAdminAccess->isSatisfiedBy(Auth::user()),
         ]);
     }
 }

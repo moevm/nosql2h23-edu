@@ -6,8 +6,10 @@ namespace App\Edu\Courses\Http\Actions;
 
 use App\Edu\Courses\Http\Requests\ViewCoursesStatisticsListRequest;
 use App\Edu\Courses\Services\CoursesPageStatisticsPreparingService;
+use App\Edu\Roles\Specifications\IsUserHasAdminAccess;
 use App\Edu\UserElementStatistic\DTO\StatisticsFilterDTO;
 use Illuminate\Contracts\View\View as ViewResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class ViewCoursesStatisticsListAction
@@ -20,7 +22,8 @@ class ViewCoursesStatisticsListAction
 
     public function __invoke(
         ViewCoursesStatisticsListRequest $viewCoursesStatisticsListRequest,
-        CoursesPageStatisticsPreparingService $coursesPageStatisticsPreparingService
+        CoursesPageStatisticsPreparingService $coursesPageStatisticsPreparingService,
+        IsUserHasAdminAccess $isUserHasAdminAccess
     ): ViewResponse {
         $page = (int) $viewCoursesStatisticsListRequest->get('page', self::DEFAULT_PAGE);
         $perPage = (int) $viewCoursesStatisticsListRequest->get('per-page', self::DEFAULT_PER_PAGE);
@@ -39,6 +42,7 @@ class ViewCoursesStatisticsListAction
 
         return View::make('courses.statistics', [
             'coursesStatisticsPage' => $coursesStatisticsPage,
+            'isAdmin' => $isUserHasAdminAccess->isSatisfiedBy(Auth::user()),
         ]);
     }
 }

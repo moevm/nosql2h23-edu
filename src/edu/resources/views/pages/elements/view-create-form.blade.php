@@ -6,6 +6,17 @@
     <title>Создание элемента</title>
 </head>
 <body>
+<ul id="navbar">
+    @if ($isAdmin)
+        <li><a href="{{ route('courses.list')}}">Список курсов</a></li>
+        <li><a href="{{ route('courses.statistics')}}">Статистика по курсам</a></li>
+        <li><a href="{{ route('users.list')}}">Список пользователей</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @else
+        <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @endif
+</ul>
 <h1>Создание элемента</h1>
 <div class="container-center">
     @if ($errors->any())
@@ -42,7 +53,7 @@
         <p> </p>
         <button type="submit" class="btn-registration">Создать элемент</button>
     </form>
-    <a class="tu-ul" href="{{ route('courses.list') }}">К списку курсов</a>
+        <a class="tu-ul" href="{{ route('courses.course.view', ['courseId' => $courseId]) }}">Обратно к курсу</a>
 </div>
 </body>
 </html>
@@ -112,5 +123,26 @@
         margin-top: 5px;
         margin-bottom: 5px;
     }
-
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 2px solid #2E6243;
+        border-radius: 20px 5px;
+        text-align: center;
+        background-color: #2E6243;
+    }
+    #navbar li { display: inline; }
+    #navbar a {
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        display: inline-block;
+        width: 300px;
+    }
+    #navbar a:hover {
+        border-radius: 20px 5px;
+        background-color: #2E6243;
+    }
 </style>

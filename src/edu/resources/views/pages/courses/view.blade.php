@@ -7,11 +7,15 @@
 </head>
 <body>
 <ul id="navbar">
-    <li><a href="{{ route('users.list') }}">Список пользователей</a></li>
-    <li><a href="{{ route('courses.list') }}">Список курсов</a></li>
-    <li><a href="{{ route('courses.statistics') }}">Статистика курсов</a></li>
-    <li><a href="{{ route('courses.assigned-courses')}}">Мой профиль</a></li>
-    <li><a href="{{ route('logout')}}">Выход</a></li>
+    @if ($isAdmin)
+        <li><a href="{{ route('courses.list')}}">Список курсов</a></li>
+        <li><a href="{{ route('courses.statistics')}}">Статистика по курсам</a></li>
+        <li><a href="{{ route('users.list')}}">Список пользователей</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @else
+        <li><a href="{{ route('courses.assigned-courses')}}">Мои курсы</a></li>
+        <li><a href="{{ route('logout')}}">Выход</a></li>
+    @endif
 </ul>
 <h1>Редактирование курса</h1>
 <div class="container-top">

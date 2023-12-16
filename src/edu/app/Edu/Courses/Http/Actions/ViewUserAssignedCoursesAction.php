@@ -8,6 +8,7 @@ use App\Edu\Assignments\Models\Assignment;
 use App\Edu\Courses\Assemblers\CoursesFilterDTOAssembler;
 use App\Edu\Courses\Http\Requests\ViewCoursesListRequest;
 use App\Edu\Courses\Repositories\CourseRepository;
+use App\Edu\Roles\Specifications\IsUserHasAdminAccess;
 use App\Edu\Users\Models\User;
 use Illuminate\Contracts\View\View as ViewResponse;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class ViewUserAssignedCoursesAction
         ViewCoursesListRequest $viewCoursesListRequest,
         CourseRepository $courseRepository,
         CoursesFilterDTOAssembler $coursesFilterDTOAssembler,
+        IsUserHasAdminAccess $isUserHasAdminAccess
     ): ViewResponse {
         /** @var User $currentUser */
         $currentUser = Auth::user();
@@ -48,6 +50,7 @@ class ViewUserAssignedCoursesAction
 
         return View::make('courses.user-courses', [
             'filteredCoursesPage' => $filteredCoursesPage,
+            'isAdmin' => $isUserHasAdminAccess->isSatisfiedBy(Auth::user()),
         ]);
     }
 }
