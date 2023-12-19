@@ -61,7 +61,12 @@ class CourseRepository
     ): Builder {
         $title = $coursesFilterDTO->getTitle();
         if ($title) {
-            $coursesQueryBuilder->where('title', '=', $title);
+            $coursesQueryBuilder->where('title', 'like', '%'.$title.'%');
+        }
+
+        $description = $coursesFilterDTO->getDescription();
+        if ($description) {
+            $coursesQueryBuilder->where('description', 'like', '%'.$description.'%');
         }
 
         $courseIds = $coursesFilterDTO->getCoursesIds();
@@ -69,10 +74,25 @@ class CourseRepository
             $coursesQueryBuilder->whereIn('_id', $courseIds);
         }
 
+        $courseId = $coursesFilterDTO->getCourseId();
+        if ($courseId) {
+            $coursesQueryBuilder->where('_id', '=', $courseId);
+        }
+
+        $createdFrom = $coursesFilterDTO->getCreatedFrom();
+        if ($createdFrom) {
+            $coursesQueryBuilder->where('created_at', '>=', $createdFrom);
+        }
+
+        $createdTo = $coursesFilterDTO->getCreatedTo();
+        if ($createdTo) {
+            $coursesQueryBuilder->where('created_at', '<=', $createdTo);
+        }
+
         $authorName = $coursesFilterDTO->getAuthorName();
         if ($authorName) {
             $coursesQueryBuilder->whereHas('user', function ($query) use ($authorName) {
-                $query->where('surname', '=', $authorName);
+                $query->where('surname', 'like', '%'.$authorName.'%');
             });
         }
 

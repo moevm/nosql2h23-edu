@@ -33,16 +33,19 @@
     </h2>
 
     <form method="GET" action="{{ route('courses.list') }}">
+        <input name="filters[course_id]" class="input-surname" type="text" placeholder="Введите идентификатор">
         <input name="filters[title]" class="input-name" type="text" placeholder="Введите название курса">
+        <input name="filters[description]" class="input-surname" type="text" placeholder="Введите описание">
         <input name="filters[author_name]" class="input-surname" type="text" placeholder="Введите фамилию автора">
+        <label>
+            <p class="label-role"> Создан от</p>
+            <input name="filters[created_from]" class="input-surname" type="date">
+        </label>
+        <label>
+            <p class="label-role"> Создан до</p>
+            <input name="filters[created_to]" class="input-surname" type="date">
+        </label>
         <button type="submit" class="btn-search">Поиск</button>
-    </form>
-
-    <a href="{{ route("courses.export") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("courses.import") }}" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Загрузить в json формате</button>
     </form>
 
 </div>
@@ -140,7 +143,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 380px;
+        height: 700px;
     }
     div.container-bot {
         background: white;
