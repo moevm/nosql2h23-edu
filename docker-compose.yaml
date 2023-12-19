@@ -18,6 +18,8 @@ services:
       - nginx
   mongodb:
     image: mongo:6-jammy
+    volumes:
+      - ./mongo_data:/data/db
     depends_on:
       - nginx
   composer:
