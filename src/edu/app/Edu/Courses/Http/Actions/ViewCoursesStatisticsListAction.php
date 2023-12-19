@@ -32,7 +32,8 @@ class ViewCoursesStatisticsListAction
 
         $filtersDTO = (new StatisticsFilterDTO())
             ->setPassedCount(isset($filters['passed_count']) ? (int)$filters['passed_count'] : null)
-            ->setAssignmentsCount(isset($filters['assignments_count']) ? (int)$filters['assignments_count'] : null);
+            ->setAssignmentsCount(isset($filters['assignments_count']) ? (int)$filters['assignments_count'] : null)
+            ->setCourseTitle($filters['course_title'] ?? null);
 
         $coursesStatisticsPage = $coursesPageStatisticsPreparingService->prepareCoursesPage(
             page: $page,

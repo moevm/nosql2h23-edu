@@ -10,6 +10,26 @@ class StatisticsFilterDTO
 
     private ?int $passedCount = null;
 
+    private ?string $courseTitle = null;
+
+    /**
+     * @param string|null $courseTitle
+     */
+    public function setCourseTitle(?string $courseTitle): self
+    {
+        $this->courseTitle = $courseTitle;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCourseTitle(): ?string
+    {
+        return $this->courseTitle;
+    }
+
     public function getAssignmentsCount(): ?int
     {
         return $this->assignmentsCount;

@@ -26,7 +26,10 @@ class CoursesPageStatisticsPreparingService
         int $perPage,
         StatisticsFilterDTO $filtersDTO
     ): LengthAwarePaginator {
-        $courses = $this->courseRepository->getFilteredCoursesPage($page, $perPage, new CoursesFilterDTO());
+        $courseFilterDTO = (new CoursesFilterDTO())
+            ->setTitle($filtersDTO->getCourseTitle());
+
+        $courses = $this->courseRepository->getFilteredCoursesPage($page, $perPage, $courseFilterDTO);
 
         $statsPageDTOs = new Collection();
 
