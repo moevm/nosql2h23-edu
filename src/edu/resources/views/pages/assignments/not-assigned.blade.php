@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Список назначений</title>
+    <title>Список не назначенных пользователей</title>
 </head>
 <body>
 <ul id="navbar">
@@ -20,20 +20,20 @@
 <h1>Список назначений</h1>
 <div class="container-top">
     <h2>
-        Назначения на курс: {{ $course->title }}
+        Список не назначенных пользователей на курс: {{ $course->title }}
     </h2>
     <h2>
-        <a href="{{ route('courses.course.assignments.list', ['courseId' => $course->getKey()]) }}">Сбросить фильтры</a>
+        <a href="{{ route('courses.course.assignments.not-assigned', ['courseId' => $course->getKey()]) }}">Сбросить фильтры</a>
     </h2>
-    <form method="GET" action="{{ route('courses.course.assignments.list', ['courseId' => $course->getKey()]) }}">
-        <input name="filters[assigned_user_id]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите идентификатор">
-        <input name="filters[assigned_surname]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите фамилию">
+    <form method="GET" action="{{ route('courses.course.assignments.not-assigned', ['courseId' => $course->getKey()]) }}">
+        <input name="filters[not_assigned_user_id]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите идентификатор">
+        <input name="filters[not_assigned_surname]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите фамилию">
         <button type="submit" class="btn-load-json">Поиск</button>
     </form>
 </div>
 
 <div class="container-bot">
-    <h2>Список пользователей, уже назначенных на курс:</h2>
+    <h2>Список пользователей, которых можно назначить на курс:</h2>
     <table class="table-users">
         <thead>
         <th class="td-id">ID</th>
@@ -41,18 +41,18 @@
         <th class="td-actions">Действия</th>
         </thead>
         <tbody>
-        @forelse($assignedUsers as $assignedUser)
+        @forelse($notAssignedUsers as $notAssignedUser)
             <tr>
-                <td class="td-id">{{ $assignedUser->getKey() }}</td>
-                <td class="td-author">{{sprintf("%s %s %s", $assignedUser->name, $assignedUser->surname, $assignedUser->patronymic) }}</td>
+                <td class="td-id">{{ $notAssignedUser->getKey() }}</td>
+                <td class="td-author">{{sprintf("%s %s %s", $notAssignedUser->name, $notAssignedUser->surname, $notAssignedUser->patronymic) }}</td>
                 <td class="td-actions">
                     <a
-                        href="{{ route('courses.course.assignments.delete', ['courseId' => $course->getKey(), 'user_id' => $assignedUser->getKey()]) }}">Удалить
+                        href="{{ route('courses.course.assignments.create', ['courseId' => $course->getKey(), 'user_id' => $notAssignedUser->getKey()]) }}">Назначить
                     </a>
                 </td>
             </tr>
         @empty
-            Назначения на курс отсутствуют
+            Нет не назначенных на курс пользователей
         @endforelse
         </tbody>
     </table>

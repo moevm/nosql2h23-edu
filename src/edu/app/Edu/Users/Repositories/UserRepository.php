@@ -39,10 +39,10 @@ class UserRepository
         return $user;
     }
 
-    public function findByIds(array $userIds, bool $not = false): Collection
+    public function findByIds(array $userIds, UsersFilterDTO $usersFilterDTO, bool $not = false): Collection
     {
         return $this
-            ->getUsersQueryBuilder()
+            ->applyFilters($this->getUsersQueryBuilder(), $usersFilterDTO)
             ->whereIn('_id', $userIds, not: $not)
             ->get();
     }

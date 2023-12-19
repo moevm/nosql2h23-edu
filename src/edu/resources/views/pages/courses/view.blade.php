@@ -46,6 +46,9 @@
     <h2>
         <a href="{{ route('courses.course.assignments.list', ['courseId' => $course->getKey()]) }}">Список назначений</a>
     </h2>
+    <h2>
+        <a href="{{ route('courses.course.assignments.not-assigned', ['courseId' => $course->getKey()]) }}">Список не назначенных пользователей</a>
+    </h2>
 
     <form method="GET" action="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">
         <input name="filters[element_id]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите идентификатор элемента">
