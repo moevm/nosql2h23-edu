@@ -12,6 +12,60 @@ class UsersFilterDTO
 
     private ?string $roleTitle = null;
 
+    private ?string $userId = null;
+
+    private ?\DateTime $createdFrom = null;
+
+    private ?\DateTime $createdTo = null;
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreatedFrom(): ?\DateTime
+    {
+        return $this->createdFrom;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreatedTo(): ?\DateTime
+    {
+        return $this->createdTo;
+    }
+
+    /**
+     * @param \DateTime|null $createdFrom
+     */
+    public function setCreatedFrom(?\DateTime $createdFrom): self
+    {
+        $this->createdFrom = $createdFrom;
+
+        return $this;
+    }
+
+    /**
+     * @param \DateTime|null $createdTo
+     */
+    public function setCreatedTo(?\DateTime $createdTo): self
+    {
+        $this->createdTo = $createdTo;
+
+        return $this;
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?string $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
     public function setEmail(?string $email): self
     {
         $this->email = $email;

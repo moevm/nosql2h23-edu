@@ -13,6 +13,9 @@ class UsersFilterDTOAssembler
         return (new UsersFilterDTO())
             ->setEmail($filters['email'] ?? null)
             ->setSurname($filters['surname'] ?? null)
-            ->setRoleTitle($filters['role_title'] ?? null);
+            ->setRoleTitle($filters['role_title'] ?? null)
+            ->setUserId($filters['user_id'] ?? null)
+            ->setCreatedFrom(isset($filters['created_from']) ? new \DateTime($filters['created_from']) : null)
+            ->setCreatedTo(isset($filters['created_to']) ? (new \DateTime($filters['created_to']))->modify('+ 1 day - 1 second') : null);
     }
 }
