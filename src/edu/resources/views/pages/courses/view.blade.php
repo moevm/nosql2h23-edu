@@ -48,16 +48,12 @@
     </h2>
 
     <form method="GET" action="{{ route('courses.course.view', ['courseId' => $course->getKey()]) }}">
+        <input name="filters[element_id]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите идентификатор элемента">
         <input name="filters[title]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите название элемента">
+        <input name="filters[description]" id="elemInput" class="input-elem-name" type="text" placeholder="Введите содержание элемента">
         <input name="filters[type]" class="input-course-content" type="text" placeholder="Введите тип элемента">
         <button type="submit" class="btn-load-json">Поиск</button>
     </form>
-    <form method="POST" action="{{ route("courses.course.elements.import", ['courseId' => $course->getKey()]) }}" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Загрузить в json формате</button>
-    </form>
-
 </div>
 
 <div class="container-bot">
@@ -196,7 +192,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 700px;
+        height: 800px;
     }
     div.container-bot {
         background: white;

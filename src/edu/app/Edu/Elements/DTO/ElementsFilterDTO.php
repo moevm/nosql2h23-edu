@@ -10,6 +10,46 @@ class ElementsFilterDTO
 
     private ?string $elementTitle = null;
 
+    private ?string $elementId = null;
+
+    private ?string $description = null;
+
+    /**
+     * @param string|null $elementId
+     */
+    public function setElementId(?string $elementId): self
+    {
+        $this->elementId = $elementId;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getElementId(): ?string
+    {
+        return $this->elementId;
+    }
+
     public function setElementType(?string $type): self
     {
         $this->elementType = $type;

@@ -12,6 +12,8 @@ class ElementsFilterDTOAssembler
     {
         return (new ElementsFilterDTO())
             ->setElementType($filters['type'] ?? null)
-            ->setElementTitle($filters['title'] ?? null);
+            ->setElementTitle($filters['title'] ?? null)
+            ->setElementId($filters['element_id'] ?? null)
+            ->setDescription($filters['description'] ?? null);
     }
 }

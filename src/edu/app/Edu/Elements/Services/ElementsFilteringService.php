@@ -14,17 +14,35 @@ class ElementsFilteringService
     {
         $isNeedToFilterByType = (bool)$elementsFilterDTO->getElementType();
         $isNeedToFilterByTitle = (bool)$elementsFilterDTO->getElementTitle();
+        $isNeedToFilterById = (bool)$elementsFilterDTO->getElementId();
+        $isNeedToFilterByDescription = (bool)$elementsFilterDTO->getDescription();
 
-        return $elements->filter(function (Element $element) use ($isNeedToFilterByType, $isNeedToFilterByTitle, $elementsFilterDTO) {
+        return $elements->filter(function (Element $element) use (
+            $isNeedToFilterByType,
+            $isNeedToFilterByTitle,
+            $isNeedToFilterById,
+            $isNeedToFilterByDescription,
+            $elementsFilterDTO
+        ) {
             $result = true;
 
-            if (isNeedToUseAllFilteringCriteria($isNeedToFilterByTitle, $isNeedToFilterByType)) {
+            if (isNeedToUseAllFilteringCriteria($isNeedToFilterByTitle, $isNeedToFilterByType, $isNeedToFilterById, $isNeedToFilterByDescription)) {
                 return $element->type === $elementsFilterDTO->getElementType()
-                    && $element->title === $elementsFilterDTO->getElementTitle();
+                    && $element->title === $elementsFilterDTO->getElementTitle()
+                    && $element->getKey() === $elementsFilterDTO->getElementId()
+                    && $element->content === $elementsFilterDTO->getDescription();
             }
 
             if ($isNeedToFilterByType) {
                 $result = $element->type === $elementsFilterDTO->getElementType();
+            }
+
+            if ($isNeedToFilterByDescription) {
+                $result = $element->content === $elementsFilterDTO->getDescription();
+            }
+
+            if ($isNeedToFilterById) {
+                $result = $element->getKey() === $elementsFilterDTO->getElementId();
             }
 
             if ($isNeedToFilterByTitle) {
