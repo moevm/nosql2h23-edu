@@ -39,10 +39,10 @@ class UserRepository
         return $user;
     }
 
-    public function findByIds(array $userIds, bool $not = false): Collection
+    public function findByIds(array $userIds, UsersFilterDTO $usersFilterDTO, bool $not = false): Collection
     {
         return $this
-            ->getUsersQueryBuilder()
+            ->applyFilters($this->getUsersQueryBuilder(), $usersFilterDTO)
             ->whereIn('_id', $userIds, not: $not)
             ->get();
     }
@@ -82,6 +82,26 @@ class UserRepository
         $surname = $usersFilterDTO->getSurname();
         if ($surname) {
             $usersQueryBuilder->where('surname', '=', $surname);
+        }
+
+        $userId = $usersFilterDTO->getUserId();
+        if ($userId) {
+            $usersQueryBuilder->where('_id', '=', $userId);
+        }
+
+        $createdFrom = $usersFilterDTO->getCreatedFrom();
+        if ($createdFrom) {
+            $usersQueryBuilder->where('created_at', '>=', $createdFrom);
+        }
+
+        $createdTo = $usersFilterDTO->getCreatedTo();
+        if ($createdTo) {
+            $usersQueryBuilder->where('created_at', '<=', $createdTo);
+        }
+
+        $userId = $usersFilterDTO->getUserId();
+        if ($userId) {
+            $usersQueryBuilder->where('_id', '=', $userId);
         }
 
         $roleTitle = $usersFilterDTO->getRoleTitle();

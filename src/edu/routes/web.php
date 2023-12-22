@@ -4,6 +4,7 @@ use App\Edu\Assignments\Http\Actions\CreateAssignmentAction;
 use App\Edu\Assignments\Http\Actions\DeleteAssignmentAction;
 use App\Edu\Assignments\Http\Actions\ImportAssignmentsAction;
 use App\Edu\Assignments\Http\Actions\ViewAssignmentsListAction;
+use App\Edu\Assignments\Http\Actions\ViewNotAssignedUsersListAction;
 use App\Edu\Courses\Http\Actions\CreateCourseAction;
 use App\Edu\Courses\Http\Actions\DeleteCourseAction;
 use App\Edu\Courses\Http\Actions\EditCourseAction;
@@ -112,6 +113,7 @@ Route::middleware([UserAuthMiddleware::class])->group(function () {
 
             Route::group(['prefix' => 'assignments', 'as' => 'assignments.'], function () {
                 Route::get('', ViewAssignmentsListAction::class)->name('list');
+                Route::get('not-assigned', ViewNotAssignedUsersListAction::class)->name('not-assigned');
                 Route::get('/create', CreateAssignmentAction::class)->name('create');
                 Route::get('/delete', DeleteAssignmentAction::class)->name('delete');
                 Route::post('/import', ImportAssignmentsAction::class)->name('import');

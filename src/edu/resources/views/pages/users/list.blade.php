@@ -33,8 +33,17 @@
     </h2>
 
     <form method="GET" action="{{ route('users.list') }}">
+        <input name="filters[user_id]" class="input-surname" type="text" placeholder="Введите идентификатор">
         <input name="filters[email]" class="input-name" type="text" placeholder="Введите email">
-        <input name="filters[surname]" class="input-surname" type="text" placeholder="Введите фамилию">
+        <input name="filters[surname]" class="input-name" type="text" placeholder="Введите фамилию">
+        <label>
+            <p class="label-role"> Зарегистрирован от</p>
+            <input name="filters[created_from]" class="input-surname" type="date">
+        </label>
+        <label>
+            <p class="label-role"> Зарегистрирован до</p>
+            <input name="filters[created_to]" class="input-surname" type="date">
+        </label>
         <label> <p class="label-role"> Выберите роль</p></label>
         <label class="admin-or-user">
             <a> Пользователь</a>
@@ -43,13 +52,6 @@
             <input name="filters[role_title]" type="radio" class="role-enter" value="Администратор">
         </label>
         <button type="submit" class="btn-search">Поиск</button>
-    </form>
-
-    <a href="{{ route("users.export") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("users.import") }}" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Загрузить в json формате</button>
     </form>
 
 </div>
@@ -156,7 +158,7 @@
         background: white;
         margin-left: 120px;
         width: 1560px;
-        height: 480px;
+        height: 780px;
     }
     div.container-bot {
         text-align: center;

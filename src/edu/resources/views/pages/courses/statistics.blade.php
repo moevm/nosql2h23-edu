@@ -25,16 +25,10 @@
     </h2>
 
     <form method="GET" action="{{ route('courses.statistics') }}">
+        <input name="filters[course_title]" class="input-surname" type="text" placeholder="Название курса">
         <input name="filters[assignments_count]" class="input-name" type="text" placeholder="Количество обучающихся более">
         <input name="filters[passed_count]" class="input-surname" type="text" placeholder="Количество прошедших курс более">
         <button type="submit" class="btn-search">Поиск</button>
-    </form>
-
-    <a href="{{ route("courses.export-statistics") }}" class="a-download-json">Выгрузить в json формате</a>
-    <form method="POST" action="{{ route("courses.import-statistics") }}" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file">
-        <button type="submit">Загрузить в json формате</button>
     </form>
 
 </div>
